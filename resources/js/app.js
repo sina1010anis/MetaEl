@@ -2,7 +2,10 @@ require('./bootstrap');
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import {createApp , h} from "vue";
 import Send from './Pages/Send'
-import Welcome from './Pages/Welcome'
+import Welcome from './Pages/Front/HomePage'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import '../css/my-style.css'
 
 createInertiaApp({
     resolve: name => require(`./Pages/${name}`),
@@ -18,6 +21,11 @@ const app = createApp({
     }),
     components:{
         Send,Welcome
+    },
+    methods:{
+        btn_test(){
+            alert('ok');
+        }
     }
 });
 

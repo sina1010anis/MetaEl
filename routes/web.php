@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\FrontController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 /*
@@ -13,12 +14,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-});
-Route::get('/send', function () {
-    return Inertia::render('Send');
-});
+Route::get('/' , [FrontController::class , 'home_page'])->name('home_page');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

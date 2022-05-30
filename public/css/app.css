@@ -1,1 +1,20 @@
+body{
+    direction: rtl;
+}
+.box-header{
+    background-color: #fdfdfd;
+    box-shadow: 1px 1px 10px rgba(215, 215, 215, 0.5);
+}
+.text-btn-login-register{
+    position: relative;
+    top: -3px;
+}
+.btn-login-register{
+    background-color: #ff7c7c;
+}
+.text-item-box-header{
+    position: relative;
+    top: -2px;
+}
+
 
