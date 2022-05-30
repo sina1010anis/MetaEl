@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'mobile'
     ];
 
     /**
@@ -41,4 +42,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function adresss()
+    {
+        return $this->belongsTo(Address::class , 'address_id' , 'id');
+    }
+    public function cart()
+    {
+        return $this->hasMany(User::class , 'user_id' , 'id');
+    }
+    public function comment_product()
+    {
+        return $this->hasMany(CommentProduct::class , 'user_id' , 'id');
+    }
+    public function comment_panel()
+    {
+        return $this->hasMany(CommentPanel::class , 'user_id' , 'id');
+    }
+    public function support()
+    {
+        return $this->hasMany(Support::class , 'user_id' , 'id');
+    }
+
 }
