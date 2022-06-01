@@ -13,8 +13,11 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(FrontController::class)->as('home.')->group(function (){
+    Route::get('/' , 'home_page')->name('page');
+    Route::post('/view/menu' , 'view_menu')->name('view_menu');
+});
 
-Route::get('/' , [FrontController::class , 'home_page'])->name('home_page');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
