@@ -18,6 +18,7 @@ use Inertia\Inertia;
 Route::controller(FrontController::class)->as('home.')->group(function () {
     Route::get('/', 'home_page')->name('page');
     Route::post('/view/menu', 'view_menu')->name('view_menu');
+    Route::post('/get/data/image', 'get_data_image')->name('get_data_image');
 });
 Route::controller(UserController::class)->as('user.')->group(function () {
     Route::get('/login/user', 'login_page')->name('login_page');

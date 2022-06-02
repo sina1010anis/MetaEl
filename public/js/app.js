@@ -24919,7 +24919,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "Slider",
   data: function data() {
     return {
-      image: []
+      image: [],
+      imageFi: [],
+      statuesS: false,
+      dataImageSlider: {}
     };
   },
   components: {
@@ -24932,19 +24935,57 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.image = this.images;
+    this.imageFi.push(this.image[0].subject);
+    this.imageFi.push(this.image[0].description);
+    this.imageFi.push(this.image[0].url);
+  },
+  methods: {
+    test: function test() {
+      console.log('te');
+    },
+    setDataSlider: function setDataSlider() {
+      this.dataImageSlider['subject'] = this.subjectSlider_S[this.subjectSlider_S.length - 1];
+      this.dataImageSlider['description'] = this.descriptionSlider_S[this.descriptionSlider_S.length - 1];
+      this.dataImageSlider['url'] = this.urlSlider_S[this.urlSlider_S.length - 1];
+      this.statuesS = this.statusSlider_S[this.statusSlider_S.length - 1];
+    }
   },
   setup: function setup() {
+    var subjectSlider_S = [];
+    var descriptionSlider_S = [];
+    var urlSlider_S = [];
+    var statusSlider_S = [];
+
     var onSlideChange = function onSlideChange(swiper) {
-      console.log(swiper);
+      var id = swiper.activeIndex;
+      var tag = document.getElementById(id).innerText;
+      axios.post('/get/data/image', {
+        name: tag
+      }).then(function (res) {
+        subjectSlider_S.push(res.data.subject);
+        descriptionSlider_S.push(res.data.description);
+        urlSlider_S.push(res.data.url);
+        statusSlider_S.push(true); // subjectSlider = res.data.subject
+        // descriptionSlider = res.data.description
+        // urlSlider = res.data.url
+        // statuesSlider = true
+      })["catch"](function (res) {
+        console.error(res.data);
+      });
     };
 
     var onSwiper = function onSwiper(swiper) {
-      console.log(swiper);
+      console.log(swiper.activeIndex);
     };
 
     return {
       onSwiper: onSwiper,
-      onSlideChange: onSlideChange
+      onSlideChange: onSlideChange,
+      subjectSlider_S: subjectSlider_S,
+      descriptionSlider_S: descriptionSlider_S,
+      urlSlider_S: urlSlider_S,
+      statusSlider_S: statusSlider_S // subjectSlider,descriptionSlider,urlSlider,statuesSlider
+
     };
   }
 });
@@ -25363,54 +25404,25 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_6 = {
   "class": "w-100 text-center my-pos-relative my-obj-center"
 };
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/image/product/product_1.jpg",
-  "class": "",
-  alt: "product_1"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/image/product/product_2.jpg",
-  "class": "",
-  alt: "product_1"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/image/product/product_1.jpg",
-  "class": "d-i",
-  alt: "product_1"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_10 = {
+var _hoisted_7 = ["id"];
+var _hoisted_8 = ["src", "alt"];
+var _hoisted_9 = {
   "class": "col-12 col-md-7 my-pos-relative",
   style: {
     "height": "400px"
   }
 };
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "w-100 p-3"
 };
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+var _hoisted_11 = {
   "class": "my-font-IYM my-color-b-700"
-}, "توی گیم کم نمیاره ....", -1
-/* HOISTED */
-);
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+};
+var _hoisted_12 = {
   "class": "my-font-IYL my-f-13 lh-lg mt-4 my-color-b-500"
-}, " لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. ", -1
-/* HOISTED */
-);
+};
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" برسی ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" برسی ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_swiper_slide = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("swiper-slide");
@@ -25420,49 +25432,62 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_swiper, {
+    onMousemove: $options.setDataSlider,
     "slides-per-view": 1,
     "space-between": 50,
-    onSlideChange: $setup.onSlideChange
+    onSlideChange: $setup.onSlideChange,
+    Autoplay: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_swiper_slide, null, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_7];
-        }),
-        _: 1
-        /* STABLE */
+      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.image, function (img, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_swiper_slide, {
+          key: index
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+              id: index,
+              hidden: ""
+            }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(img.name), 9
+            /* TEXT, PROPS */
+            , _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+              src: '/image/product/' + img.image,
+              alt: img.name
+            }, null, 8
+            /* PROPS */
+            , _hoisted_8)];
+          }),
+          _: 2
+          /* DYNAMIC */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_swiper_slide, null, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_8];
-        }),
-        _: 1
-        /* STABLE */
-
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_swiper_slide, null, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
-        }),
-        _: 1
-        /* STABLE */
-
-      })];
+        }, 1024
+        /* DYNAMIC_SLOTS */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["onSlideChange"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  , ["onMousemove", "onSlideChange"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!_ctx.statuesS ? _ctx.imageFi[0] : _ctx.dataImageSlider.subject), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(!_ctx.statuesS ? _ctx.imageFi[1] : _ctx.dataImageSlider.description), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+    href: !_ctx.statuesS ? _ctx.imageFi[1] : _ctx.dataImageSlider.url,
     "class": "btn-show-slider py-2 px-5 my-f-16 my-font-IYM"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_13];
     }),
     _: 1
     /* STABLE */
 
-  })])])])]);
+  }, 8
+  /* PROPS */
+  , ["href"])])])])]);
 }
 
 /***/ }),

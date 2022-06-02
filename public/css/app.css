@@ -257,13 +257,13 @@ body{
     bottom: -250px;
     z-index: 2;
     left: -250px;
-    background-color: #bfbfff;
+    background-color: #9d9dff;
 }
 .cir-2{
     top: -250px;
     z-index: 2;
     right: -250px;
-    background-color: #ffffbe;
+    background-color: #ffffa1;
 }
 @-webkit-keyframes rou {
     100%{
