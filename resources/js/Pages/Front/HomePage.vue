@@ -1,6 +1,6 @@
 <template>
     <HeaderVue :auth="auth" :datas="data['menu']"/>
-
+    <SliderVue :images="imageSlider"/>
 <!--    <Link href="/send">go to Page Send</Link>-->
 <!--    <button @click="push()">Laravel :v{{version}}</button>-->
 </template>
@@ -10,6 +10,7 @@ import HeaderVue from "./Layouts/HeaderVue";
 import SliderVue from "./Layouts/SliderVue";
 const props = defineProps({
     auth:String,
-    data:Array
+    data:Array,
+    imageSlider:Array
 });
 </script>

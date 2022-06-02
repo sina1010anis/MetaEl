@@ -57,7 +57,7 @@ body{
     left: 0;
     height: 300px;
     display: none;
-    z-index: 3;
+    z-index: 4;
 }
 .btn-cls-menu{
     color: #ff6767;
@@ -67,7 +67,7 @@ body{
     height: 100%;
     position: fixed;
     top: 0;
-    z-index: 2;
+    z-index: 3;
     display: none;
     left: 0;
     background-color: rgba(38, 38, 38, 0.5);
@@ -83,7 +83,7 @@ body{
     height: 70px;
     background-color: #ffffff;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     top: 10px;
     box-shadow: 1px 1px 10px rgba(78, 78, 78, 0.5);
     left: 50%;
@@ -118,7 +118,7 @@ body{
     width: 550px;
     height: 500px;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     top: 10px;
     left: 50%;
     border-radius: 10px;
@@ -217,7 +217,7 @@ body{
     width: 400px;
     height: auto;
     position: fixed;
-    z-index: 3;
+    z-index: 4;
     background-color: #ffffff;
     top: 10px;
     left: 50%;
@@ -226,4 +226,46 @@ body{
 }
 .btn-login-register-a:hover{
     color: #ffffff!important;
+}
+.swiper-slide{
+    display: inline-block!important;
+}
+.btn-show-slider{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    border: 1px solid #ff6a6a;
+    background-color:#ff6a6a ;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.btn-show-slider:hover{
+    background-color:unset ;
+    color: #ff6a6a;
+}
+.cir{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    border-radius:150px;
+    animation: rou 4s forwards infinite;
+}
+.cir-1{
+    bottom: -250px;
+    z-index: 2;
+    left: -250px;
+    background-color: #bfbfff;
+}
+.cir-2{
+    top: -250px;
+    z-index: 2;
+    right: -250px;
+    background-color: #ffffbe;
+}
+@keyframes rou {
+    100%{
+        transform: rotate(180deg);
+    }
 }

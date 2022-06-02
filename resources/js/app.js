@@ -6,7 +6,7 @@ import Welcome from './Pages/Front/HomePage'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import '../css/my-style.css'
-
+import carousel from 'vue-owl-carousel'
 createInertiaApp({
     resolve: name => require(`./Pages/${name}`),
     setup({ el, App, props, plugin }) {
@@ -20,7 +20,7 @@ const app = createApp({
         text:'sina'
     }),
     components:{
-        Send,Welcome
+        Send,Welcome,carousel
     },
     methods:{
         btn_test(){
@@ -28,5 +28,4 @@ const app = createApp({
         }
     }
 });
-
 app.mount('#app')

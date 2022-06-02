@@ -4,11 +4,12 @@ namespace App\Repository\Front\Data;
 
 use App\Models\Menu;
 
-abstract class Datas
+trait Datas
 {
-    use Models;
-    public function menu()
+
+    public function setModel($model , $where , $get)
     {
-        return $this->Menus()->whereStatus(1)->get();
+        return $model->$where;
     }
+
 }
