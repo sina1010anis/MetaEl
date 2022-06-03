@@ -275,4 +275,8 @@ body{
         transform: rotate(180deg);
     }
 }
+.box-items-in-home-page .col div{
+    height: auto;
+    overflow: visible;
+}
 

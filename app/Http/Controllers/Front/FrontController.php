@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use App\Models\Menu;
 use App\Models\Slider;
 use App\Models\SunMenu;
@@ -18,7 +19,8 @@ class FrontController extends Controller
             'imageSlider' => Slider::whereStatus(1)->get(),
             'auth' => auth()->check(),
             'data' => [
-                'menu' => Menu::whereStatus(1)->get()
+                'menu' => Menu::whereStatus(1)->get(),
+                'items' => Item::get(),
             ],
         ]);
     }
