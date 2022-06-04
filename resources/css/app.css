@@ -273,3 +273,11 @@ body{
     height: auto;
     overflow: visible;
 }
+.item-product{
+    background-color: #ffffff;
+    transition: 0.2s;
+    text-decoration: none;
+}
+.item-product:hover{
+    background-color: #fdfdfd;
+}
