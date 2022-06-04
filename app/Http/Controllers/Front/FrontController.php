@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Item;
 use App\Models\Menu;
 use App\Models\Slider;
@@ -21,6 +22,7 @@ class FrontController extends Controller
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
                 'items' => Item::get(),
+                'banner' => Banner::get(),
             ],
         ]);
     }

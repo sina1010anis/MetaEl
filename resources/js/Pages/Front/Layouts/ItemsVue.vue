@@ -3,7 +3,7 @@
         <div class="row row-cols-1 row-cols-md-3 box-items-in-home-page">
             <div class="col" v-for="(item , index) in data" :key="index">
                 <div class="">
-                    <div class="card my-3 p-2" style="max-width: 100%;">
+                    <div class="card my-3 p-2 shadow-sm" style="max-width: 100%;">
                         <div class="row g-0">
                             <div class="col-md-4 my-pos-relative">
                                 <img :src="'/image/front/'+item.image" class="img-fluid rounded-start my-obj-center mt-1 mt-md-0" style="width: 90px;background-color: #ffffff" :alt="item.name">
