@@ -22,7 +22,9 @@ class FrontController extends Controller
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
                 'items' => Item::get(),
-                'banner' => Banner::get(),
+                'bannerS' => Banner::whereLocation('start')->get(),
+                'bannerC' => Banner::whereLocation('center')->get(),
+                'bannerE' => Banner::whereLocation('end')->get(),
             ],
         ]);
     }

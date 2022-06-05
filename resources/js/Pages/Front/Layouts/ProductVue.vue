@@ -1,13 +1,14 @@
 <template>
-    <div class="container box">
-        <div class="row shadow-lg">
+    <div class="container box my-5">
+        <p class="m-2 my-font-IYM text-center title-box-product">بهترین خرید</p>
+        <div class="row shadow-lg mt-4 my-pos-rel">
             <div class="col-md-2  d-none d-md-inline-block p-2 my-pos-relative my-sc-0-6" style="height: 250px;">
                 <img class="h-100 my-obj-center" src="/image/product/image_list_1.png" alt="item_list">
             </div>
             <div class="col-md-10 col-12 p-2 row d-flex flex-nowrap overflow-scroll" style="height: 250px;">
                 <Link v-for="i in 100" style="width: 180px;height: 100%" class="mx-2 p-1 border rounded-3 item-product">
                     <div class="my-h-50 text-center my-2">
-                        <img  src="/image/product/product_1.jpg" style="height: 100%;" alt="">
+                        <img loading="lazy" src="/image/product/product_1.jpg" style="height: 100%;" alt="">
                     </div>
                     <div class="mt-2">
                         <p class="my-f-13 my-color-b-700 my-font-IYM">نام محصول</p>

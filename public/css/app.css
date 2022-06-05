@@ -287,4 +287,51 @@ body{
 .item-product:hover{
     background-color: #fdfdfd;
 }
+.title-box-product{
+}
+.box-img-slide img:first-child{
+    display: none;
+}
+.box-img-slide{
+    transition: 0.5s;
+    -webkit-animation: slide_image 30s infinite forwards alternate;
+            animation: slide_image 30s infinite forwards alternate;
+}
+@-webkit-keyframes slide_image {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -150%;
+    }
+}
+@keyframes slide_image {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -150%;
+    }
+}
+.box-img-slide-l{
+    transition: 0.5s;
+    -webkit-animation: slide_image_l 30s infinite forwards alternate;
+            animation: slide_image_l 30s infinite forwards alternate;
+}
+@-webkit-keyframes slide_image_l {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -100%;
+    }
+}
+@keyframes slide_image_l {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -100%;
+    }
+}
 
