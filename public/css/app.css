@@ -1,5 +1,6 @@
 body{
     direction: rtl;
+    background-color: #fafafa;
 }
 .box-header{
     background-color: #fdfdfd;
@@ -327,6 +328,26 @@ body{
     }
 }
 @keyframes slide_image_l {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -100%;
+    }
+}
+.box-view-logo{
+    -webkit-animation: slide_image_logo 30s infinite forwards alternate;
+            animation: slide_image_logo 30s infinite forwards alternate;
+}
+@-webkit-keyframes slide_image_logo {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -100%;
+    }
+}
+@keyframes slide_image_logo {
     0%{
         right: 0;
     }

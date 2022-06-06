@@ -10,6 +10,7 @@
     <ProductVue />
     <BannerVue :data="data['bannerE']" :location="'end'"/>
     <SlidrProductVue :model="'laptop'"/>
+    <FooterVue />
 </template>
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
@@ -19,6 +20,7 @@ import ItemsVue from "./Layouts/ItemsVue";
 import BannerVue from "./Layouts/BannerVue";
 import ProductVue from "./Layouts/ProductVue";
 import SlidrProductVue from "./Layouts/SlidrProductVue";
+import FooterVue from "./Layouts/FooterVue";
 const props = defineProps({
     auth:String,
     data:Array,
