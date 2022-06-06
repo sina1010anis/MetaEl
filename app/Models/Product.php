@@ -27,4 +27,12 @@ class Product extends Model
     {
         return $this->belongsTo(SunMenu::class , 'sub_menu_id' , 'id');
     }
+    public function factor()
+    {
+        return $this->hasMany(factor::class , 'product_id' , 'id');
+    }
+    public function filter()
+    {
+        return $this->hasMany(filter_product::class , 'product_id' , 'id');
+    }
 }
