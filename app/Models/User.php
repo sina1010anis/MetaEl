@@ -42,6 +42,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $attributes = ['address_id' => 0];
     public function adresss()
     {
         return $this->belongsTo(Address::class , 'address_id' , 'id');

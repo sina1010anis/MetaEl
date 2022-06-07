@@ -21,7 +21,8 @@ Route::controller(FrontController::class)->as('home.')->group(function () {
     Route::post('/get/data/image', 'get_data_image')->name('get_data_image');
 });
 Route::controller(UserController::class)->as('user.')->group(function () {
-    Route::get('/login/user', 'login_page')->name('login_page');
+    Route::get('/login/user', 'login_page')->name('login');
+    Route::get('/user/home', 'home')->name('home');
 });
 Auth::routes();
 

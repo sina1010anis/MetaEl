@@ -315,10 +315,37 @@ body{
     animation: slide_image_logo 30s infinite forwards alternate;
 }
 @keyframes slide_image_logo {
-    0%{
+    0% {
         right: 0;
     }
-    100%{
+    100% {
         right: -100%;
     }
 }
+.box-login-register{
+    width: 400px;
+    max-width: 90%;
+    height: auto;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid #efefef;
+    box-shadow: 1px 1px 10px rgba(241, 241, 241, 0.5);
+}
+.box-login-register input{
+    outline: none;
+    padding: 10px 10px;
+    color: #393939;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    background: #f8f8f8;
+}
+.box-login-register button{
+    background: #ff6a6a;
+    transition: 0.2s;
+    color: white;
+}
+.box-login-register button:hover{
+    background: #ff7272;
+    color: white;
+}
+/* ------------------------------------ */

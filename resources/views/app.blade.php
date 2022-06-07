@@ -8,6 +8,7 @@
     @inertiaHead
 </head>
 <body>
+@csrf
 @inertia
 </body>
 </html>

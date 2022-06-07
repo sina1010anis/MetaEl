@@ -35,4 +35,8 @@ class Product extends Model
     {
         return $this->hasMany(filter_product::class , 'product_id' , 'id');
     }
+    public function brand()
+    {
+        return $this->belongsTo(Product::class , 'product_id' , 'id');
+    }
 }

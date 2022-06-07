@@ -17,7 +17,7 @@
                 <div v-if="auth" @click="open_cart" class="btn-user-header btn-cart my-color-b my-pointer rounded py-2 px-3 mx-2">
                     <i class="bi bi-cart p-1"></i>
                 </div>
-                <Link href="/login/user" class="btn-user-header btn-login-register btn-login-register-a my-color-b my-pointer rounded py-2 px-3 mx-2">
+                <Link :href="'/login/user'" class="btn-user-header btn-login-register btn-login-register-a my-color-b my-pointer rounded py-2 px-3 mx-2">
                     <i class="bi bi-people p-1"></i>
                 </Link>
                 <div @click="open_search"
