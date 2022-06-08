@@ -95,6 +95,7 @@ body{
     width: 100%;
     height: 100%;
     border: unset;
+    outline: none;
     border-bottom: 2px solid #f8f8f8;
 }
 .btn-cls-search{
@@ -153,6 +154,9 @@ body{
     background-color: #6c96ff;
     border-radius: 5px;border:1.5px solid #6c96ff ;
     transition: 0.2s;
+}
+Link{
+    text-decoration: none!important;
 }
 .btn-send-address-profile:hover{
     background-color: unset;

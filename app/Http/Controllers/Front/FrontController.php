@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Item;
 use App\Models\Menu;
+use App\Models\Product;
 use App\Models\Slider;
 use App\Models\SunMenu;
 use App\Repository\Front\GetData;
@@ -25,6 +26,9 @@ class FrontController extends Controller
                 'bannerS' => Banner::whereLocation('start')->get(),
                 'bannerC' => Banner::whereLocation('center')->get(),
                 'bannerE' => Banner::whereLocation('end')->get(),
+                'products_mobile' => Product::whereIn('sub_menu_id' , [1,2])->get(),
+                'products_laptop' => Product::whereIn('sub_menu_id',[3,4])->get(),
+                'products_office' => Product::whereIn('sub_menu_id',[5,6])->get(),
             ],
         ]);
     }

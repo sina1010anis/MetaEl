@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -21,9 +22,14 @@ Route::controller(FrontController::class)->as('home.')->group(function () {
     Route::post('/get/data/image', 'get_data_image')->name('get_data_image');
 });
 Route::controller(UserController::class)->as('user.')->group(function () {
+    Route::get('/register/user', 'register_page')->name('register');
     Route::get('/login/user', 'login_page')->name('login');
     Route::get('/user/home', 'home')->name('home');
 });
+Route::controller(ProductController::class)->as('product.')->group(function () {
+    Route::get('/product/{product}', 'show')->name('show');
+    Route::post('/search/product', 'search')->name('search');
+});
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.a');

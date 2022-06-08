@@ -3,11 +3,11 @@
     <SliderVue :images="imageSlider"/>
     <ItemsVue :data="data['items']"/>
     <BannerVue :data="data['bannerS']" :location="'start'"/>
-    <ProductVue />
+    <ProductVue :title="'موبایل ها'" :products="data['products_mobile']" />
     <BannerVue :data="data['bannerC']" :location="'center'"/>
-    <ProductVue />
+    <ProductVue :title="'لپ تاپ ها'" :products="data['products_laptop']" />
     <SlidrProductVue :model="'mobile'"/>
-    <ProductVue />
+    <ProductVue :title="'لوازم اداری'" :products="data['products_office']" />
     <BannerVue :data="data['bannerE']" :location="'end'"/>
     <SlidrProductVue :model="'laptop'"/>
     <FooterVue />
