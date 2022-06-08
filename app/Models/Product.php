@@ -39,6 +39,10 @@ class Product extends Model
     {
         return $this->belongsTo(Product::class , 'product_id' , 'id');
     }
+    public function image()
+    {
+        return $this->hasMany(Images::class , 'product_id' , 'id');
+    }
     public function getRouteKeyName()
     {
         return 'slug';

@@ -9,7 +9,7 @@
             </div>
             <div class="col-12 col-md-3 text-center  order-0 order-md-1 p-2 p-md-1">
                 <Link href="/">
-                    <img src="image/front/logo.png" style="height: 50px!important;" alt="logo">
+                    <img src="/image/front/logo.png" style="height: 50px!important;" alt="logo">
                 </Link>
             </div>
             <div
@@ -63,10 +63,10 @@
                 <i style="font-size:30px" class="bi bi-search my-obj-center my-color-b-100"></i>
             </div>
             <div class="view-item-in-search col-12 rounded-3 mt-3 p-2 my-pos-relative">
-                <!--                <div style="width: 100%;height: 100%" class="d-flex justify-content-center flex-column align-items-center not-search">-->
-                <!--                    <img style="width: 200px;" src="/image/front/not-search.png" alt="not-search">-->
-                <!--                    <p class="text-center my-font-IYL my-color-b-400 my-f-16">چیزی یافت نشد!</p>-->
-                <!--                </div>-->
+                <div v-if="search_text == '' || !status_search" style="width: 100%;height: 100%" class="d-flex justify-content-center flex-column align-items-center not-search">
+                    <img style="width: 200px;" src="/image/front/not-search.png" alt="not-search">
+                    <p class="text-center my-font-IYL my-color-b-400 my-f-16">چیزی یافت نشد!</p>
+                </div>
                 <Link v-for="(product , index) in data_search" :key="index"
                      class="d-flex text-muted pt-3 my-pointer item-for-search" :href="'/product/'+product.slug" >
                         <img :src="'/image/product/'+product.image" class="mx-2" style="height: 50px"
@@ -150,6 +150,7 @@ export default {
         search_text: '',
         show_blur: 1,
         data_search: null,
+        status_search:true
     }),
     components: {
         BlurVue,
@@ -163,7 +164,14 @@ export default {
         view_product() {
             if (this.search_text != '') {
                 axios.post('/search/product', {data: this.search_text}).then((res) => {
-                    this.data_search = res.data
+                    if(res.data != ''){
+                        this.data_search = res.data
+                        this.status_search = true
+                    }else
+                    {
+                        this.status_search = false
+                    }
+
                 }).catch((res) => {
                     console.log('no')
                 })

@@ -30,15 +30,15 @@
                         <div class="row">
                             <div class="col-12" style="height: 50px;position: relative;overflow: hidden">
                                 <div class="bg-white h-100 box-img-slide-l box-logo-footer d-flex" style="position:relative;">
-                                    <img class="h-100 mx-3" src="image/logo/appel.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/honor.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/samsung.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/hp.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/huawei.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/mi.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/asus.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/htc.png" alt="">
-                                    <img class="h-100 mx-3" src="image/logo/one_plus.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/appel.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/honor.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/samsung.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/hp.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/huawei.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/mi.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/asus.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/htc.png" alt="">
+                                    <img class="h-100 mx-3" src="/image/logo/one_plus.png" alt="">
                                 </div>
                             </div>
                         </div>
