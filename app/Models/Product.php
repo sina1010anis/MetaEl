@@ -43,6 +43,10 @@ class Product extends Model
     {
         return $this->hasMany(Images::class , 'product_id' , 'id');
     }
+    public function price_product()
+    {
+        return $this->hasMany(PriceProduct::class , 'product_id' , 'id');
+    }
     public function getRouteKeyName()
     {
         return 'slug';
