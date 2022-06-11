@@ -25,6 +25,7 @@ class ProductController extends Controller
                 'menu_a' => $product->sub_menu->menu,
                 'datail' => DatailProduct::whereProduct_id($product->id)->first(),
                 'price_product' => PriceProduct::whereProduct_id($product->id)->get(),
+                'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
                 ]
         ]);
     }

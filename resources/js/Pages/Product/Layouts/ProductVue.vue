@@ -59,19 +59,35 @@
                 <div v-if="size_price != null" class="btn-buy-show-product py-2 px-4 rounded-3 my-font-IYL my-f-12 my-color-b my-boj-center my-pointer">خرید محصول</div>
                 <div v-if="size_price == null" class="col-md-4 col-12 my-font-IYL my-f-11" style="color:#ff7272">لطفا یک نوع از محصول را انتخاب کنید</div>
             </div>
-            <div class="col-md-4 col-12 d-flex justify-content-center align-content-center order-1">
+            <div class="col-md-4 col-12 d-flex justify-content-center  align-content-center order-1">
                 <select @change="setSelect" v-model="size_price" class="form-select" aria-label="Default select example">
                     <option class="my-font-IYL my-f-13 my-color-b-600" v-for="(price , index) in prices" :value="price.id" :key="index">{{price.name}}</option>
                 </select>
             </div>
             <div class="col-md-4 col-12 d-flex justify-content-center align-content-center order-md-2 order-0">{{(!status_size_price) ? data.price : text_size_price}}</div>
         </div>
+        <div class="my-line mb-3"></div>
+        <div class="row">
+            <p class="my-font-IYM my-color-b-700 my-f-15">برسی اصلی</p>
+            <div class="col-12">
+                <div v-html="data.description_a" class="description_a p-3 bg-light rounded-3 shadow my-3 my-font-IYL my-color-b-600 my-f-13 my-2 lh-lg">
+
+                </div>
+            </div>
+        </div>
+        <div class="my-line my-3"></div>
+        <CommentProductVue />
+        <div class="my-line my-3"></div>
+        <RelatedProductVue :data="related"/>
     </div>
 </template>
 
 <script>
 import {Link} from '@inertiajs/inertia-vue3'
-import axios from 'axios'
+    import axios from 'axios'
+    import $ from 'jquery'
+    import CommentProductVue from './CommentProductVue'
+    import RelatedProductVue from './RelatedProductVue'
 export default {
     name: "ProductVue",
     data:()=>({
@@ -79,9 +95,10 @@ export default {
         size_price:null,
         status_size_price:false,
         text_size_price:'',
+        id_comment:0,
     }),
     components:{
-        Link,
+        Link,CommentProductVue,RelatedProductVue
     },
     props:{
         data:Array,
@@ -89,9 +106,24 @@ export default {
         menu_s:Array,
         menu_a:Array,
         datail:Array,
-        prices:Array
+        prices:Array,
+        related:Array
     },
     methods:{
+        clsMenuComment(){
+            this.id_comment = 0
+            $('.menu-comment').fadeOut()
+        },
+        setComment(id){
+            this.id_comment = id
+            $('.menu_comment_'+id).fadeIn()
+        },
+        b_on() {
+            $('.blur-page').fadeIn()
+        },
+        b_off() {
+            $('.blur-page').fadeOut()
+        },
         setImage(src){
             this.srcImage = src
         },
@@ -100,10 +132,13 @@ export default {
                 this.status_size_price = true
                 this.text_size_price = res.data.price
             }).catch(()=>{
-                
+
             })
         },
-    }
+    },
+    mounted() {
+
+    },
 }
 </script>
 

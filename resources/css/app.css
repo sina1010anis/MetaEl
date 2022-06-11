@@ -421,5 +421,72 @@ Link {
     height: 35px;
 }
 
+.icon-comment-product {
+    position: relative;
+    top: 2px;
+}
+
+.line-comment-product {
+    position: relative;
+    top: 4px;
+    border-radius: 100px;
+    border: 2px solid #ff6363;
+}
+
+.wl-30 {
+    width: 30%;
+}
+
+.wl-50 {
+    width: 50%;
+}
+
+.wl-70 {
+    width: 70%;
+}
+
+.wl-90 {
+    width: 90%;
+}
+
+.wl-100 {
+    width: 100%;
+}
+
+.vote-good {
+    color: #82e382;
+}
+
+.vote-m {
+    color: #ffe15d;
+}
+
+.vote-bad {
+    color: #ff5d5d;
+}
+
+.btn-menu-comment {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.menu-comment {
+    width: 150px;
+    background-color: #Ffffff;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    display: none;
+}
+
+.reply-comment {
+    color: rgb(0, 206, 0);
+}
+
+.flag-comment {
+    color: #ff5d5d
+}
+
 
 /* ------------------------------------ */
