@@ -21,7 +21,7 @@ class Product extends Model
     }
     public function datail_product()
     {
-        return $this->belongsTo(DatailProduct::class , 'product_id' , 'id');
+        return $this->hasMany(DatailProduct::class , 'product_id' , 'id');
     }
     public function sub_menu()
     {
@@ -39,7 +39,7 @@ class Product extends Model
     {
         return $this->belongsTo(Product::class , 'product_id' , 'id');
     }
-    public function image()
+    public function images()
     {
         return $this->hasMany(Images::class , 'product_id' , 'id');
     }
@@ -50,5 +50,9 @@ class Product extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    protected function getCreatedAtAttribute($val)
+    {
+        return jdate($val)->format('%B %d، %Y');
     }
 }

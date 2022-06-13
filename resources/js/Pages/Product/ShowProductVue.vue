@@ -1,6 +1,16 @@
 <template>
     <HeaderVue :auth="auth" :datas="data['menu']"/>
-    <ProductVue :related="data['related_product']" :prices="data['price_product']" :datail="data['datail']" :data="data['product']" :image="data['image_product']" :menu_a="data['menu_a']" :menu_s="data['menu_s']"/>
+    <ProductVue 
+    :related="data['related_product']" 
+    :prices="data['price_product']" 
+    :datail="data['datail']" 
+    :data="data['product']" 
+    :image="data['image_product']" 
+    :menu_a="data['menu_a']" 
+    :menu_s="data['menu_s']"
+    :auth="auth"
+    :comment="data['comment_product']"
+    :count_comment="data['count_comment']"/>
     <FooterVue />
 </template>
 

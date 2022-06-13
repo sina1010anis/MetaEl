@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentCollection;
+use App\Models\CommentProduct;
 use App\Models\DatailProduct;
 use App\Models\Images;
 use App\Models\Menu;
@@ -15,17 +17,20 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
+        //return new CommentCollection($product->comment_product);
         return Inertia::render('Product/ShowProductVue', [
             'auth' => auth()->check(),
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
                 'product' => $product,
-                'image_product' => Images::whereProduct_id($product->id)->get(),
+                'image_product' =>$product->images,
                 'menu_s' => $product->sub_menu,
                 'menu_a' => $product->sub_menu->menu,
-                'datail' => DatailProduct::whereProduct_id($product->id)->first(),
-                'price_product' => PriceProduct::whereProduct_id($product->id)->get(),
+                'datail' => $product->datail_product,
+                'price_product' => $product->price_product,
                 'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
+                'comment_product' => new CommentCollection($product->comment_product),
+                'count_comment' => $product->comment_product->count(),
                 ]
         ]);
     }

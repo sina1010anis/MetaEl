@@ -15,4 +15,12 @@ class ReplyComment extends Model
     {
         return $this->belongsTo(CommentProduct::class , 'comment_product_id' , 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'user_id' , 'id');
+    }
+    public function getCreatedAtAttribute($val)
+    {
+        return jdate($val)->format('%B %d، %Y');
+    }
 }

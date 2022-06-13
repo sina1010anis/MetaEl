@@ -9,10 +9,10 @@ use PhpParser\Comment;
 class AttrComment extends Model
 {
     use HasFactory;
-
+    protected $attributes = ['text' => 'null' , 'status' => 1];
     protected $guarded=[];
     public function comment_product()
     {
-        return $this->belongsTo(CommentProduct::class , 'comment_product_id' , 'id');
+        return $this->belongsTo(CommentProduct::class , 'comment_id' , 'id');
     }
 }

@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-10 col-12 p-2 row d-flex flex-nowrap overflow-scroll" style="height: 250px;">
                     <Link v-for="(product , index) in products" :key="index" style="width: 180px;height: 100%"
-                          class="mx-2 p-1 border rounded-3 item-product" :href="'product/'+product.slug">
+                          class="mx-2 p-1 border rounded-3 item-product" :href="'/product/'+product.slug">
                         <div class="my-h-50 text-center my-2">
                             <img loading="lazy" :src="'/image/product/'+product.image" style="height: 100%;"
                                  :alt="product.name">

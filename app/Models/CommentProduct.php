@@ -12,7 +12,7 @@ class CommentProduct extends Model
     protected $guarded=[];
     public function attr_comment()
     {
-        return $this->hasMany(AttrComment::class , 'comment_product_id' , 'id');
+        return $this->hasMany(AttrComment::class , 'comment_id' , 'id');
     }
     public function user()
     {
@@ -25,5 +25,9 @@ class CommentProduct extends Model
     public function reply_comment()
     {
         return $this->hasMany(ReplyComment::class , 'comment_product_id' , 'id');
+    }
+    public function getCreatedAtAttribute($val)
+    {
+        return jdate($val)->format('%B %d، %Y');
     }
 }
