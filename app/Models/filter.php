@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class filter extends Model
+class filter extends Model implements DefaultModel
 {
     use HasFactory;
 

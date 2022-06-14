@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CommentPanel extends Model
+class CommentPanel extends Model implements DefaultModel
 {
     use HasFactory;
 

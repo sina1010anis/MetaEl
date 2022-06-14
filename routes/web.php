@@ -30,6 +30,7 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::get('/product/{product}', 'show')->name('show');
     Route::post('/search/product', 'search')->name('search');
     Route::post('/set/price', 'set_price')->name('set_price');
+    Route::post('/comment/product' , 'comment_new')->name('comment.new');
 });
 Auth::routes();
 

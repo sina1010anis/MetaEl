@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Off extends Model
+class Off extends Model implements DefaultModel
 {
     use HasFactory;
 

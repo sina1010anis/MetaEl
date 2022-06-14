@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemFooter extends Model
+class ItemFooter extends Model implements DefaultModel
 {
     use HasFactory;
 

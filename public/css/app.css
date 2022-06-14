@@ -555,5 +555,52 @@ Link {
     z-index: 2;
 }
 
+.page-alert {
+    width: 95%;
+    max-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    position: fixed!important;
+    z-index: 4;
+}
 
+.top-page-alert {
+    width: 100%;
+    height: auto;
+    border-radius: 5px 5px 0 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.top-page-alert .bi-x-lg {
+    color: #ff5d5d;
+}
+
+.box-option {
+    border-radius: 0 0 5px 5px;
+}
+
+.tips-page-alert {
+    color: #ff5d5d;
+}
+
+.box-text-comment-product {
+    max-height: 150px;
+    min-height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+.box-vote-comment-product label {
+    position: relative;
+    bottom: 5px;
+}
+
+.btn-send-comment-product{
+    background: #ff6a6a;
+    border: none!important;
+}
 /* ------------------------------------ */
+

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DatailProduct extends Model
+class DatailProduct extends Model implements DefaultModel
 {
     use HasFactory;
 

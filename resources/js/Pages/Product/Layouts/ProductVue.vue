@@ -79,7 +79,7 @@
         <CommentProductVue :data="comment"/>
         <div class="my-line my-3"></div>
         <RelatedProductVue :data="related"/>
-        <SetupUserVue :auth="auth"/>
+        <SetupUserVue :auth="auth" :csrf="csrf" :url="url" :id="data.id"/>
     </div>
 </template>
 
@@ -112,7 +112,9 @@ export default {
         related:Array,
         auth:String,
         comment:Array,
-        count_comment:String
+        count_comment:String,
+        csrf:String,
+        url:String
     },
     methods:{
 

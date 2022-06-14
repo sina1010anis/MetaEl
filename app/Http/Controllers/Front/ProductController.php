@@ -12,9 +12,12 @@ use App\Models\PriceProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
 
 class ProductController extends Controller
 {
+    use CommentProductTrait;
+    //The comment_new method is inside the CommentProductTrait : The desired method is written as a trait
     public function show(Product $product)
     {
         //return new CommentCollection($product->comment_product);
@@ -31,6 +34,7 @@ class ProductController extends Controller
                 'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
                 'comment_product' => new CommentCollection($product->comment_product),
                 'count_comment' => $product->comment_product->count(),
+                'csrf' => csrf_token(),
                 ]
         ]);
     }
