@@ -8,7 +8,7 @@
                     <i @click="setComment(comment.id)" class="bi bi-list btn-menu-comment my-f-16 my-pointer"></i>
                     <div :class="'menu-comment shadow-sm' + ' '+ 'menu_comment_'+comment.id">
                         <div
-                            class="d-flex rounded-2 justify-content-between align-content-center py-2 px-2 my-pointer reply-comment">
+                            class="d-flex rounded-2 justify-content-between align-content-center py-2 px-2 my-pointer reply-comment" v-if="auth" @click="open_page_reply_comment">
                             <i class="bi bi-reply my-f-16"></i>
                             <span class="">پاسخ</span>
                         </div>
@@ -89,27 +89,55 @@
                 <div class="my-line my-2"></div>
                 <p dir="rtl" class="my-color-b-700 my-f-13 text-end">{{reply.text}}</p>
             </div>
-        </div> 
+        </div>
     </div>
+    <page-alert-vue v-if="auth" :class_name="'new-comment-reply-product'" :title="'پاسخ به ...'" :tips="'پس از ثبت کاکمت با تایید مدیر قابل نمایش می باشد.'">
+        <template #option>
+            <form :action="'/reply/comment/product'" method="post">
+                <input type="hidden" :value="csrf" name="_token">
+                <input type="hidden" :value="comment_id" name="comment_product_id">
+                <div class="input-group">
+                    <textarea name="text" class="form-control my-font-IYL my-f-12 my-color-b-700 text-end box-text-comment-product" dir="rtl" aria-label="With textarea"></textarea>
+                </div>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <button type="submit" class="my-font-IYL my-color-b my-f-14 px-3 py-1 shadow-sm btn-send-comment-product rounded-3">ارسال</button>
+                </div>
+            </form>
+        </template>
+    </page-alert-vue>
+    <div class="blur-page "></div>
 </template>
 
 <script>
 import $ from 'jquery'
-
+import PageAlertVue from "../../Front/Layouts/PageAlertVue";
 export default {
     name: 'CommentProductVue',
+    data:()=>({
+        comment_id:null,
+    }),
     props: {
-        data: Array
+        data: Array,
+        auth:String,
+        csrf:String
+    },
+    components:{
+        PageAlertVue
     },
     methods: {
         clsMenuComment(id) {
-            this.id_comment = 0
+            this.comment_id = id
             $('.menu_comment_' + id).fadeOut()
         },
         setComment(id) {
-            this.id_comment = id
+            this.comment_id = id
             $('.menu-comment').fadeOut()
             $('.menu_comment_' + id).fadeIn()
+        },
+        open_page_reply_comment(){
+            $('.menu-comment').fadeOut()
+            $('.new-comment-reply-product').fadeIn()
+            $('.blur-page').fadeIn()
         },
     }
 }

@@ -18,6 +18,7 @@ class ProductController extends Controller
 {
     use CommentProductTrait;
     //The comment_new method is inside the CommentProductTrait : The desired method is written as a trait
+    //The reply_comment_new method is inside the CommentProductTrait : The desired method is written as a trait
     public function show(Product $product)
     {
         //return new CommentCollection($product->comment_product);
@@ -32,7 +33,7 @@ class ProductController extends Controller
                 'datail' => $product->datail_product,
                 'price_product' => $product->price_product,
                 'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
-                'comment_product' => new CommentCollection($product->comment_product),
+                'comment_product' => collect(new CommentCollection($product->comment_product))->sortByDesc('id'),
                 'count_comment' => $product->comment_product->count(),
                 'csrf' => csrf_token(),
                 ]

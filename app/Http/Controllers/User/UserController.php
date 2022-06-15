@@ -38,7 +38,6 @@ class UserController extends Controller
             return Inertia::render('User/HomeLoginAndRegister' , [
                 'csrf' => csrf_token(),
                 'status' => 'register'
-
             ]);
         }
     }

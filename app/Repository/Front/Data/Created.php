@@ -11,7 +11,7 @@ trait Created
         return $dataComment = [
             'subject' => $request->subject,
             'text' => $request->text,
-            'vote' => $request->vote * 10,
+            'vote' => $request->vote ,
             'product_id' => $request->product_id,
             'user_id' => auth()->user()->id,
         ];
@@ -19,11 +19,19 @@ trait Created
     public function data_attr_comment(Request $request , $id)
     {
         return $dataComment = [
-            'step_1' => $request->step_1,
-            'step_2' => $request->step_2,
-            'step_3' => $request->step_3,
-            'step_4' => $request->step_4,
+            'step_1' => $request->step_1 * 10,
+            'step_2' => $request->step_2 * 10,
+            'step_3' => $request->step_3 * 10,
+            'step_4' => $request->step_4 * 10,
             'comment_id' => $id,
+        ];
+    }
+    public function data_reply_comment(Request $request)
+    {
+        return $dataComment = [
+            'text' => $request->text ,
+            'comment_product_id' => $request->comment_product_id,
+            'user_id' => auth()->user()->id,
         ];
     }
 }

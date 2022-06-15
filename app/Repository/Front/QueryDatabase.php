@@ -1,23 +1,22 @@
 <?php
 
-namespace App\Repository\Front\Comment;
+namespace App\Repository\Front;
 
 use App\Models\DefaultModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-trait SetupCommentProduct
+trait QueryDatabase
 {
     private $request;
     private $model;
     public $dataCreate = null;
-    public function set_request(Request $request)
+    public function set_request($request)
     {
         if (!auth()->check()){
             return false;
         }else{
-            $this->request = collect($request);
-            $this->request->put('user_id' , auth()->user()->id);
+            $this->request =$request;
             return $this;
         }
     }
@@ -27,7 +26,7 @@ trait SetupCommentProduct
         if ($data != null){
             $this->dataCreate = $model::create($data);
         }else{
-            $this->dataCreate = $model::create([$this->request]);
+            $this->dataCreate = $model::create($this->request);
         }
     }
 }

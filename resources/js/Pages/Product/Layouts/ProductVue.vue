@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="my-line my-3"></div>
-        <CommentProductVue :data="comment"/>
+        <CommentProductVue :data="comment" :auth="auth" :csrf="csrf"/>
         <div class="my-line my-3"></div>
         <RelatedProductVue :data="related"/>
         <SetupUserVue :auth="auth" :csrf="csrf" :url="url" :id="data.id"/>
