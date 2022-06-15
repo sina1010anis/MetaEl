@@ -8,9 +8,11 @@ use App\Models\AttrComment;
 use App\Models\CommentProduct as CommentProductModel ;
 use App\Models\Product;
 use App\Models\ReplyComment;
+use App\Models\SaveProduct;
 use App\Repository\Front\Data\CountItemDataBase;
 use App\Repository\Front\Data\Created;
 use App\Repository\Front\QueryDatabase;
+use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Void_;
 
 trait CommentProduct
@@ -31,6 +33,14 @@ trait CommentProduct
             return  redirect()->back();
         }else{
             return abort(404);
+        }
+    }
+    public function save_product(Request $request , SaveProduct $saveProduct){ 
+        if($this->getCount($saveProduct , ['user_id'=>auth()->user()->id , 'product_id'=> $request->id]) == 1){
+            return abort(404);
+        }else{
+            $this->create($saveProduct , $this->data_save_product($request->id));
+            return 'ok';
         }
     }
 }

@@ -55,4 +55,7 @@ class Product extends Model implements DefaultModel
     {
         return jdate($val)->format('%B %d، %Y');
     }
+    public function save_product(){
+        return $this->hasMany(SaveProduct::class , 'product_id' , 'id');
+    }
 }

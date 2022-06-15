@@ -10,18 +10,23 @@ use App\Models\Images;
 use App\Models\Menu;
 use App\Models\PriceProduct;
 use App\Models\Product;
+use App\Models\SaveProduct;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
+use App\Repository\Front\Data\CountItemDataBase;
 
 class ProductController extends Controller
 {
-    use CommentProductTrait;
+    use CommentProductTrait , CountItemDataBase;
     //The comment_new method is inside the CommentProductTrait : The desired method is written as a trait
     //The reply_comment_new method is inside the CommentProductTrait : The desired method is written as a trait
-    public function show(Product $product)
+    //The save_product method is inside the CommentProductTrait : The desired method is written as a trait
+    public function show(Product $product , SaveProduct $saveProduct)
     {
-        //return new CommentCollection($product->comment_product);
+        $status_save = (auth()->check()) 
+        ? $this->getCount($saveProduct , ['user_id' => auth()->user()->id , 'product_id' => $product->id]) 
+        : false ;
         return Inertia::render('Product/ShowProductVue', [
             'auth' => auth()->check(),
             'data' => [
@@ -36,6 +41,7 @@ class ProductController extends Controller
                 'comment_product' => collect(new CommentCollection($product->comment_product))->sortByDesc('id'),
                 'count_comment' => $product->comment_product->count(),
                 'csrf' => csrf_token(),
+                'save_product' =>$status_save
                 ]
         ]);
     }

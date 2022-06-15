@@ -509,10 +509,11 @@ Link {
 }
 
 .box-item-setup-user {
-    width: 100px;
+    width: auto;
     border-radius: 100px;
     position: fixed;
     bottom: 20px;
+    transition: 0.5s;
     left: 20px;
     background: #ff6a6a;
     z-index: 2;
@@ -561,8 +562,18 @@ Link {
     bottom: 5px;
 }
 
-.btn-send-comment-product{
+.btn-send-comment-product {
     background: #ff6a6a;
     border: none!important;
 }
+
+.btn-save-product {
+    transition: 0.1s;
+}
+
+.btn-save-product:active {
+    transform: scale(0.9);
+}
+
+
 /* ------------------------------------ */

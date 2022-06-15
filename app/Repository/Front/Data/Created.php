@@ -34,4 +34,10 @@ trait Created
             'user_id' => auth()->user()->id,
         ];
     }
+    public function data_save_product($id){
+        return [
+            'product_id' => $id ,
+            'user_id' => auth()->user()->id,
+        ];
+    }
 }

@@ -1,7 +1,7 @@
 <template>
     <div v-if="auth" class="box-item-setup-user shadow py-2 px-3 d-flex justify-content-between align-content-center">
-        <i @click="open_box_new_comment_product" class="bi bi-chat my-f-18 my-color-b my-pointer"></i>
-        <i class="bi bi-bookmark my-f-18 my-color-b my-pointer"></i>
+        <i @click="open_box_new_comment_product" class="bi bi-chat my-f-18 my-color-b mx-2 my-pointer"></i>
+        <i @click="save_product_to_panel" v-if="save ==0" class="my-f-18 my-color-b my-pointer mx-2 btn-save-product bi bi-bookmark"></i>
     </div>
     <page-alert-vue v-if="auth" :class_name="'new-comment-product'" :title="'کامنت جدید'" :tips="'پس از ثبت کاکمت با تایید مدیر قابل نمایش می باشد.'">
         <template #option>
@@ -65,6 +65,7 @@
 
 <script>
 import PageAlertVue from '../../Front/Layouts/PageAlertVue'
+import axios from 'axios';
 import $ from 'jquery'
 export default {
     name:"SetupUserVue",
@@ -75,7 +76,8 @@ export default {
         auth:String,
         csrf:String,
         url:String,
-        id:Number
+        id:Number,
+        save:Number
     },
     components:{
         PageAlertVue
@@ -85,6 +87,14 @@ export default {
             $('.new-comment-product').fadeIn();
             $('.blur-page').fadeIn();
         },
+        save_product_to_panel(){
+            $('.btn-save-product').fadeOut();
+            axios.post('/save/product' , {id:this.id}).then((res)=>{
+                console.log(res.data);
+            }).catch(()=>{
+                console.error('Error 580')
+            })
+        }
     }
 }
 </script>

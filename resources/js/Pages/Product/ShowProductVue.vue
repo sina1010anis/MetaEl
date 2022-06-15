@@ -12,7 +12,8 @@
     :comment="data['comment_product']"
     :count_comment="data['count_comment']"
     :csrf="data['csrf']"
-    :url="url"/>
+    :url="url"
+    :save_product="data['save_product']"/>
     <FooterVue />
 </template>
 
