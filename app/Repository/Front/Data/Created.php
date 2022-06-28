@@ -40,4 +40,12 @@ trait Created
             'user_id' => auth()->user()->id,
         ];
     }
+    public function data_set_cart($data){
+        return [
+            'total_price' => $data->price ,
+            'product_id' => $data->id ,
+            'user_id' => auth()->user()->id,
+            'number' => 1,
+        ];
+    }
 }

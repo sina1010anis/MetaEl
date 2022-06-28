@@ -12,7 +12,7 @@ class Cart extends Model implements DefaultModel
     protected $guarded=[];
     public function product()
     {
-        return $this->belongsTo(Product::class , 'product_id' , 'id');
+        return $this->belongsTo(PriceProduct::class , 'size_product_id' , 'id');
     }
     public function user()
     {

@@ -33,7 +33,11 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::post('/comment/product' , 'comment_new')->name('comment.new');
     Route::post('/reply/comment/product' , 'reply_comment_new')->name('reply.comment.new');
     Route::post('/save/product' , 'save_product')->name('save.product');
+    Route::post('/set/cart' , 'set_cart')->name('set.cart');
+    Route::post('/delete/product', 'delete_product')->name('delete_product');
 });
 Auth::routes();
-
+Route::get('logout' , function(){
+    return (auth()->check()) ? auth()->logout() : false;
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.a');

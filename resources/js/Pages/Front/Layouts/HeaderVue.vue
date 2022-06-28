@@ -93,19 +93,20 @@
                     <div class="pb-3 mb-0 small lh-sm w-100">
                         <div class="d-flex justify-content-between">
                             <strong class="text-gray-dark text-total-box-top-item-view-product">جمع کل :</strong>
-                            <span>50000</span>
+                            <span>{{total_price}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="show-box-top-item-view-product p-2">
+
                 <div
-                    class="item-a-box-top-item-view-product d-flex justify-content-between align-items-center my-pointer mt-2">
-                    <img src="/image/product/product_1.jpg" alt="product_1">
-                    <span class="my-f-12 my-color-b-800 my-font-IYL">نام محصول</span>
-                    <span class="my-f-12 my-color-b-600 my-font-IYL">تعداد : 5</span>
-                    <b><span class="my-f-12 my-color-b-800 my-font-IYL">قیمت کل : 50000</span></b>
-                    <i class="bi bi-trash3 icon-delete-item-box-item-view-product my-f-15 my-pointer"></i>
+                    v-for="(item , index) in data_cart['data']" :key="index" class="item-a-box-top-item-view-product d-flex justify-content-between align-items-center my-pointer mt-2">
+                    <img :src="'/image/product/'+item.size_product.product.image" :alt="item.size_product.product.name">
+                    <span class="my-f-12 my-color-b-800 my-font-IYL">{{item.size_product.product.name}}<small>({{item.size_product.name}})</small></span>
+                    <span class="my-f-12 my-color-b-600 my-font-IYL">تعداد : {{item.number}}</span>
+                    <b><span class="my-f-12 my-color-b-800 my-font-IYL">قیمت کل : {{item.total_price}}</span></b>
+                    <i @click="delete_product_to_cart(item.id)" class="bi bi-trash3 icon-delete-item-box-item-view-product my-f-15 my-pointer"></i>
                 </div>
             </div>
         </div>
@@ -113,7 +114,7 @@
             <div class="btn-send-cart-profile my-f-13 my-color-b my-pointer py-2 px-4 me-3 my-font-IYM">
                 تایید پرداخت
             </div>
-            <b><span class="my-f-12 my-color-b-800 my-font-IYL ms-3">تعداد کل : 20</span></b>
+            <b><span class="my-f-12 my-color-b-800 my-font-IYL ms-3">تعداد کل : {{total_count}}</span></b>
         </div>
     </div>
     <div v-if="auth" class="box-address" style="display: none">
@@ -158,9 +159,19 @@ export default {
     },
     props: {
         auth: Boolean,
-        datas: Array
+        datas: Array,
+        data_cart:Array,
+        total_price:Number,
+        total_count:Number,
     },
     methods: {
+        delete_product_to_cart(id){
+            axios.post('/delete/product' , {id:id}).catch(()=>{
+                return console.error('Error : 508');
+            }).then((res)=>{
+                console.log(res.data)
+            })
+        },
         view_product() {
             if (this.search_text != '') {
                 axios.post('/search/product', {data: this.search_text}).then((res) => {

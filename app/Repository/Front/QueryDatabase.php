@@ -5,6 +5,9 @@ namespace App\Repository\Front;
 use App\Models\DefaultModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use PhpParser\Builder\Class_;
+use PhpParser\Node\Expr\Cast\Array_;
 
 trait QueryDatabase
 {
@@ -27,6 +30,20 @@ trait QueryDatabase
             $this->dataCreate = $model::create($data);
         }else{
             $this->dataCreate = $model::create($this->request);
+        }
+    }
+    public function get( $model , Array $data = null , Array $where = null){
+        if ($data != null){
+            ($where == null) ? $this->dataCreate = $model::get($data) :$this->dataCreate = $model::where($where)->get($data) ;
+        }else{
+            ($where == null) ? $this->dataCreate = $model::get($this->request) :$this->dataCreate = $model::where($where)->get($this->request);
+        }
+    }
+    public function delete( $model , Array $where = null){
+        if (auth()->check()){
+            ($where == null) ?$model::delete() :$model::where($where)->delete() ;
+        }else{
+            return false;
         }
     }
 }

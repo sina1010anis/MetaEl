@@ -15,13 +15,13 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
 use App\Repository\Front\Data\CountItemDataBase;
+use App\Repository\Front\Product\ProductRepository;
 
 class ProductController extends Controller
 {
-    use CommentProductTrait , CountItemDataBase;
-    //The comment_new method is inside the CommentProductTrait : The desired method is written as a trait
-    //The reply_comment_new method is inside the CommentProductTrait : The desired method is written as a trait
-    //The save_product method is inside the CommentProductTrait : The desired method is written as a trait
+    use CommentProductTrait , CountItemDataBase , ProductRepository;
+    //The [comment_new method , reply_comment_new ] is inside the CommentProductTrait : The desired method is written as a trait
+    //The [save_product , set_cart , delete_product] is inside the ProductRepository : The desired method is written as a trait
     public function show(Product $product , SaveProduct $saveProduct)
     {
         $status_save = (auth()->check()) 

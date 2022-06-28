@@ -35,12 +35,5 @@ trait CommentProduct
             return abort(404);
         }
     }
-    public function save_product(Request $request , SaveProduct $saveProduct){ 
-        if($this->getCount($saveProduct , ['user_id'=>auth()->user()->id , 'product_id'=> $request->id]) == 1){
-            return abort(404);
-        }else{
-            $this->create($saveProduct , $this->data_save_product($request->id));
-            return 'ok';
-        }
-    }
+
 }

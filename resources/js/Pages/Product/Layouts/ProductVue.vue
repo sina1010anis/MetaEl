@@ -56,7 +56,7 @@
         </div>
         <div class="row my-5">
             <div class="col-md-4 col-12 d-flex justify-content-center align-content-center my-pos-rel order-md-0 order-2">
-                <div v-if="size_price != null && auth" class="btn-buy-show-product py-2 px-4 rounded-3 my-font-IYL my-f-12 my-color-b my-boj-center my-pointer">خرید محصول</div>
+                <div v-if="size_price != null && auth" @click="send_to_cart" class="btn-buy-show-product py-2 px-4 rounded-3 my-font-IYL my-f-12 my-color-b my-boj-center my-pointer">خرید محصول</div>
                 <div v-if="size_price == null" class="col-md-4 col-12 my-font-IYL my-f-11" style="color:#ff7272">لطفا یک نوع از محصول را انتخاب کنید</div>
             </div>
             <div class="col-md-4 col-12 d-flex justify-content-center  align-content-center order-1">
@@ -98,24 +98,13 @@ export default {
         status_size_price:false,
         text_size_price:'',
         id_comment:0,
+        id_size_product:0,
     }),
     components:{
         Link,CommentProductVue,RelatedProductVue,SetupUserVue
     },
     props:{
-        data:Array,
-        image:Array,
-        menu_s:Array,
-        menu_a:Array,
-        datail:Array,
-        prices:Array,
-        related:Array,
-        auth:String,
-        comment:Array,
-        count_comment:String,
-        csrf:String,
-        url:String,
-        save_product:Number,
+        data:Array,image:Array,menu_s:Array,menu_a:Array,datail:Array,prices:Array,related:Array,auth:String,comment:Array,count_comment:String,csrf:String,url:String,save_product:Number,
     },
     methods:{
 
@@ -132,8 +121,16 @@ export default {
             axios.post('/set/price' , {id:this.size_price}).then((res)=>{
                 this.status_size_price = true
                 this.text_size_price = res.data.price
+                this.id_size_product = res.data.id
             }).catch(()=>{
 
+            })
+        },
+        send_to_cart(){
+            axios.post('/set/cart' , {id_size:this.id_size_product,id_product:this.data.id}).then((res)=>{
+                console.log(res.data);
+            }).catch(()=>{
+                console.error('Error : 581')
             })
         },
     },
