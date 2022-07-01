@@ -1,5 +1,5 @@
 <template>
-    <HeaderVue :auth="auth" :datas="data['menu']"/>
+    <HeaderVue :auth="auth" :datas="data['menu']" :history_search="data['history_search']"/>
     <ProductVue
     :related="data['related_product']"
     :prices="data['price_product']"

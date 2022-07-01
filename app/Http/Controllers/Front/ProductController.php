@@ -12,20 +12,23 @@ use App\Models\PriceProduct;
 use App\Models\Product;
 use App\Models\SaveProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Inertia\Inertia;
 use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
 use App\Repository\Front\Data\CountItemDataBase;
 use App\Repository\Front\Product\ProductRepository;
+use App\Repository\Front\User\SecurityUserHistorySearch;
 
 class ProductController extends Controller
 {
     use CommentProductTrait , CountItemDataBase , ProductRepository;
     //The [comment_new method , reply_comment_new ] is inside the CommentProductTrait : The desired method is written as a trait
     //The [save_product , set_cart , delete_product] is inside the ProductRepository : The desired method is written as a trait
-    public function show(Product $product , SaveProduct $saveProduct)
+    public function show(Product $product , SaveProduct $saveProduct , SecurityUserHistorySearch $securityUserHistorySearch)
     {
-        $status_save = (auth()->check()) 
-        ? $this->getCount($saveProduct , ['user_id' => auth()->user()->id , 'product_id' => $product->id]) 
+        (Cookie::has('CODE_SEARCH')) ? $securityUserHistorySearch->get_old_data(Cookie::get('CODE_SEARCH'))->set_new_data($product->id)->put_file() : 'Error';
+        $status_save = (auth()->check())
+        ? $this->getCount($saveProduct , ['user_id' => auth()->user()->id , 'product_id' => $product->id])
         : false ;
         return Inertia::render('Product/ShowProductVue', [
             'auth' => auth()->check(),
@@ -41,7 +44,8 @@ class ProductController extends Controller
                 'comment_product' => collect(new CommentCollection($product->comment_product))->sortByDesc('id'),
                 'count_comment' => $product->comment_product->count(),
                 'csrf' => csrf_token(),
-                'save_product' =>$status_save
+                'save_product' =>$status_save,
+                'history_search' => history_search()
                 ]
         ]);
     }

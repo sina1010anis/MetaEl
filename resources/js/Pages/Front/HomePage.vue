@@ -1,5 +1,5 @@
 <template>
-    <HeaderVue :auth="auth" :datas="data['menu']" :data_cart="data['data_cart']" :total_price="data['total_price']" :total_count="data['total_count']"/>
+    <HeaderVue :auth="auth" :history_search="data['history_search']" :datas="data['menu']" :data_cart="data['data_cart']" :total_price="data['total_price']" :total_count="data['total_count']"/>
     <SliderVue :images="imageSlider"/>
     <ItemsVue :data="data['items']"/>
     <BannerVue :data="data['bannerS']" :location="'start'"/>

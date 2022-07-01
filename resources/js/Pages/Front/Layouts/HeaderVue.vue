@@ -38,7 +38,7 @@
             <div class="col-12 col-md-6 box-side-menu box-side-menu-1 h-100 my-pos-relative">
                 <div class="side-bar-menu p-2">
                     <i class="bi bi-arrow-bar-up my-pointer btn-cls-menu" @click="cls_menu"></i>
-                    <span class="p-2 my-font-IYL my-f-14" v-for="items in data_sub_menu ">
+                    <span class="p-2 my-font-IYL my-f-14" v-for="(items , index) in data_sub_menu " :key="index">
                         <Link style="text-decoration: none" class=" my-color-b-500"
                               :href="'/'+items.name">{{ items.name + ' ' }} </Link>
                     </span>
@@ -63,7 +63,15 @@
                 <i style="font-size:30px" class="bi bi-search my-obj-center my-color-b-100"></i>
             </div>
             <div class="view-item-in-search col-12 rounded-3 mt-3 p-2 my-pos-relative">
-                <div v-if="search_text == '' || !status_search" style="width: 100%;height: 100%" class="d-flex justify-content-center flex-column align-items-center not-search">
+                <div v-if="history_search != 'Error'">
+                <h6 class="my-font-IYM text-end my-color-b-600">اخرین بازدید</h6>
+                    <Link v-for="(product , index) in history_search" :key="index"
+                        class=" text-muted pt-3 my-pointer m-3" style="text-decoration: none;" :href="'/product/'+product.slug" >
+                        <span class="my-font-IYL my-f-12 my-color-b-600 " >{{product.name}}</span>
+                    </Link>
+                    <div class="my-line my-3"></div>
+                </div>
+                <div v-if="search_text == '' || !status_search" :style="'width: 100%;height: 100%'" class="d-flex justify-content-center flex-column align-items-center not-search" >
                     <img style="width: 200px;" src="/image/front/not-search.png" alt="not-search">
                     <p class="text-center my-font-IYL my-color-b-400 my-f-16">چیزی یافت نشد!</p>
                 </div>
@@ -163,6 +171,7 @@ export default {
         data_cart:Array,
         total_price:Number,
         total_count:Number,
+        history_search:Array
     },
     methods: {
         delete_product_to_cart(id){

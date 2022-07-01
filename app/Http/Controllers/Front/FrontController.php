@@ -11,13 +11,17 @@ use App\Models\Menu;
 use App\Models\Product;
 use App\Models\Slider;
 use App\Models\SunMenu;
+use App\Models\User;
 use App\Repository\Front\GetData;
+use App\Repository\Front\User\SecurityUserHistorySearch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Inertia\Inertia;
+use function PHPUnit\Framework\isNull;
 
 class FrontController extends Controller
 {
-    public function home_page(GetData $getDataMenu)
+    public function home_page(GetData $getDataMenu , SecurityUserHistorySearch $securityUserHistorySearch)
     {
         $data_cart = (auth()->check()) ? new CartResources(Cart::whereUser_id(auth()->user()->id)->get()) : '';
         $toal_price_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('total_price'): '';
@@ -37,6 +41,7 @@ class FrontController extends Controller
                 'data_cart' => $data_cart,
                 'total_price' =>  $toal_price_all,
                 'total_count' =>  $toal_count_all,
+                'history_search' => history_search()
             ],
         ]);
     }
