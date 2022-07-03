@@ -45,7 +45,8 @@ class ProductController extends Controller
                 'count_comment' => $product->comment_product->count(),
                 'csrf' => csrf_token(),
                 'save_product' =>$status_save,
-                'history_search' => history_search()
+                'history_search' => history_search(),
+                'history_product' => history_search(false)
                 ]
         ]);
     }

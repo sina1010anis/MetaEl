@@ -41,7 +41,9 @@ class FrontController extends Controller
                 'data_cart' => $data_cart,
                 'total_price' =>  $toal_price_all,
                 'total_count' =>  $toal_count_all,
-                'history_search' => history_search()
+                'history_search' => history_search(),
+                'status_history_product' => history_search(false),
+                'history_product' => history_product()
             ],
         ]);
     }

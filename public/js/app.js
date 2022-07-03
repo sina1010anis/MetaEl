@@ -25672,7 +25672,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SlidrProductVue"], {
     model: 'laptop'
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FooterVue"])], 64
+  }), $props.data['status_history_product'] != 'Error' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProductVue"], {
+    key: 0,
+    title: 'پیشنهادی برای اخرین بازدیدها',
+    products: $props.data['history_product']
+  }, null, 8
+  /* PROPS */
+  , ["products"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["FooterVue"])], 64
   /* STABLE_FRAGMENT */
   );
 }

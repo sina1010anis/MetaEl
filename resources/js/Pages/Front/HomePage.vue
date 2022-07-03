@@ -10,6 +10,7 @@
     <ProductVue :title="'لوازم اداری'" :products="data['products_office']" />
     <BannerVue :data="data['bannerE']" :location="'end'"/>
     <SlidrProductVue :model="'laptop'"/>
+    <ProductVue v-if="data['status_history_product'] != 'Error'" :title="'پیشنهادی برای اخرین بازدیدها'" :products="data['history_product']" />
     <FooterVue />
 </template>
 <script setup>
