@@ -575,5 +575,47 @@ Link {
     transform: scale(0.9);
 }
 
+.box-item-f div {
+    color: rgb(177, 177, 177);
+    box-shadow: rgba(71, 71, 71, 0.5);
+    background: rgb(241, 241, 241);
+    transition: 0.2s;
+}
+
+.item-f:hover {
+    background: rgb(255, 142, 142);
+    color: rgb(255, 255, 255);
+}
+
+.item-product-menu {
+    border: 1px solid rgba(224, 224, 224, 0.5);
+    transition: 0.2s;
+}
+
+.box-product-menu img {
+    width: 100%;
+    transform: scale(0.8);
+}
+
+.item-product-menu:hover {
+    box-shadow: 1px 1px 10px rgba(209, 209, 209, 0.5);
+}
+
+.box-product-menu * {
+    color: unset!important;
+    text-decoration: none!important;
+}
+
+.box-a-filter {
+    background-color: #fcfcfc;
+}
+
+.box-a-filter-item {
+    max-height: 200px;
+    overflow-y: scroll;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
 
 /* ------------------------------------ */

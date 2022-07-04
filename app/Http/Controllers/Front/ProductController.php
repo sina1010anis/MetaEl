@@ -65,6 +65,7 @@ class ProductController extends Controller
             'auth' => auth()->check(),
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
+                'menu_on' => $menu,
                 // 'product' => $product,
                 // 'image_product' =>$product->images,
                 // 'menu_s' => $product->sub_menu,
