@@ -11,6 +11,7 @@ use App\Models\Menu;
 use App\Models\PriceProduct;
 use App\Models\Product;
 use App\Models\SaveProduct;
+use App\Models\SunMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Inertia\Inertia;
@@ -58,5 +59,26 @@ class ProductController extends Controller
     public function set_price(Request $request)
     {
         return PriceProduct::whereId($request->id)->first();
+    }
+    public function show_menu(SunMenu $menu){
+        return Inertia::render('Product/MenuVue', [
+            'auth' => auth()->check(),
+            'data' => [
+                'menu' => Menu::whereStatus(1)->get(),
+                // 'product' => $product,
+                // 'image_product' =>$product->images,
+                // 'menu_s' => $product->sub_menu,
+                // 'menu_a' => $product->sub_menu->menu,
+                // 'datail' => $product->datail_product,
+                // 'price_product' => $product->price_product,
+                // 'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
+                // 'comment_product' => collect(new CommentCollection($product->comment_product))->sortByDesc('id'),
+                // 'count_comment' => $product->comment_product->count(),
+                // 'csrf' => csrf_token(),
+                // 'save_product' =>$status_save,
+                // 'history_search' => history_search(),
+                // 'history_product' => history_search(false)
+                ]
+        ]);
     }
 }

@@ -40,7 +40,7 @@
                     <i class="bi bi-arrow-bar-up my-pointer btn-cls-menu" @click="cls_menu"></i>
                     <span class="p-2 my-font-IYL my-f-14" v-for="(items , index) in data_sub_menu " :key="index">
                         <Link style="text-decoration: none" class=" my-color-b-500"
-                              :href="'/'+items.name">{{ items.name + ' ' }} </Link>
+                              :href="'/menu/'+items.name">{{ items.name + ' ' }} </Link>
                     </span>
                 </div>
             </div>

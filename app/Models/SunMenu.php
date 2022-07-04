@@ -27,4 +27,8 @@ class SunMenu extends Model implements DefaultModel
     {
         return $this->belongsTo(Menu::class , 'menu_id' , 'id');
     }
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }
