@@ -15,7 +15,9 @@ use App\Repository\Front\Data\CountItemDataBase;
 
 trait ProductRepository
 {
+
     use QueryDatabase , Created , CountItemDataBase;
+
     public function save_product(Request $request , SaveProduct $saveProduct){
         if($this->getCount($saveProduct , ['user_id'=>auth()->user()->id , 'product_id'=> $request->id]) == 1){
             return abort(404);
@@ -24,6 +26,7 @@ trait ProductRepository
             return 'ok';
         }
     }
+
     public function set_cart(Request $request , Cart $cart , Product $product){
         $data_product = Product::where(['id'=>$request->id_product]);
         $data_size = PriceProduct::where(['id'=>$request->id_size])->count();
@@ -41,6 +44,7 @@ trait ProductRepository
             return abort(404);
         }
     }
+
     public function delete_product(Request $request  , Cart $cart){
         if(auth()->check()){
             $this->delete($cart , ['id'=> $request->id]);
@@ -48,4 +52,20 @@ trait ProductRepository
             return false;
         }
     }
+
+    public function sort_product(Request $request){
+        switch($request->model){
+            case 'new':
+                return Product::whereSub_menu_id($request->id)->orderBy('id' , 'DESC')->get();
+                break;
+            case 'expensive':
+                return Product::whereSub_menu_id($request->id)->orderBy('price' , 'DESC')->get();
+                break;
+            case 'inexpensive':
+                return Product::whereSub_menu_id($request->id)->orderBy('price' , 'ASC')->get();
+                break;
+        }
+            
+    }
+
 }

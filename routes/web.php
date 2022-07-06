@@ -36,6 +36,7 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::post('/set/cart' , 'set_cart')->name('set.cart');
     Route::post('/delete/product', 'delete_product')->name('delete_product');
     Route::get('/menu/{menu}', 'show_menu')->name('show_menu');
+    Route::post('/sort/product' , 'sort_product')->name('sort_product');
 });
 Auth::routes();
 Route::get('logout' , function(){

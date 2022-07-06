@@ -18,13 +18,14 @@ use Inertia\Inertia;
 use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
 use App\Repository\Front\Data\CountItemDataBase;
 use App\Repository\Front\Product\ProductRepository;
+use App\Repository\Front\QueryDatabase;
 use App\Repository\Front\User\SecurityUserHistorySearch;
 
 class ProductController extends Controller
 {
-    use CommentProductTrait , CountItemDataBase , ProductRepository;
+    use CommentProductTrait , CountItemDataBase , ProductRepository , QueryDatabase;
     //The [comment_new method , reply_comment_new ] is inside the CommentProductTrait : The desired method is written as a trait
-    //The [save_product , set_cart , delete_product] is inside the ProductRepository : The desired method is written as a trait
+    //The [save_product , set_cart , delete_product , sort_product] is inside the ProductRepository : The desired method is written as a trait
     public function show(Product $product , SaveProduct $saveProduct , SecurityUserHistorySearch $securityUserHistorySearch)
     {
         (Cookie::has('CODE_SEARCH')) ? $securityUserHistorySearch->get_old_data(Cookie::get('CODE_SEARCH'))->set_new_data($product->id)->put_file() : 'Error';
@@ -60,13 +61,13 @@ class ProductController extends Controller
     {
         return PriceProduct::whereId($request->id)->first();
     }
-    public function show_menu(SunMenu $menu){
+    public function show_menu(SunMenu $menu , Product $product){
         return Inertia::render('Product/MenuVue', [
             'auth' => auth()->check(),
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
                 'menu_on' => $menu,
-                // 'product' => $product,
+                'product' => $product::whereSub_menu_id($menu->id)->get(),
                 // 'image_product' =>$product->images,
                 // 'menu_s' => $product->sub_menu,
                 // 'menu_a' => $product->sub_menu->menu,
