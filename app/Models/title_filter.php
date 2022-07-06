@@ -15,4 +15,7 @@ class title_filter extends Model implements DefaultModel
     {
         return $this->belongsTo(Menu::class , 'menu_id' , 'id');
     }
+    public function filter(){
+        return $this->hasMany(filter::class , 'title_filter_id' , 'id');
+    }
 }

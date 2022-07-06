@@ -2,107 +2,16 @@
         <header class="container box my-3">
             <div class=" row">
                 <div class="col-12 col-md-4">
-                    <div class="box-a-filter p-2">
-                        <p class="my-font-IYL my-f-14 my-color-b-600">فیلتر</p>
+                    <div v-for="(item , index) in filter['data']" :key="index" class="box-a-filter p-2">
+                        <p class="my-font-IYL my-f-14 my-color-b-600">{{item.subject}}</p>
                         <div class="box-a-filter-item p-2 d-flex flex-wrap">
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
-                            </div> 
-                                                        <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option1" autocomplete="off">
-                                <label class="btn btn-secondary" for="option1">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option2" autocomplete="off">
-                                <label class="btn btn-secondary" for="option2">Ram</label>
-                            </div> 
-                            <div class="m-2">
-                                <input type="radio" class="btn-check" name="filter" id="option3" autocomplete="off">
-                                <label class="btn btn-secondary" for="option3">Ram</label>
+                            <div v-for="(item_2 , index_2) in item.item_filter" :key="index_2" class="m-2">
+                                <input type="radio" :value="item_2.id" class="btn-check btn-danger " :name="item_2.title_filter_id" :id="item_2.id + '-' + item_2.title_filter_id" autocomplete="off">
+                                <label class="btn btn-danger" :for="item_2.id + '-' + item_2.title_filter_id">{{item_2.name}}</label>
                             </div> 
                         </div>
                     </div>
+                    <button class="btn btn-danger d-block mt-2 my-font-IYM my-f-13 my-color-b w-100">اعمال فیلتر</button>
                 </div>
 
                 <div class="col-12 col-md-8">
@@ -120,11 +29,6 @@
                                 <p class="my-f-15 my-font-IYL my-color-b-600 text-center">{{item.name}}</p>
                                 <p class="my-f-14 my-font-IYM my-color-b-800 text-center">{{item.price}} تومان</p>
                             </Link>
-                            <!-- <Link v-else v-for="(item , index_2) in data" :key="index_2" style="width: 200px;height: 300px;" class="item-product-menu" href="/">
-                                <img :src="'/image/product/' + item.image" :alt="item.name" class="">
-                                <p class="my-f-15 my-font-IYL my-color-b-600 text-center">{{item.name}}</p>
-                                <p class="my-f-14 my-font-IYM my-color-b-800 text-center">{{item.price}} تومان</p>
-                            </Link> -->
                         </div>
                     </div>
                 </div>
@@ -142,7 +46,8 @@ export default {
     }),
     props:{
         menu_on:Array,
-        data:Array
+        data:Array,
+        filter:Array
     },
     components:{
         Link,

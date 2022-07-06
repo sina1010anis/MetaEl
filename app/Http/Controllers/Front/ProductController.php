@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentCollection;
+use App\Http\Resources\FilterResource;
 use App\Models\CommentProduct;
 use App\Models\DatailProduct;
 use App\Models\Images;
@@ -12,6 +13,7 @@ use App\Models\PriceProduct;
 use App\Models\Product;
 use App\Models\SaveProduct;
 use App\Models\SunMenu;
+use App\Models\title_filter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Inertia\Inertia;
@@ -68,18 +70,7 @@ class ProductController extends Controller
                 'menu' => Menu::whereStatus(1)->get(),
                 'menu_on' => $menu,
                 'product' => $product::whereSub_menu_id($menu->id)->get(),
-                // 'image_product' =>$product->images,
-                // 'menu_s' => $product->sub_menu,
-                // 'menu_a' => $product->sub_menu->menu,
-                // 'datail' => $product->datail_product,
-                // 'price_product' => $product->price_product,
-                // 'related_product' => Product::whereSub_menu_id($product->sub_menu_id)->take(8)->get(),
-                // 'comment_product' => collect(new CommentCollection($product->comment_product))->sortByDesc('id'),
-                // 'count_comment' => $product->comment_product->count(),
-                // 'csrf' => csrf_token(),
-                // 'save_product' =>$status_save,
-                // 'history_search' => history_search(),
-                // 'history_product' => history_search(false)
+                'filter' => new FilterResource(title_filter::whereMenuId($menu->menu->id)->get())
                 ]
         ]);
     }

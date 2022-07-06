@@ -1,6 +1,6 @@
 <template>
     <HeaderVue :auth="auth" :datas="data['menu']" :history_search="data['history_search']"/>
-    <PageMenuVue  :menu_on="data['menu_on']" :data="data['product']"/>
+    <PageMenuVue  :menu_on="data['menu_on']" :data="data['product']" :filter="data['filter']"/>
     <FooterVue />
 </template>
 
