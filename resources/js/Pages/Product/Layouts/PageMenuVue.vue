@@ -1,13 +1,21 @@
 <template>
-        <header class="container box my-3">
+        <div class="container box my-3">
             <div class=" row">
                 <div class="col-12 col-md-4">
-                    <div v-for="(item , index) in filter['data']" :key="index" class="box-a-filter p-2">
+                    <div v-for="(item , index) in filter['data']" :key="index" class="box-a-filter p-2 mt-3">
                         <p class="my-font-IYL my-f-14 my-color-b-600">{{item.subject}}</p>
-                        <div class="box-a-filter-item p-2 d-flex flex-wrap">
-                            <div v-for="(item_2 , index_2) in item.item_filter" :key="index_2" class="m-2">
-                                <input type="radio" :value="item_2.id" class="btn-check btn-danger " :name="item_2.title_filter_id" :id="item_2.id + '-' + item_2.title_filter_id" autocomplete="off">
-                                <label class="btn btn-danger" :for="item_2.id + '-' + item_2.title_filter_id">{{item_2.name}}</label>
+                        <div class="box-a-filter-item p-2">
+                            <div v-for="(item_2 , index_2) in item.item_filter" :key="index_2" class="m-2 form-check form-switch">
+                                <input @change="set_item_filter(item_2.name,item_2.id)"  :value="item_2.id" :name="item_2.title_filter_id" :id="item_2.id + '-' + item_2.title_filter_id" class="form-check-input" type="checkbox" role="switch">
+                                <label class="my-font-IYL my-f-13 my-color-b-500" :for="item_2.id + '-' + item_2.title_filter_id">{{item_2.name}}</label>
+                            </div> 
+                        </div>
+                    </div>
+                    <div v-if="array_filter_name.length > 0" class="box-a-filter p-2 mt-3">
+                        <p class="my-font-IYL my-f-12 my-color-b-600">فیلتر های اعمل شده</p>
+                        <div class="box-a-filter-item p-2">
+                            <div v-for="(item , index) in array_filter_name" :key="index" class="m-2 form-check form-switch">
+                                <p class="my-font-IYL my-f-12 my-color-b-400">{{item}}</p>
                             </div> 
                         </div>
                     </div>
@@ -33,16 +41,20 @@
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
 </template>
 
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
+import lodash from 'lodash'
 import axios from 'axios'
 export default {
     name: 'PageMenuVue',
     data:()=>({
-        data_product:null
+        data_product:null,
+        array_filter_id:[],
+        array_filter_name:[]
+        
     }),
     props:{
         menu_on:Array,
@@ -50,7 +62,7 @@ export default {
         filter:Array
     },
     components:{
-        Link,
+        Link,lodash
     },
     methods:{
         sort_product(model){
@@ -60,7 +72,27 @@ export default {
                 console.log(res.data);
             })
             .catch(()=>{console.error('Error : 597');})
-        }
+        },
+        set_item_filter(name,id){
+            if(this.find_item(this.array_filter_id , id)){
+                this.array_filter_id.push(id)
+                this.array_filter_name.push(name)
+            }else{
+                this.array_filter_id.pop(id)
+                this.array_filter_name.pop(name)
+            }
+            console.log(this.array_filter_id)
+        },
+        find_item(data , item){
+            var status = true;
+            for(let i = 0 ; i <= data.length ; i++){
+                if(data[i] == item){
+                    status = false;
+                    break;
+                }
+            }
+            return status;
+        },
     }
 }
 </script>
