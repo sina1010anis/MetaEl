@@ -3,6 +3,7 @@
 namespace App\Repository\Front\Product;
 
 use App\Models\Cart;
+use App\Models\filter_product;
 use App\Models\PriceProduct;
 use App\Models\Product;
 use App\Models\SaveProduct;
@@ -66,6 +67,16 @@ trait ProductRepository
                 break;
         }
             
+    }
+    
+    public function filter_product(Request $request){
+        $id_product = [];
+        $data = collect(filter_product::whereIn('filter_id' , $request->id)->get('product_id'))->unique();
+        foreach($data as $i){
+            $id_product[] = $i->product_id;
+        }
+        $product = Product::whereIn('id' , $id_product)->get();
+        return ($product->count() > 0) ? $product : 'null';
     }
 
 }

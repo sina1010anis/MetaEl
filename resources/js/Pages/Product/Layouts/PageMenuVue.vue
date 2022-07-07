@@ -19,7 +19,7 @@
                             </div> 
                         </div>
                     </div>
-                    <button class="btn btn-danger d-block mt-2 my-font-IYM my-f-13 my-color-b w-100">اعمال فیلتر</button>
+                    <button v-if="array_filter_name.length > 0" @click="send_filter" class="btn btn-danger d-block mt-2 my-font-IYM my-f-13 my-color-b w-100">اعمال فیلتر</button>
                 </div>
 
                 <div class="col-12 col-md-8">
@@ -65,6 +65,17 @@ export default {
         Link,lodash
     },
     methods:{
+        send_filter(){
+            axios.post('/filter/product/' , {id:this.array_filter_id}).catch((err)=>{
+                console.error(err)
+            }).then((res)=>{
+                if(res.data == 'null'){
+                    alert('محصولی یافت نشد')
+                }else{
+                    this.data_product = res.data
+                }
+            })
+        },
         sort_product(model){
             axios.post('/sort/product/' , {model:model , id: this.menu_on.id })
             .then((res)=>{
@@ -81,7 +92,9 @@ export default {
                 this.array_filter_id.pop(id)
                 this.array_filter_name.pop(name)
             }
-            console.log(this.array_filter_id)
+            if(this.array_filter_id == []){
+                this.data_product = null
+            }
         },
         find_item(data , item){
             var status = true;

@@ -27,7 +27,7 @@ class ProductController extends Controller
 {
     use CommentProductTrait , CountItemDataBase , ProductRepository , QueryDatabase;
     //The [comment_new method , reply_comment_new ] is inside the CommentProductTrait : The desired method is written as a trait
-    //The [save_product , set_cart , delete_product , sort_product] is inside the ProductRepository : The desired method is written as a trait
+    //The [save_product , set_cart , delete_product , sort_product , filter_product] is inside the ProductRepository : The desired method is written as a trait
     public function show(Product $product , SaveProduct $saveProduct , SecurityUserHistorySearch $securityUserHistorySearch)
     {
         (Cookie::has('CODE_SEARCH')) ? $securityUserHistorySearch->get_old_data(Cookie::get('CODE_SEARCH'))->set_new_data($product->id)->put_file() : 'Error';

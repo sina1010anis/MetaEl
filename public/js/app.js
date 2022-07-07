@@ -25279,14 +25279,29 @@ __webpack_require__.r(__webpack_exports__);
     lodash: (lodash__WEBPACK_IMPORTED_MODULE_1___default())
   },
   methods: {
-    sort_product: function sort_product(model) {
+    send_filter: function send_filter() {
       var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post('/filter/product/', {
+        id: this.array_filter_id
+      })["catch"](function (err) {
+        console.error(err);
+      }).then(function (res) {
+        if (res.data == 'null') {
+          alert('محصولی یافت نشد');
+        } else {
+          _this.data_product = res.data;
+        }
+      });
+    },
+    sort_product: function sort_product(model) {
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_2___default().post('/sort/product/', {
         model: model,
         id: this.menu_on.id
       }).then(function (res) {
-        _this.data_product = res.data;
+        _this2.data_product = res.data;
         console.log(res.data);
       })["catch"](function () {
         console.error('Error : 597');
@@ -25301,7 +25316,9 @@ __webpack_require__.r(__webpack_exports__);
         this.array_filter_name.pop(name);
       }
 
-      console.log(this.array_filter_id);
+      if (this.array_filter_id == []) {
+        this.data_product = null;
+      }
     },
     find_item: function find_item(data, item) {
       var status = true;
@@ -27392,40 +27409,33 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "my-font-IYL my-f-12 my-color-b-400"
 };
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-danger d-block mt-2 my-font-IYM my-f-13 my-color-b w-100"
-}, "اعمال فیلتر", -1
-/* HOISTED */
-);
-
-var _hoisted_13 = {
+var _hoisted_12 = {
   "class": "col-12 col-md-8"
 };
-var _hoisted_14 = {
+var _hoisted_13 = {
   "class": "p-2"
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   "class": "my-font-IYM my-color-b-600"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "my-line my-3"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_16 = {
   "class": "d-flex box-item-f"
 };
-var _hoisted_18 = {
+var _hoisted_17 = {
   "class": "box-product-menu my-3 d-flex flex-wrap"
 };
-var _hoisted_19 = ["src", "alt"];
-var _hoisted_20 = {
+var _hoisted_18 = ["src", "alt"];
+var _hoisted_19 = {
   "class": "my-f-15 my-font-IYL my-color-b-600 text-center"
 };
-var _hoisted_21 = {
+var _hoisted_20 = {
   "class": "my-f-14 my-font-IYM my-color-b-800 text-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -27473,24 +27483,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_15, " محصولات " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_on.name), 1
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.array_filter_name.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 1,
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.send_filter && $options.send_filter.apply($options, arguments);
+    }),
+    "class": "btn btn-danger d-block mt-2 my-font-IYM my-f-13 my-color-b w-100"
+  }, "اعمال فیلتر")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_14, " محصولات " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.menu_on.name), 1
   /* TEXT */
-  ), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[0] || (_cache[0] = function ($event) {
+  ), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.sort_product('new');
     }),
     "class": "mx-2 px-2 py-1 rounded-3 item-f my-font-IYL my-f-12 my-pointer"
   }, "جدیدترین"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.sort_product('expensive');
     }),
     "class": "mx-2 px-2 py-1 rounded-3 item-f my-font-IYL my-f-12 my-pointer"
   }, "گرانترین"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[2] || (_cache[2] = function ($event) {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.sort_product('inexpensive');
     }),
     "class": "mx-2 px-2 py-1 rounded-3 item-f my-font-IYL my-f-12 my-pointer"
-  }, "ارزانترین")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data_product == null ? $props.data : _ctx.data_product, function (item, index) {
+  }, "ارزانترین")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data_product == null ? $props.data : _ctx.data_product, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
       key: index,
       style: {
@@ -27507,9 +27523,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           "class": ""
         }, null, 8
         /* PROPS */
-        , _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1
+        , _hoisted_18), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.price) + " تومان", 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.price) + " تومان", 1
         /* TEXT */
         )];
       }),
