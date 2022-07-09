@@ -1,5 +1,5 @@
 <template>
-    <HeaderVue :auth="auth" :datas="data['menu']" :history_search="data['history_search']"/>
+    <HeaderVue :auth="auth" :history_search="data['history_search']" :datas="data['menu']" :data_cart="data['data_cart']" :total_price="data['total_price']" :total_count="data['total_count']"/>
     <PageMenuVue  :menu_on="data['menu_on']" :data="data['product']" :filter="data['filter']"/>
     <FooterVue />
 </template>

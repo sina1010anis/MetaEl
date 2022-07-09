@@ -42,12 +42,21 @@
                 </div>
             </div>
         </div>
+    <div class="blur-page "></div>
+    <div class="load-page my-obj-center px-5 py-2 bg-white rounded-3">
+        <div class="loader">
+            <div class="ball"></div>
+            <div class="ball"></div>
+            <div class="ball"></div>
+        </div>
+    </div>
 </template>
 
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
 import lodash from 'lodash'
 import axios from 'axios'
+import $ from 'jquery'
 export default {
     name: 'PageMenuVue',
     data:()=>({
@@ -66,15 +75,22 @@ export default {
     },
     methods:{
         send_filter(){
-            axios.post('/filter/product/' , {id:this.array_filter_id}).catch((err)=>{
-                console.error(err)
-            }).then((res)=>{
-                if(res.data == 'null'){
-                    alert('محصولی یافت نشد')
-                }else{
-                    this.data_product = res.data
-                }
-            })
+            $('.blur-page').fadeIn();
+            $('.load-page').fadeIn();
+            setTimeout(() => {
+                axios.post('/filter/product/' , {id:this.array_filter_id}).catch((err)=>{
+                    console.error(err)
+                    }).then((res)=>{
+                        if(res.data != 'null'){
+                            this.data_product = res.data
+                            $('.blur-page').fadeOut();
+                            $('.load-page').fadeOut();
+                        }else{
+                            alert('محصولی یافت نشد')
+                        }
+                    })
+            }, 1500);
+
         },
         sort_product(model){
             axios.post('/sort/product/' , {model:model , id: this.menu_on.id })

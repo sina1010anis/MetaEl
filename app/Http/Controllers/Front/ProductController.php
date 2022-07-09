@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\CommentCollection;
-use App\Http\Resources\FilterResource;
-use App\Models\CommentProduct;
-use App\Models\DatailProduct;
-use App\Models\Images;
+use App\Models\Cart;
 use App\Models\Menu;
-use App\Models\PriceProduct;
+use Inertia\Inertia;
+use App\Models\Images;
 use App\Models\Product;
-use App\Models\SaveProduct;
 use App\Models\SunMenu;
+use App\Models\SaveProduct;
+use App\Models\PriceProduct;
 use App\Models\title_filter;
 use Illuminate\Http\Request;
+use App\Models\DatailProduct;
+use App\Models\CommentProduct;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CartResources;
+use App\Http\Resources\FilterResource;
 use Illuminate\Support\Facades\Cookie;
-use Inertia\Inertia;
-use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
+use App\Repository\Front\QueryDatabase;
+use App\Http\Resources\CommentCollection;
 use App\Repository\Front\Data\CountItemDataBase;
 use App\Repository\Front\Product\ProductRepository;
-use App\Repository\Front\QueryDatabase;
 use App\Repository\Front\User\SecurityUserHistorySearch;
+use App\Repository\Front\Comment\CommentProduct as CommentProductTrait;
 
 class ProductController extends Controller
 {
@@ -64,13 +66,20 @@ class ProductController extends Controller
         return PriceProduct::whereId($request->id)->first();
     }
     public function show_menu(SunMenu $menu , Product $product){
+        $data_cart = (auth()->check()) ? new CartResources(Cart::whereUser_id(auth()->user()->id)->get()) : '';
+        $toal_price_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('total_price'): '';
+        $toal_count_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('number'): '';
         return Inertia::render('Product/MenuVue', [
             'auth' => auth()->check(),
             'data' => [
                 'menu' => Menu::whereStatus(1)->get(),
                 'menu_on' => $menu,
                 'product' => $product::whereSub_menu_id($menu->id)->get(),
-                'filter' => new FilterResource(title_filter::whereMenuId($menu->menu->id)->get())
+                'history_search' => history_search(),
+                'data_cart' => $data_cart,
+                'filter' => new FilterResource(title_filter::whereMenuId($menu->menu->id)->get()),
+                'total_price' =>  $toal_price_all,
+                'total_count' =>  $toal_count_all,
                 ]
         ]);
     }
