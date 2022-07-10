@@ -40,7 +40,12 @@ class UserController extends Controller
     public function home()
     {
         if (auth()->check()){
-            return Inertia::render('User/ProfileIndexVue');
+            return Inertia::render('User/ProfileIndexVue' , [
+                'auth' => auth()->check(),
+                'data' =>[
+                    'time' => jdate()->format('%A, %d %B %y'),
+                ]
+            ]);
         }else{
             return Inertia::render('User/HomeLoginAndRegister');
         }

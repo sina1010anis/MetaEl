@@ -25711,6 +25711,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "ProfileVue",
   components: {
     Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link
+  },
+  props: {
+    time: String,
+    auth: String
   }
 });
 
@@ -25759,7 +25763,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {},
+  props: {
+    auth: String,
+    data: Array
+  },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -28460,10 +28467,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "container box shadow",
+  "class": "container box shadow overflow-hidden",
   style: {
     "width": "100%",
-    "height": "100vh"
+    "height": "100vh",
+    "max-height": "100vh"
   }
 };
 var _hoisted_2 = {
@@ -28475,13 +28483,10 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "w-100 p-1"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_5 = {
   "class": "d-none d-md-block my-font-IYL my-f-10 my-color-b-300 text-end",
   dir: "rtl"
-}, "1399/99/99 بهمن اسنفدر", -1
-/* HOISTED */
-);
+};
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/image/user/profile.png",
@@ -28618,16 +28623,14 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-10 p-2 my-bg-b-300"
-}, null, -1
-/* HOISTED */
-);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-10 p-2 my-bg-b-300 row\" style=\"height:100vh;\"><div class=\"col-md-3 col-12\" style=\"height:95%!important;\"><div class=\"h-100 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">فاکتور های موفق</h6><div class=\"my-line\"></div><!-- View Factor --><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1984198516541</p></div><!-- /View Factor --></div></div><div class=\"col-md-5 col-12\" style=\"height:95%!important;\"><div class=\"h-50 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">کامنت های ارسالی</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div><div class=\"h-50 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">ادرس</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div></div><div class=\"col-md-4 col-12\"><div class=\"h-100 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">جدیدترین اخبار</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MenuBar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, _hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" MenuBar "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.time), 1
+  /* TEXT */
+  ), _hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
     "class": "my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -28796,7 +28799,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProfileVue"]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProfileVue"], {
+    auth: $props.auth,
+    time: $props.data['time']
+  }, null, 8
+  /* PROPS */
+  , ["auth", "time"]);
 }
 
 /***/ }),

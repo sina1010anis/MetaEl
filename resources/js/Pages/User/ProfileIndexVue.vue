@@ -1,5 +1,5 @@
 <template>
-    <ProfileVue />
+    <ProfileVue :auth="auth" :time="data['time']" />
 </template>
 
 <script setup>
@@ -7,7 +7,8 @@
     import FooterVue from '../Front/Layouts/FooterVue';
     import ProfileVue from '../User/Layouts/ProfileVue';
     const props = defineProps({
-
+        auth:String,
+        data:Array,
     });
 
 </script>
