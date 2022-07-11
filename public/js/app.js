@@ -25714,7 +25714,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     time: String,
-    auth: String
+    auth: String,
+    factor: Array,
+    comment: Array,
+    address: Array,
+    news: Array
   }
 });
 
@@ -28623,8 +28627,159 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-10 p-2 my-bg-b-300 row\" style=\"height:100vh;\"><div class=\"col-md-3 col-12\" style=\"height:95%!important;\"><div class=\"h-100 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">فاکتور های موفق</h6><div class=\"my-line\"></div><!-- View Factor --><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1984198516541</p></div><!-- /View Factor --></div></div><div class=\"col-md-5 col-12\" style=\"height:95%!important;\"><div class=\"h-50 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">کامنت های ارسالی</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div><div class=\"h-50 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">ادرس</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div></div><div class=\"col-md-4 col-12\"><div class=\"h-100 section-panel-user my-2 p-2\" style=\"overflow-y:scroll;\"><h6 class=\"my-font-IYL my-f-12 my-color-b-600\">جدیدترین اخبار</h6><div class=\"my-line\"></div><div class=\"d-flex justify-content-center flex-column my-pointer my-3 align-items-center\"><img src=\"/image/icon/order.png\" style=\"width:70px;\" alt=\"order\"><p class=\"my-font-IYL my-f-11 my-color-b-400\">1399/99/99</p></div></div></div></div>", 1);
+var _hoisted_24 = {
+  "class": "col-10 p-2 my-bg-b-300 row",
+  style: {
+    "height": "100vh"
+  }
+};
+var _hoisted_25 = {
+  "class": "col-md-3 col-12",
+  style: {
+    "height": "95%!important"
+  }
+};
+var _hoisted_26 = {
+  "class": "h-100 section-panel-user my-2 p-2",
+  style: {
+    "overflow-y": "scroll"
+  }
+};
 
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "my-font-IYL my-f-12 my-color-b-600"
+}, "فاکتور های موفق", -1
+/* HOISTED */
+);
+
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "my-line"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/image/icon/order.png",
+  style: {
+    "width": "70px"
+  },
+  alt: "order"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_30 = {
+  "class": "my-font-IYL my-f-11 my-color-b-400"
+};
+var _hoisted_31 = {
+  "class": "col-md-5 col-12",
+  style: {
+    "height": "95%!important"
+  }
+};
+var _hoisted_32 = {
+  "class": "h-50 section-panel-user my-2 p-2",
+  style: {
+    "overflow-y": "scroll"
+  }
+};
+
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "my-font-IYL my-f-12 my-color-b-600"
+}, "کامنت های ارسالی", -1
+/* HOISTED */
+);
+
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "my-line"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_35 = {
+  "class": "my-font-IYL my-f-14 my-color-b-600 text-end",
+  dir: "rtl"
+};
+var _hoisted_36 = {
+  "class": "my-font-IYL my-f-13 my-color-b-600 text-end",
+  dir: "rtl"
+};
+var _hoisted_37 = {
+  "class": "my-font-IYL my-f-11 my-color-b-400 text-end",
+  dir: "rtl"
+};
+var _hoisted_38 = {
+  "class": "h-50 section-panel-user my-2 p-2",
+  style: {
+    "overflow-y": "scroll"
+  }
+};
+
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "my-font-IYL my-f-12 my-color-b-600"
+}, "ادرس", -1
+/* HOISTED */
+);
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "my-line"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/image/icon/location.png",
+  style: {
+    "width": "70px"
+  },
+  alt: "location"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_42 = {
+  "class": "my-font-IYL my-f-14 mt-2 my-color-b-700"
+};
+var _hoisted_43 = {
+  "class": "my-font-IYL my-f-13 my-color-b-600"
+};
+var _hoisted_44 = {
+  "class": "my-font-IYL my-f-12 my-color-b-500"
+};
+var _hoisted_45 = {
+  "class": "col-md-4 col-12"
+};
+var _hoisted_46 = {
+  "class": "h-100 section-panel-user my-2 p-2",
+  style: {
+    "overflow-y": "scroll"
+  }
+};
+
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+  "class": "my-font-IYL my-f-12 my-color-b-600"
+}, "جدیدترین اخبار", -1
+/* HOISTED */
+);
+
+var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "my-line"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_49 = {
+  "class": "my-font-IYL my-f-15 my-color-b-800 text-end",
+  dir: "rtl"
+};
+var _hoisted_50 = {
+  "class": "my-font-IYL my-f-14 my-color-b-600 text-end",
+  dir: "rtl"
+};
+var _hoisted_51 = {
+  "class": "my-font-IYL my-f-11 my-color-b-400 text-end",
+  dir: "rtl"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
@@ -28694,7 +28849,73 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /MenuBar ")]), _hoisted_24])]);
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /MenuBar ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" View Factor "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.factor, function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index,
+      "class": "d-flex justify-content-center flex-column my-pointer my-3 align-items-center"
+    }, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.code_pay), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /View Factor ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, _hoisted_34, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.comment['data'], function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      style: {
+        "overflow-x": "hidden"
+      },
+      key: index,
+      "class": "border-bottom d-flex justify-content-center flex-column my-3 align-items-center"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
+      href: '/product/' + item.product.slug,
+      "class": "my-font-IYL my-f-16 my-color-b-800 text-end",
+      dir: "rtl"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.product.name), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.subject), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.text), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, _hoisted_40, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.address['data'], function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index,
+      "class": "border-bottom d-flex justify-content-center flex-column my-pointer my-3 align-items-center"
+    }, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.city.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.state.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.location), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [_hoisted_47, _hoisted_48, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.news, function (item, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: index,
+      "class": "border-bottom my-pointer my-3"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.body), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.created_at), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])])]);
 }
 
 /***/ }),
@@ -28801,10 +29022,14 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ProfileVue"], {
     auth: $props.auth,
-    time: $props.data['time']
+    news: $props.data['news'],
+    time: $props.data['time'],
+    factor: $props.data['factor'],
+    comment: $props.data['comment'],
+    address: $props.data['address']
   }, null, 8
   /* PROPS */
-  , ["auth", "time"]);
+  , ["auth", "news", "time", "factor", "comment", "address"]);
 }
 
 /***/ }),

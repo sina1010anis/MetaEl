@@ -39,9 +39,9 @@
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">فاکتور های موفق</h6>
                             <div class="my-line"></div>
                             <!-- View Factor -->
-                            <div class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
+                            <div v-for="(item , index) in factor" :key="index" class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
                                 <img src="/image/icon/order.png" style="width:70px;" alt="order">
-                                <p class="my-font-IYL my-f-11 my-color-b-400">1984198516541</p>
+                                <p class="my-font-IYL my-f-11 my-color-b-400">{{item.code_pay}}</p>
                             </div>
                             <!-- /View Factor -->
                         </div>
@@ -50,17 +50,21 @@
                         <div class="h-50 section-panel-user my-2 p-2" style="overflow-y: scroll;">
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">کامنت های ارسالی</h6>
                             <div class="my-line"></div>
-                            <div class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
-                                <img src="/image/icon/order.png" style="width:70px;" alt="order">
-                                <p class="my-font-IYL my-f-11 my-color-b-400">1399/99/99</p>
+                            <div style="overflow-x: hidden;" v-for="(item , index) in comment['data']" :key="index" class="border-bottom d-flex justify-content-center flex-column my-3 align-items-center">
+                                <Link :href="'/product/'+item.product.slug" class="my-font-IYL my-f-16 my-color-b-800 text-end" dir="rtl">{{item.product.name}}</Link>
+                                <p class="my-font-IYL my-f-14 my-color-b-600 text-end" dir="rtl">{{item.subject}}</p>
+                                <p class="my-font-IYL my-f-13 my-color-b-600 text-end" dir="rtl">{{item.text}}</p>
+                                <p class="my-font-IYL my-f-11 my-color-b-400 text-end" dir="rtl">{{item.created_at}}</p>
                             </div>
                         </div>
                         <div class="h-50 section-panel-user my-2 p-2" style="overflow-y: scroll;">
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">ادرس</h6>
                             <div class="my-line"></div>
-                            <div class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
-                                <img src="/image/icon/order.png" style="width:70px;" alt="order">
-                                <p class="my-font-IYL my-f-11 my-color-b-400">1399/99/99</p>
+                            <div v-for="(item ,index) in address['data']" :key="index" class="border-bottom d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
+                                <img src="/image/icon/location.png" style="width:70px;" alt="location">
+                                <p class="my-font-IYL my-f-14 mt-2 my-color-b-700">{{item.city.name}}</p>
+                                <p class="my-font-IYL my-f-13 my-color-b-600">{{item.state.name}}</p>
+                                <p class="my-font-IYL my-f-12 my-color-b-500">{{item.location}}</p>
                             </div>
                         </div>
                     </div>
@@ -68,9 +72,10 @@
                         <div class="h-100 section-panel-user my-2 p-2" style="overflow-y: scroll;">
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">جدیدترین اخبار</h6>
                             <div class="my-line"></div>
-                            <div class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
-                                <img src="/image/icon/order.png" style="width:70px;" alt="order">
-                                <p class="my-font-IYL my-f-11 my-color-b-400">1399/99/99</p>
+                            <div v-for="(item , index) in news" :key="index" class="border-bottom  my-pointer my-3">
+                                <p class="my-font-IYL my-f-15 my-color-b-800 text-end" dir="rtl">{{item.title}}</p>
+                                <p class="my-font-IYL my-f-14 my-color-b-600 text-end" dir="rtl">{{item.body}}</p>
+                                <p class="my-font-IYL my-f-11 my-color-b-400 text-end" dir="rtl">{{item.created_at}}</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +93,11 @@ export default {
     },
     props:{
         time:String,
-        auth:String
+        auth:String,
+        factor:Array,
+        comment:Array,
+        address:Array,
+        news:Array
     }
 }
 </script>

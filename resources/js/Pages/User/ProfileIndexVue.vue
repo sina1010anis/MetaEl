@@ -1,5 +1,5 @@
 <template>
-    <ProfileVue :auth="auth" :time="data['time']" />
+    <ProfileVue :auth="auth" :news="data['news']" :time="data['time']" :factor="data['factor']" :comment="data['comment']" :address="data['address']"/>
 </template>
 
 <script setup>

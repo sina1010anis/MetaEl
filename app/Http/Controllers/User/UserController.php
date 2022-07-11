@@ -11,7 +11,13 @@ use App\Models\Slider;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AddressCollection;
 use App\Http\Resources\CartResources;
+use App\Http\Resources\CommentCollection;
+use App\Models\Address;
+use App\Models\CommentProduct;
+use App\Models\factor;
+use App\Models\News;
 
 class UserController extends Controller
 {
@@ -44,6 +50,10 @@ class UserController extends Controller
                 'auth' => auth()->check(),
                 'data' =>[
                     'time' => jdate()->format('%A, %d %B %y'),
+                    'factor' => factor::whereUser_id(auth()->user()->id)->orderBy('id' , 'DESC')->get(),
+                    'comment' => new CommentCollection(CommentProduct::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'address' => new AddressCollection(Address::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'news' => News::orderBy('id' , 'DESC')->get(),
                 ]
             ]);
         }else{
