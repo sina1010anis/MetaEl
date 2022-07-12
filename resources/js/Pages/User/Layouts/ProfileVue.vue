@@ -87,8 +87,9 @@
                 <p v-if="data_factor != null" class="my-font-IYM my-f-15 my-color-b-700 text-center my-3">{{data_factor.code_pay}}</p>
                 <p v-if="data_factor != null" class="my-font-IYL my-f-13 my-color-b-600 text-center my-3">شماره موبایل : {{data_factor.mobile}}</p>
                 <p v-if="data_factor != null" class="my-font-IYL my-f-13 my-color-b-600 text-center my-3"> جمع قیمت : {{data_factor.total_price}}</p>
-                <button v-if="data_factor != null" @click="view_product_to_factor(data_factor.id)" class="btn btn-info">نمایش محصولات</button>
-                    <table v-if="product_factor != null" class="table table-bordered">
+                <button v-if="data_factor != null" @click="view_product_to_factor(data_factor.id)" class=" my-2 btn-sm btn btn-info">نمایش محصولات</button>
+                <button v-if="product_factor != null" @click="print_factor" class="btn-sm btn btn-warning m-2">چاپ فاکتور</button>
+                    <table v-if="product_factor != null" class="table table-bordered" id="print_this">
                         <thead>
                             <tr>
                                 <th scope="col">نام</th>
@@ -173,6 +174,13 @@ export default {
             }).catch(()=>{
                 console.error('Error:987')
             })
+        },
+        print_factor(){
+            var printContents = $('body').html();
+            var originalContents = $('#print_this').clone();
+            $('body').empty().html(originalContents);
+            window.print();
+            $('body').empty().html(printContents);
         },
     }
 }

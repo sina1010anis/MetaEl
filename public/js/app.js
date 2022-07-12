@@ -25774,6 +25774,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function () {
         console.error('Error:987');
       });
+    },
+    print_factor: function print_factor() {
+      var printContents = jquery__WEBPACK_IMPORTED_MODULE_2___default()('body').html();
+      var originalContents = jquery__WEBPACK_IMPORTED_MODULE_2___default()('#print_this').clone();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()('body').empty().html(originalContents);
+      window.print();
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()('body').empty().html(printContents);
     }
   }
 });
@@ -28864,8 +28871,9 @@ var _hoisted_56 = {
   "class": "my-font-IYL my-f-13 my-color-b-600 text-center my-3"
 };
 var _hoisted_57 = {
-  key: 4,
-  "class": "table table-bordered"
+  key: 5,
+  "class": "table table-bordered",
+  id: "print_this"
 };
 
 var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
@@ -29060,8 +29068,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[0] || (_cache[0] = function ($event) {
           return $options.view_product_to_factor(_ctx.data_factor.id);
         }),
-        "class": "btn btn-info"
-      }, "نمایش محصولات")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.product_factor != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.product_factor['data'], function (item, index) {
+        "class": "my-2 btn-sm btn btn-info"
+      }, "نمایش محصولات")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.product_factor != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+        key: 4,
+        onClick: _cache[1] || (_cache[1] = function () {
+          return $options.print_factor && $options.print_factor.apply($options, arguments);
+        }),
+        "class": "btn-sm btn btn-warning m-2"
+      }, "چاپ فاکتور")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.product_factor != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.product_factor['data'], function (item, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -29101,7 +29115,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.data_address_location), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-        onClick: _cache[1] || (_cache[1] = function () {
+        onClick: _cache[2] || (_cache[2] = function () {
           return $options.delete_address && $options.delete_address.apply($options, arguments);
         }),
         "class": "bi bi-trash3 text-center icon-delete-item-box-item-view-product my-f-15 my-pointer"
