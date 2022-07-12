@@ -32,6 +32,9 @@ class ProductController extends Controller
     //The [save_product , set_cart , delete_product , sort_product , filter_product] is inside the ProductRepository : The desired method is written as a trait
     public function show(Product $product , SaveProduct $saveProduct , SecurityUserHistorySearch $securityUserHistorySearch)
     {
+        $data_cart = (auth()->check()) ? new CartResources(Cart::whereUser_id(auth()->user()->id)->get()) : '';
+        $toal_price_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('total_price'): '';
+        $toal_count_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('number'): '';
         (Cookie::has('CODE_SEARCH')) ? $securityUserHistorySearch->get_old_data(Cookie::get('CODE_SEARCH'))->set_new_data($product->id)->put_file() : 'Error';
         $status_save = (auth()->check())
         ? $this->getCount($saveProduct , ['user_id' => auth()->user()->id , 'product_id' => $product->id])
@@ -51,8 +54,12 @@ class ProductController extends Controller
                 'count_comment' => $product->comment_product->count(),
                 'csrf' => csrf_token(),
                 'save_product' =>$status_save,
+                'data_cart' => $data_cart,
+                'total_price' =>  $toal_price_all,
+                'total_count' =>  $toal_count_all,
                 'history_search' => history_search(),
-                'history_product' => history_search(false)
+                'status_history_product' => history_search(false),
+                'history_product' => history_product()
                 ]
         ]);
     }

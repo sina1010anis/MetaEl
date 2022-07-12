@@ -12,6 +12,7 @@
             <p v-if="tips != null " class="text-end my-font-IYM my-f-11 tips-page-alert"><i class="bi bi-exclamation-lg my-f-14"></i> {{tips}}</p>
         </div>
     </div>
+    <div class="blur-page" ></div>
 </template>
 
 <script>

@@ -25,6 +25,7 @@ Route::controller(UserController::class)->as('user.')->group(function () {
     Route::get('/register/user', 'register_page')->name('register');
     Route::get('/login/user', 'login_page')->name('login');
     Route::get('/user/home', 'home')->name('home');
+    Route::post('/view/product/factor', 'product_factor')->name('product_factor');
 });
 Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::get('/product/{product}', 'show')->name('show');

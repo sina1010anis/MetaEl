@@ -39,7 +39,7 @@
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">فاکتور های موفق</h6>
                             <div class="my-line"></div>
                             <!-- View Factor -->
-                            <div v-for="(item , index) in factor" :key="index" class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
+                            <div v-for="(item , index) in factor" :key="index" @click="show_item_factor(item)"  class="d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
                                 <img src="/image/icon/order.png" style="width:70px;" alt="order">
                                 <p class="my-font-IYL my-f-11 my-color-b-400">{{item.code_pay}}</p>
                             </div>
@@ -82,14 +82,47 @@
                 </div>
             </div>
         </div>
+        <page-alert-vue :class_name="'page_view_address'" :title="'فاکتور'" >
+            <template #option>
+                <p v-if="data_factor != null" class="my-font-IYM my-f-15 my-color-b-700 text-center my-3">{{data_factor.code_pay}}</p>
+                <p v-if="data_factor != null" class="my-font-IYL my-f-13 my-color-b-600 text-center my-3">شماره موبایل : {{data_factor.mobile}}</p>
+                <p v-if="data_factor != null" class="my-font-IYL my-f-13 my-color-b-600 text-center my-3"> جمع قیمت : {{data_factor.total_price}}</p>
+                <button v-if="data_factor != null" @click="view_product_to_factor(data_factor.id)" class="btn btn-info">نمایش محصولات</button>
+                    <table v-if="product_factor != null" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">نام</th>
+                                <th scope="col">قیمت</th>
+                                <th scope="col">تعداد</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item , index) in product_factor['data']" :key="index">
+                                <td><Link :href="'/product/'+item.product.slug">{{item.product.name}}</Link></td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </template>
+        </page-alert-vue>
+            <div class="blur-page" ></div>
+
 </template>
 
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
+import PageAlertVue from '../../Front/Layouts/PageAlertVue'
+import $ from 'jquery'
+import axios from 'axios'
 export default {
     name: "ProfileVue",
+    data:()=>({
+        data_factor:null,
+        product_factor:null,
+    }),
     components:{
-        Link
+        Link,PageAlertVue
     },
     props:{
         time:String,
@@ -98,6 +131,21 @@ export default {
         comment:Array,
         address:Array,
         news:Array
+    },
+    methods:{
+        show_item_factor(data){
+            this.data_factor = data
+            $('.page_view_address').fadeIn();
+            $('.blur-page').fadeIn();
+        },
+        view_product_to_factor(id){
+            axios.post('/view/product/factor' , {id:id}).then((res)=>{
+                this.product_factor = res.data
+                console.log(res.data)
+            }).catch(()=>{
+                console.log('Error : 587');
+            })
+        }
     }
 }
 </script>

@@ -14,10 +14,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\CartResources;
 use App\Http\Resources\CommentCollection;
+use App\Http\Resources\ProductFactorCollection;
 use App\Models\Address;
 use App\Models\CommentProduct;
 use App\Models\factor;
 use App\Models\News;
+use App\Models\product_factor;
 
 class UserController extends Controller
 {
@@ -59,5 +61,9 @@ class UserController extends Controller
         }else{
             return Inertia::render('User/HomeLoginAndRegister');
         }
+    }
+    public function product_factor(Request $request){
+        $data = product_factor::whereFactorId($request->id)->get();
+        return new ProductFactorCollection($data);
     }
 }
