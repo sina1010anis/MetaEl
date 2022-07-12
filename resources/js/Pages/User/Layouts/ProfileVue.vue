@@ -60,7 +60,7 @@
                         <div class="h-50 section-panel-user my-2 p-2" style="overflow-y: scroll;">
                             <h6 class="my-font-IYL my-f-12 my-color-b-600">ادرس</h6>
                             <div class="my-line"></div>
-                            <div v-for="(item ,index) in address['data']" :key="index" class="border-bottom d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
+                            <div v-for="(item ,index) in address['data']" @click="show_item_address(item.id, item.city.name ,item.state.name ,item.location )" :key="index" class="border-bottom d-flex justify-content-center flex-column my-pointer my-3 align-items-center">
                                 <img src="/image/icon/location.png" style="width:70px;" alt="location">
                                 <p class="my-font-IYL my-f-14 mt-2 my-color-b-700">{{item.city.name}}</p>
                                 <p class="my-font-IYL my-f-13 my-color-b-600">{{item.state.name}}</p>
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <page-alert-vue :class_name="'page_view_address'" :title="'فاکتور'" >
+        <page-alert-vue :class_name="'page_view_factor'" :title="'فاکتور'" >
             <template #option>
                 <p v-if="data_factor != null" class="my-font-IYM my-f-15 my-color-b-700 text-center my-3">{{data_factor.code_pay}}</p>
                 <p v-if="data_factor != null" class="my-font-IYL my-f-13 my-color-b-600 text-center my-3">شماره موبایل : {{data_factor.mobile}}</p>
@@ -106,7 +106,15 @@
                     </table>
             </template>
         </page-alert-vue>
-            <div class="blur-page" ></div>
+        <page-alert-vue :class_name="'page_view_address'" title="ادرس">
+            <template #option>
+                <p class="my-font-IYL my-f-15 my-color-b-800 text-center" dir="rtl">{{data_address_city}}</p>
+                <p class="my-font-IYL my-f-14 my-color-b-600 text-center" dir="rtl">{{data_address_state}}</p>
+                <p class="my-font-IYL my-f-11 my-color-b-400 text-center" dir="rtl">{{data_address_location}}</p>
+                <i @click="delete_address" class="bi bi-trash3 text-center icon-delete-item-box-item-view-product my-f-15 my-pointer"></i>
+            </template>
+        </page-alert-vue>
+        <div class="blur-page" ></div>
 
 </template>
 
@@ -120,6 +128,10 @@ export default {
     data:()=>({
         data_factor:null,
         product_factor:null,
+        data_address_city:null,
+        data_address_state:null,
+        data_address_location:null,
+        data_address_id:null,
     }),
     components:{
         Link,PageAlertVue
@@ -135,7 +147,7 @@ export default {
     methods:{
         show_item_factor(data){
             this.data_factor = data
-            $('.page_view_address').fadeIn();
+            $('.page_view_factor').fadeIn();
             $('.blur-page').fadeIn();
         },
         view_product_to_factor(id){
@@ -143,9 +155,25 @@ export default {
                 this.product_factor = res.data
                 console.log(res.data)
             }).catch(()=>{
-                console.log('Error : 587');
+                console.error('Error : 587');
             })
-        }
+        },
+        show_item_address(id,city , state , location){
+            this.data_address_id = id
+            this.data_address_city = city
+            this.data_address_state = state
+            this.data_address_location = location
+            $('.page_view_address').fadeIn();
+            $('.blur-page').fadeIn();
+        },
+        delete_address(){
+            axios.post('/delete/address/' , {id:this.data_address_id}).then((res)=>{
+                $('.page_view_address').fadeOut();
+                $('.blur-page').fadeOut();
+            }).catch(()=>{
+                console.error('Error:987')
+            })
+        },
     }
 }
 </script>
