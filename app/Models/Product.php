@@ -58,4 +58,7 @@ class Product extends Model implements DefaultModel
     public function save_product(){
         return $this->hasMany(SaveProduct::class , 'product_id' , 'id');
     }
+    public function return_product_item(){
+        return $this->hasMany(ReturnProductItem::class , 'product_id' , 'id');
+    }
 }

@@ -23,11 +23,15 @@ use App\Repository\Front\QueryDatabase;
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\CommentCollection;
 use App\Http\Resources\ProductFactorCollection;
+use App\Http\Resources\ReturnP;
+use App\Http\Resources\ReturnProductCollection;
+use App\Models\ReturnProduct;
+use App\Models\ReturnProductItem;
 use App\Repository\Front\Data\CountItemDataBase;
 
 class UserController extends Controller
 {
-    use QueryDatabase , CountItemDataBase;
+    use QueryDatabase;
     public function register_page()
     {
         if (auth()->check()){
@@ -61,20 +65,85 @@ class UserController extends Controller
                     'comment' => new CommentCollection(CommentProduct::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
                     'address' => new AddressCollection(Address::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
                     'news' => News::orderBy('id' , 'DESC')->get(),
+                    'status' => 'index'
                 ]
             ]);
         }else{
             return Inertia::render('User/HomeLoginAndRegister');
         }
     }
-    public function product_factor(Request $request){
+    public function product_factor(Request $request)
+    {
         $data = product_factor::whereFactorId($request->id)->get();
         return new ProductFactorCollection($data);
     }
-    public function delete_address(Request $request , Address $address , User $user){
+    public function delete_address(Request $request , Address $address , User $user)
+    {
         $count = $this->getCount($user , ['id' => auth()->user()->id , 'address_id' => $request->id]);
         if($count == 0){
             $this->delete($address , ['id' => $request->id]);
+        }else{
+            return abort(404);
+        }
+    }
+    public function show_profile()
+    {
+        if (auth()->check()){
+            return Inertia::render('User/ProfileIndexVue' , [
+                'auth' => auth()->check(),
+                'data' =>[
+                    'time' => jdate()->format('%A, %d %B %y'),
+                    'factor' => factor::whereUser_id(auth()->user()->id)->orderBy('id' , 'DESC')->get(),
+                    'comment' => new CommentCollection(CommentProduct::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'address' => new AddressCollection(Address::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'news' => News::orderBy('id' , 'DESC')->get(),
+                    'status' => 'profile',
+                    'data_user' =>auth()->user()
+                ]
+            ]);
+        }else{
+            return Inertia::render('User/HomeLoginAndRegister');
+        }
+    }
+    public function product_return()
+    {
+        if (auth()->check()){
+            $data_product_return = new ReturnP(ReturnProduct::where(['user_id' => auth()->user()->id])->where('status' , '>' , 0)->get());
+            return Inertia::render('User/ProfileIndexVue' , [
+                'auth' => auth()->check(),
+                'data' =>[
+                    'time' => jdate()->format('%A, %d %B %y'),
+                    'factor' => factor::whereUser_id(auth()->user()->id)->orderBy('id' , 'DESC')->get(),
+                    'comment' => new CommentCollection(CommentProduct::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'address' => new AddressCollection(Address::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),
+                    'news' => News::orderBy('id' , 'DESC')->get(),
+                    'status' => 'product_return',
+                    'data_user' =>auth()->user(),
+                    'list_return_product' => $data_product_return
+                ]
+            ]);
+        }else{
+            return Inertia::render('User/HomeLoginAndRegister');
+        }
+    }
+    public function send_product_return(Request $request , ReturnProduct $returnProduct , ReturnProductItem $returnProductItem)
+    {
+        $count = $this->getCount($returnProduct , ['user_id' => auth()->user()->id , 'code' => $request->code , 'status' => 0]);
+        if($count == 1){
+            $data_code = ReturnProduct::where(['user_id' => auth()->user()->id , 'code' => $request->code  , 'status' => 0])->first() ;
+            $product_return = ReturnProductItem::whereReturnProductId($data_code->id)->get() ;
+            $resource_product_return = new ReturnProductCollection($product_return);
+            return ['data'=>$resource_product_return , 'id' => $data_code->id];
+        }else{
+            return abort(404);
+        }
+    }
+    public function send_edit_product_return(Request $request , ReturnProduct $returnProduct)
+    {
+        $count = $this->getCount($returnProduct , ['id' => $request->id , 'status'=> 0]);
+        if($count == 1){
+            $this->update($returnProduct , ['id' => $request->id] , ['status' => 1]);
+            return 'Ok';
         }else{
             return abort(404);
         }

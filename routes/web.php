@@ -25,8 +25,14 @@ Route::controller(UserController::class)->as('user.')->group(function () {
     Route::get('/register/user', 'register_page')->name('register');
     Route::get('/login/user', 'login_page')->name('login');
     Route::get('/user/home', 'home')->name('home');
-    Route::post('/view/product/factor', 'product_factor')->middleware('auth')->name('product_factor');
-    Route::post('/delete/address', 'delete_address')->middleware('auth')->name('delete_address');
+    Route::middleware('auth')->group(function(){
+        Route::post('/view/product/factor', 'product_factor')->name('product_factor');
+        Route::post('/delete/address', 'delete_address')->name('delete_address');
+        Route::get('/profile/user', 'show_profile')->name('show_profile');
+        Route::get('/product/return', 'product_return')->name('product_return');
+        Route::post('/send/product/return', 'send_product_return')->name('send_product_return');
+        Route::post('/send/edit/product/return', 'send_edit_product_return')->name('send_edit_product_return');
+    });
 });
 Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::get('/product/{product}', 'show')->name('show');

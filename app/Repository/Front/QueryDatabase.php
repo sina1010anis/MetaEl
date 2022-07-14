@@ -3,14 +3,18 @@
 namespace App\Repository\Front;
 
 use App\Models\DefaultModel;
+use App\Repository\Front\Data\CountItemDataBase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use PhpParser\Builder\Class_;
 use PhpParser\Node\Expr\Cast\Array_;
 
+use function PHPUnit\Framework\assertNotTrue;
+
 trait QueryDatabase
 {
+    use CountItemDataBase;
     private $request;
     private $model;
     public $dataCreate = null;
@@ -32,11 +36,25 @@ trait QueryDatabase
             $this->dataCreate = $model::create($this->request);
         }
     }
-    public function get( $model , Array $data = null , Array $where = null){
-        if ($data != null){
-            ($where == null) ? $this->dataCreate = $model::get($data) :$this->dataCreate = $model::where($where)->get($data) ;
+    public function get( $model , Array $data = null , Array $where = null , $status = false){
+        if($status == true){
+            if ($data == null){
+                $this->dataCreate = $model::where($where)->first() ;
+            }
         }else{
-            ($where == null) ? $this->dataCreate = $model::get($this->request) :$this->dataCreate = $model::where($where)->get($this->request);
+            if ($data != null){
+                ($where == null) ? $this->dataCreate = $model::get($data) :$this->dataCreate = $model::where($where)->get($data) ;
+            }else{
+                ($where == null) ? $this->dataCreate = $model::get($this->request) :$this->dataCreate = $model::where($where)->get($this->request);
+            }
+        }
+        
+    }
+    public function gete( $model ,$where = null , $status = false){
+        if($status == true){
+            $this->dataCreate = $model::where($where)->first() ;
+        }else{
+            ($where == null) ? $this->dataCreate = $model::get() :$this->dataCreate = $model::where()->get();
         }
     }
     public function delete( $model , Array $where = null){
@@ -45,5 +63,8 @@ trait QueryDatabase
         }else{
             return false;
         }
+    }
+    public function update( $model , Array $where = null , Array $newDate ){
+        ($where == null) ?$model::update($newDate) :$model::where($where)->update($newDate) ;
     }
 }

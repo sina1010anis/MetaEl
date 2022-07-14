@@ -70,4 +70,7 @@ class User extends Authenticatable implements DefaultModel
     public function save_product(){
         return $this->hasMany(SaveProduct::class , 'user_id' , 'id');
     }
+    public function return_product(){
+        return $this->hasMany(ReturnProduct::class , 'user_id' , 'id');
+    }
 }
