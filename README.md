@@ -1,4 +1,4 @@
-<p align="center"><a  target="_blank"><img src="/public/image/front/logo.png" width="400"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/front/logo.png" width="100"></a></p>
 
 ## Project Name :
 
@@ -12,17 +12,17 @@ This website has good features such as:
 
 - History Search
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/history_search.png" width="400"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/history_search.png" width="300"></a></p>
 
 
 - Suggestions
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/Su.png" width="400"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/Su.png" width="300"></a></p>
 
 
 - Product Return
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/Product_R.png" width="400"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/Product_R.png" width="300"></a></p>
 
 - Various animations
 
