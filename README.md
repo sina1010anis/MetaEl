@@ -12,17 +12,17 @@ This website has good features such as:
 
 - History Search
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/history_search.PNG" width="300"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/history_search.PNG" width="100%"></a></p>
 
 
 - Suggestions
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/Su.PNG" width="300"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/Su.PNG" width="100%"></a></p>
 
 
 - Product Return
 
-<p align="center"><a  target="_blank"><img src="/public/image/view/Product_R.PNG" width="300"></a></p>
+<p align="center"><a  target="_blank"><img src="/public/image/view/Product_R.PNG" width="100%"></a></p>
 
 - Various animations
 
