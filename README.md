@@ -6,6 +6,8 @@ The name of this project is METAEL. which sells electronic products
 
 ## Description :
 
+- Inertia js is used along with laravel and vue js which can work as a PWA
+
 This website has good features such as:
 
 - PWA
