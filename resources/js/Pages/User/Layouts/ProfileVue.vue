@@ -211,7 +211,7 @@
                                 </p>
                             </div>
                             <div class="d-flex justify-content-center align-content-center my-3 ">
-                                <button class="btn btn-warning my-color-b my-font-IYL my-f-13">خرید محصول</button>
+                                <a href="/buy/product/" class="btn btn-warning my-color-b my-font-IYL my-f-13">خرید محصول</a>
                             </div>
                         </div>
                     </div>

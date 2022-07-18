@@ -2,10 +2,12 @@
 
 namespace App\Repository\Front\Data;
 
+use App\Repository\Front\User\GetTotalPrice;
 use Illuminate\Http\Request;
 
 trait Created
 {
+    use GetTotalPrice;
     public function data_comment(Request $request)
     {
         return $dataComment = [
@@ -47,6 +49,16 @@ trait Created
             'user_id' => auth()->user()->id,
             'number' => 1,
             'status' => 0
+        ];
+    }
+    public function data_factor($code){
+        return [
+            'user_id' => auth()->user()->id,
+            'mobile' => auth()->user()->mobile,
+            'code_pay' => $code,
+            'total_price' => $this->total_price(),
+            'send_status' => 1,
+            'buy_status' => 100,
         ];
     }
 }

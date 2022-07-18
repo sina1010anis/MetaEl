@@ -29175,7 +29175,8 @@ var _hoisted_111 = {
 
 var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "d-flex justify-content-center align-content-center my-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/buy/product/",
   "class": "btn btn-warning my-color-b my-font-IYL my-f-13"
 }, "خرید محصول")], -1
 /* HOISTED */

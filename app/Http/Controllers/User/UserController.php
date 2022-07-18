@@ -15,23 +15,26 @@ use App\Models\Slider;
 use App\Models\Address;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ReturnProduct;
 use App\Models\CommentProduct;
 use App\Models\product_factor;
+use App\Http\Resources\ReturnP;
+use App\Models\ReturnProductItem;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResources;
 use App\Repository\Front\QueryDatabase;
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\CommentCollection;
+use App\Repository\Front\User\UserRepository;
 use App\Http\Resources\ProductFactorCollection;
-use App\Http\Resources\ReturnP;
 use App\Http\Resources\ReturnProductCollection;
-use App\Models\ReturnProduct;
-use App\Models\ReturnProductItem;
 use App\Repository\Front\Data\CountItemDataBase;
 
 class UserController extends Controller
 {
-    use QueryDatabase;
+    use QueryDatabase , UserRepository;
+    //The [call_back_profile , buy_product] is inside the UserRepository : The desired method is written as a trait
+
     public function register_page()
     {
         if (auth()->check()){
@@ -152,14 +155,11 @@ class UserController extends Controller
     {
         $data_cart = (auth()->check()) ?new CartResources(Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->get()) : ''; 
         $count_cart = (auth()->check()) ? Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->count() : ''; 
-        $price_product = Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->sum('total_price');
-        $number_product = Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->sum('number');
-        $price_send = (Address::whereId(auth()->user()->address_id)->first())->city->send_price;
         $price = [
-            'number_product' => $number_product,
-            'price_product' => $price_product,
-            'price_send' => $price_send,
-            'total_price' => $price_product + $price_send
+            'number_product' => $this->number_cart(),
+            'price_product' => $this->total_price(),
+            'price_send' => $this->send_price(),
+            'total_price' => $this->total_price() + $this->send_price()
         ];
         if (auth()->check()){
             return Inertia::render('User/ProfileIndexVue' , [
