@@ -10,6 +10,9 @@ class Cart extends Model implements DefaultModel
     use HasFactory;
 
     protected $guarded=[];
+
+    protected $attributes = ['status' => 0];
+
     public function product()
     {
         return $this->belongsTo(PriceProduct::class , 'size_product_id' , 'id');

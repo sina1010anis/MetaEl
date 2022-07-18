@@ -29,6 +29,7 @@ Route::controller(UserController::class)->as('user.')->group(function () {
         Route::post('/view/product/factor', 'product_factor')->name('product_factor');
         Route::post('/delete/address', 'delete_address')->name('delete_address');
         Route::get('/profile/user', 'show_profile')->name('show_profile');
+        Route::get('/profile/cart', 'profile_cart')->name('profile_cart');
         Route::get('/product/return', 'product_return')->name('product_return');
         Route::post('/send/product/return', 'send_product_return')->name('send_product_return');
         Route::post('/send/edit/product/return', 'send_edit_product_return')->name('send_edit_product_return');

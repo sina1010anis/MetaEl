@@ -31,14 +31,13 @@ trait ProductRepository
     public function set_cart(Request $request , Cart $cart , Product $product){
         $data_product = Product::where(['id'=>$request->id_product]);
         $data_size = PriceProduct::where(['id'=>$request->id_size])->count();
-        $data_cart = Cart::where(['user_id' => auth()->user()->id , 'product_id' => $request->id_size]);
+        $data_cart = Cart::where(['user_id' => auth()->user()->id , 'size_product_id' => $request->id_size]);
         $data_S = PriceProduct::whereId($request->id_size)->first();
         if($data_product->count() == 1 and $data_size == 1){
              if($data_cart->count() == 1){
                  $data_cart->first()->increment('number', 1);
                  $data_cart->first()->increment('total_price',$data_S->price );
              }else{
-                 return $data_S;
                  $this->create($cart ,$this->data_set_cart($data_S));
              }
         }else{

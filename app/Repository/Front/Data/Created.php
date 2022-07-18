@@ -43,9 +43,10 @@ trait Created
     public function data_set_cart($data){
         return [
             'total_price' => $data->price ,
-            'product_id' => $data->id ,
+            'size_product_id' => $data->id ,
             'user_id' => auth()->user()->id,
             'number' => 1,
+            'status' => 0
         ];
     }
 }

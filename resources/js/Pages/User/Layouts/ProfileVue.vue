@@ -14,7 +14,7 @@
                             <Link :href="'/product/return/'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">مرجوع محصول</span><img src="/image/icon/back.png" style="width:30px;" alt="back"> 
                             </Link>
-                            <Link class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
+                            <Link :href="'/profile/cart/'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">سبد خرید</span><img src="/image/icon/basket.png" style="width:30px;" alt="basket"> 
                             </Link>
                             <Link class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
@@ -180,6 +180,42 @@
                     </div>
 
                 </div>
+
+                <div class="col-10 p-3 my-bg-b-300 row my-pos-rel" style="height: 100vh;" v-if="status == 'cart'">
+                    <div class="col-12 border-end">
+                        <h5 class="my-font-IYM my-color-b-600 text-end">سبد خرید</h5>
+                        <div class="my-obj-center my-font-IYL my-f-15 my-color-b-600" v-if="data['count_cart'] == 0">
+                            سبد خرید شما خالی است
+                        </div>
+                        <div v-else>
+                            <div
+                                v-for="(item , index) in data['data_cart']['data']" :key="index" class="item-a-box-top-item-view-product d-flex justify-content-between align-items-center my-pointer mt-2" style="max-height: 200px;">
+                                <img :src="'/image/product/'+item.size_product.product.image" :alt="item.size_product.product.name">
+                                <span class="my-f-12 my-color-b-800 my-font-IYL">{{item.size_product.product.name}}<small>({{item.size_product.name}})</small></span>
+                                <span class="my-f-12 my-color-b-600 my-font-IYL">تعداد : {{item.number}}</span>
+                                <b><span class="my-f-12 my-color-b-800 my-font-IYL">قیمت کل : {{item.total_price}}</span></b>
+                                <i @click="delete_product_to_cart(item.id)" class="bi bi-trash3 icon-delete-item-box-item-view-product my-f-15 my-pointer"></i>
+                            </div>
+                            <div class=" d-block d-md-flex justify-content-between align-content-center my-3">
+                                <p class="my-font-IYL my-f-13 my-color-b-600 text-center">
+                                    هزینه ارسال : {{data['price']['price_send']}}
+                                </p>
+                                <p class="my-font-IYL my-f-13 my-color-b-700 text-center">
+                                    تعداد محصولات: {{data['price']['number_product']}}
+                                </p>
+                                <p class="my-font-IYL my-f-13 my-color-b-700 text-center">
+                                    هزینه محصولات : {{data['price']['price_product']}}
+                                </p>
+                                <p class="my-font-IYL my-f-13 my-color-b-800 text-center">
+                                    <b> هزینه کل : {{data['price']['total_price']}}</b>
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-center align-content-center my-3 ">
+                                <button class="btn btn-warning my-color-b my-font-IYL my-f-13">خرید محصول</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <page-alert-vue :class_name="'page_view_factor'" :title="'فاکتور'" >
@@ -253,6 +289,13 @@ export default {
         data:Array
     },
     methods:{
+        delete_product_to_cart(id){
+            axios.post('/delete/product' , {id:id}).catch(()=>{
+                return console.error('Error : 508');
+            }).then((res)=>{
+                console.log(res.data)
+            })
+        },
         send_edit_status(){
             if(this.id_product_return != null){
                 axios.post('/send/edit/product/return' , {id:this.id_product_return}).then((res)=>{

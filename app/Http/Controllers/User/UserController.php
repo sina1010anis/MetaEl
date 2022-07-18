@@ -148,4 +148,33 @@ class UserController extends Controller
             return abort(404);
         }
     }
+    public function profile_cart()
+    {
+        $data_cart = (auth()->check()) ?new CartResources(Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->get()) : ''; 
+        $count_cart = (auth()->check()) ? Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->count() : ''; 
+        $price_product = Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->sum('total_price');
+        $number_product = Cart::where(['user_id' => auth()->user()->id , 'status' => 0])->sum('number');
+        $price_send = (Address::whereId(auth()->user()->address_id)->first())->city->send_price;
+        $price = [
+            'number_product' => $number_product,
+            'price_product' => $price_product,
+            'price_send' => $price_send,
+            'total_price' => $price_product + $price_send
+        ];
+        if (auth()->check()){
+            return Inertia::render('User/ProfileIndexVue' , [
+                'auth' => auth()->check(),
+                'data' =>[
+                    'time' => jdate()->format('%A, %d %B %y'),
+                    'status' => 'cart',
+                    'data_user' =>auth()->user(),
+                    'count_cart' => $count_cart,
+                    'data_cart' => $data_cart,
+                    'price' => $price
+                ]
+            ]);
+        }else{
+            return Inertia::render('User/HomeLoginAndRegister');
+        }
+    }
 }
