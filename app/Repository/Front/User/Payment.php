@@ -2,6 +2,7 @@
 
 namespace App\Repository\Front\User;
 
+use App\Models\Cart;
 use App\Models\factor;
 use Shetabit\Multipay\Invoice;
 use App\Repository\Front\Data\Created;
@@ -31,11 +32,15 @@ class Payment extends Geter{
     public function verify(){
         try {
             $receipt = PaymentShetabit::amount($this->sum())->transactionId(($this->get_code_factor()->code_pay))->verify();
+            $this->update(new factor() , ['code_pay' => $this->get_code_factor()->code_pay] , ['buy_status' => 200 , 'send_status' => 100]);
+            $this->delete(new Cart() , ['user_id' => auth()->user()->id]);
             return Inertia::render('Payment/SuccessfulPay' , [
                 'code' => ($this->get_code_factor())->code_pay,
                 'msg' => $receipt->getReferenceId()
             ]);
         } catch (InvalidPaymentException $exception) {
+            $this->update(new factor() , ['code_pay' => $this->get_code_factor()->code_pay] , ['buy_status' => 404 , 'send_status' => 404]);
+            $this->delete(new Cart() , ['user_id' => auth()->user()->id]);
             return Inertia::render('Payment/UnsuccessfulPay' , [
                 'code' => ($this->get_code_factor())->code_pay,
                 'msg' => $exception->getMessage()
