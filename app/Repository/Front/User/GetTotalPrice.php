@@ -16,6 +16,9 @@ trait GetTotalPrice{
     {
         return (auth()->check()) ? (Address::whereId(auth()->user()->address_id)->first())->city->send_price : abort(404);
     }
+    public function sum(){
+        return $this->total_price() + $this->send_price();
+    }
 
 }
 

@@ -50,12 +50,8 @@ trait QueryDatabase
         }
         
     }
-    public function gete( $model ,$where = null , $status = false){
-        if($status == true){
-            $this->dataCreate = $model::where($where)->first() ;
-        }else{
-            ($where == null) ? $this->dataCreate = $model::get() :$this->dataCreate = $model::where()->get();
-        }
+    public function gete( $model ,$where = null){
+        return $model::where($where)->first(); 
     }
     public function delete( $model , Array $where = null){
         if (auth()->check()){

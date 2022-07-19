@@ -254,7 +254,7 @@ return [
 
             'mode' => 'sandbox', // can be normal, sandbox, zaringate
             'merchantId' => '54454545454545454545454',
-            'callbackUrl' => 'http://localhost:8000//call/back/profile',
+            'callbackUrl' => 'http://localhost:8000/call/back/profile',
             'description' => 'zarinpal',
         ],
         'zibal' => [
