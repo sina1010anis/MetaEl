@@ -35,6 +35,7 @@ Route::controller(UserController::class)->as('user.')->group(function () {
         Route::post('/send/edit/product/return', 'send_edit_product_return')->name('send_edit_product_return');
         Route::get('/buy/product/', 'buy_product')->name('buy_product');
         Route::get('call/back/profile', 'call_back_profile')->name('call_back_profile');
+        Route::post('discount/code/send/{code}', 'discount_code_send')->name('discount_code_send');
     });
 });
 Route::controller(ProductController::class)->as('product.')->group(function () {

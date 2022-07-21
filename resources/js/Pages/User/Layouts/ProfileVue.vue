@@ -203,15 +203,39 @@
                                 <p class="my-font-IYL my-f-13 my-color-b-700 text-center">
                                     تعداد محصولات: {{data['price']['number_product']}}
                                 </p>
+                                <p style="color:green;" class="my-font-IYL my-f-13 text-center" v-if="data_discount_code != null">
+                                     تخفیف: {{data_discount_code.value}} درصد
+                                </p>
                                 <p class="my-font-IYL my-f-13 my-color-b-700 text-center">
-                                    هزینه محصولات : {{data['price']['price_product']}}
+                                    <span v-if="data_discount_code == null">
+                                        هزینه محصولات : {{data['price']['price_product']}}
+                                    </span>
+                                    <span v-if="data_discount_code != null">
+                                        هزینه محصولات : <del>{{data['price']['price_product']}}</del> 
+                                        {{discount(data['price']['price_product'] , true)}}
+                                    </span>
                                 </p>
                                 <p class="my-font-IYL my-f-13 my-color-b-800 text-center">
-                                    <b> هزینه کل : {{data['price']['total_price']}}</b>
+                                    <span v-if="data_discount_code == null">
+                                        <b> هزینه کل : {{data['price']['total_price']}}</b>
+                                    </span>
+                                    <span v-if="data_discount_code != null">
+                                        <b> هزینه کل : {{discount(data['price']['price_product'] , false)}}</b>
+                                    </span>
                                 </p>
                             </div>
+                            <div >
+                                <p class="text-end my-font-IYL my-f-15 my-color-b-800">کد تخفیف داری ؟</p>
+                                <div class="d-flex justify-content-between my-3">
+                                    <input v-model="discount_code" type="text" class="form-control my-font-IYL my-color-b-600 my-f-12" style="width: 50%;">
+                                    <button @click="discount_code_send" class="btn btn-danger my-color-b my-font-IYL my-f-13">تایید کد</button>
+                                </div>
+                                <p class="text-end my-font-IYL my-f-12" v-if="error_discount_code != null" style="color:red;">{{error_discount_code}}</p>
+                                <p class="my-f-11 my-font-IYL my-2" style="color:green;" v-if="alert_discount_code != null">{{alert_discount_code}}</p>   
+
+                            </div>
                             <div class="d-flex justify-content-center align-content-center my-3 ">
-                                <a href="/buy/product/" class="btn btn-warning my-color-b my-font-IYL my-f-13">خرید محصول</a>
+                                <a :href="'/buy/product/'+code_discount_code" class="btn btn-warning my-color-b my-font-IYL my-f-13">خرید محصول</a>
                             </div>
                         </div>
                     </div>
@@ -273,7 +297,12 @@ export default {
         error_code_product_return:null,
         alert_code_product_return:null,
         data_product_return:null,
-        id_product_return:null
+        id_product_return:null,
+        discount_code:null,
+        error_discount_code:null,
+        alert_discount_code:null,
+        data_discount_code:null,
+        code_discount_code:null
     }),
     components:{
         Link,PageAlertVue
@@ -289,6 +318,39 @@ export default {
         data:Array
     },
     methods:{
+        discount(price , status){
+            const price_const = price - (price / (100 / this.data_discount_code.value ));
+            if(status){
+                return price_const;
+            }else{
+                return price_const + this.data['price']['price_send'];
+            }
+        },
+        discount_code_send(){
+            if(this.discount_code != null){
+                axios.post('/discount/code/send' , {code:this.discount_code}).then((res)=>{
+                    console.log(res.data)
+                    if(res.data == 'Code Not Find'){
+                        this.error_discount_code = 'تخفیف مورد نظر یافت نشد .'
+                        this.alert_discount_code = null
+                        this.data_discount_code = null
+                        this.code_discount_code = null
+                    }else{
+                        this.error_discount_code = null
+                        this.alert_discount_code = 'کد مور دنظر یافت شد .';
+                        this.data_discount_code = res.data
+                        this.code_discount_code = res.data.code
+                    }
+                }).catch(()=>{
+                    console.error('Error : 987')
+                })
+            }else{
+                this.error_discount_code = 'لطفا کد تخفیف را وارد کنید '
+                this.alert_discount_code = null
+                this.data_discount_code = null
+                this.code_discount_code = null
+            }
+        },
         delete_product_to_cart(id){
             axios.post('/delete/product' , {id:id}).catch(()=>{
                 return console.error('Error : 508');

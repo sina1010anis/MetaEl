@@ -36,14 +36,14 @@ class Payment extends Geter{
             $data_cart = Cart::whereUser_id(auth()->user()->id)->get();
             $this->update(new factor() , ['code_pay' => $this->get_code_factor()->code_pay] , ['buy_status' => 200 , 'send_status' => 100]);
             $this->set_cart_to_factor($data_cart , $this->get_code_factor()->id);
-            //$this->delete(new Cart() , ['user_id' => auth()->user()->id]);
+            $this->delete(new Cart() , ['user_id' => auth()->user()->id]);
             return Inertia::render('Payment/SuccessfulPay' , [
                 'code' => ($this->get_code_factor())->code_pay,
                 'msg' => $receipt->getReferenceId()
             ]);
         } catch (InvalidPaymentException $exception) {
             $this->update(new factor() , ['code_pay' => $this->get_code_factor()->code_pay] , ['buy_status' => 404 , 'send_status' => 404]);
-            //$this->delete(new Cart() , ['user_id' => auth()->user()->id]);
+            $this->delete(new Cart() , ['user_id' => auth()->user()->id]);
             return Inertia::render('Payment/UnsuccessfulPay' , [
                 'code' => ($this->get_code_factor())->code_pay,
                 'msg' => $exception->getMessage()

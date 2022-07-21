@@ -73,4 +73,8 @@ class User extends Authenticatable implements DefaultModel
     public function return_product(){
         return $this->hasMany(ReturnProduct::class , 'user_id' , 'id');
     }
+    public function code()
+    {
+        return $this->belongsTo(DiscountCode::class , 'user_id' , 'id');
+    }
 }

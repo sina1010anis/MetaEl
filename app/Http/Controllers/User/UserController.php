@@ -28,6 +28,7 @@ use App\Http\Resources\CommentCollection;
 use App\Repository\Front\User\UserRepository;
 use App\Http\Resources\ProductFactorCollection;
 use App\Http\Resources\ReturnProductCollection;
+use App\Models\DiscountCode;
 use App\Repository\Front\Data\CountItemDataBase;
 
 class UserController extends Controller
@@ -175,6 +176,25 @@ class UserController extends Controller
             ]);
         }else{
             return Inertia::render('User/HomeLoginAndRegister');
+        }
+    }
+    public function discount_code_send(Request $request , $code)
+    {
+        if($request->code != null and auth()->check())
+        {
+            $data_discount = DiscountCode::where(['code' => $request->code , 'status' => 1 , 'user_id' => auth()->user()->id]);
+            if($data_discount->count() == 1){
+                return $data_discount->first();
+            }else{
+                $data_discount_all = DiscountCode::where(['code' => $request->code , 'status' => 1 , 'user_id' => 0]);
+                if($data_discount_all->count() == 1){
+                    return $data_discount_all->first();
+                }else{
+                    return 'Code Not Find';
+                }
+            }
+        }else{
+            abort(404);
         }
     }
 }
