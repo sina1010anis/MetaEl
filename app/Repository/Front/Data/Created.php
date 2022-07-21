@@ -51,12 +51,12 @@ trait Created
             'status' => 0
         ];
     }
-    public function data_factor($code){
+    public function data_factor($code , $price = null){
         return [
             'user_id' => auth()->user()->id,
             'mobile' => auth()->user()->mobile,
             'code_pay' => $code,
-            'total_price' => $this->total_price(),
+            'total_price' => $price,
             'send_status' => 1,
             'buy_status' => 100,
         ];

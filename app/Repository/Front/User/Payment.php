@@ -13,26 +13,29 @@ use Shetabit\Payment\Facade\Payment as PaymentShetabit;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 
 class Payment extends Geter{
-    private $amount_t;
+    public $amount_t;
+    public $amount_a;
     private $transactionId;
+    public $is_code;
     use GetNumber , GetTotalPrice , QueryDatabase , Created;
 
     public function amount($code){
         $invoice = new Invoice;
         $this->amount_t =  $invoice->amount($this->sum($code));
-        return $this;
+        $this->amount_a = $this->sum($code);
     }
 
-    public function set(){
+    public function set($code){
+        $this->create(new factor()  , $this->data_factor(404 , $this->amount_a));
         return PaymentShetabit::purchase($this->amount_t, function($driver, $transactionId) {
             $this->transactionId = $transactionId;
-            $this->create(new factor()  , $this->data_factor($transactionId));
+            $this->update_f(new factor()  , ['user_id' => auth()->user()->id] , ['code_pay' => $transactionId]);
         })->pay()->render();
     }
 
     public function verify(){
         try {
-            $receipt = PaymentShetabit::amount($this->sum())->transactionId(($this->get_code_factor()->code_pay))->verify();
+            $receipt = PaymentShetabit::amount($this->get_code_factor()->total_price)->transactionId(($this->get_code_factor()->code_pay))->verify();
             $data_cart = Cart::whereUser_id(auth()->user()->id)->get();
             $this->update(new factor() , ['code_pay' => $this->get_code_factor()->code_pay] , ['buy_status' => 200 , 'send_status' => 100]);
             $this->set_cart_to_factor($data_cart , $this->get_code_factor()->id);

@@ -16,7 +16,7 @@ trait UserRepository {
     public function buy_product(UserPayment $user_payment , $code)
     {
         $user_payment->amount($code);
-        return $user_payment->set();
+        return $user_payment->set($code);
         
     }
 

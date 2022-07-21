@@ -63,4 +63,7 @@ trait QueryDatabase
     public function update( $model , Array $where = null , Array $newDate ){
         ($where == null) ?$model::update($newDate) :$model::where($where)->update($newDate) ;
     }
+    public function update_f( $model , Array $where = null , Array $newDate ){
+        ($where == null) ?$model::update($newDate) :$model::where($where)->first()->update($newDate) ;
+    }
 }
