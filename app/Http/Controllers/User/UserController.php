@@ -178,21 +178,11 @@ class UserController extends Controller
             return Inertia::render('User/HomeLoginAndRegister');
         }
     }
-    public function discount_code_send(Request $request , $code)
+    public function discount_code_send(Request $request)
     {
         if($request->code != null and auth()->check())
         {
-            $data_discount = DiscountCode::where(['code' => $request->code , 'status' => 1 , 'user_id' => auth()->user()->id]);
-            if($data_discount->count() == 1){
-                return $data_discount->first();
-            }else{
-                $data_discount_all = DiscountCode::where(['code' => $request->code , 'status' => 1 , 'user_id' => 0]);
-                if($data_discount_all->count() == 1){
-                    return $data_discount_all->first();
-                }else{
-                    return 'Code Not Find';
-                }
-            }
+            return get_total_price_discount($request->code);
         }else{
             abort(404);
         }

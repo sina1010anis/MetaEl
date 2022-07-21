@@ -13,10 +13,11 @@ trait UserRepository {
 
     use GetNumber , GetTotalPrice , QueryDatabase , Created;
 
-    public function buy_product(UserPayment $user_payment)
+    public function buy_product(UserPayment $user_payment , $code)
     {
-        $user_payment->amount();
+        $user_payment->amount($code);
         return $user_payment->set();
+        
     }
 
     public function call_back_profile(UserPayment $user_payment)

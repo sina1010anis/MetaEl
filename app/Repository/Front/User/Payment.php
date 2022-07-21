@@ -17,9 +17,9 @@ class Payment extends Geter{
     private $transactionId;
     use GetNumber , GetTotalPrice , QueryDatabase , Created;
 
-    public function amount(){
+    public function amount($code){
         $invoice = new Invoice;
-        $this->amount_t =  $invoice->amount($this->sum());
+        $this->amount_t =  $invoice->amount($this->sum($code));
         return $this;
     }
 
