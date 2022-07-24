@@ -4,8 +4,12 @@ namespace App\Repository\Front\User;
 
 use App\Models\Cart;
 use App\Models\Address;
+use App\Models\DiscountCode;
+use App\Repository\Front\QueryDatabase;
 
 trait GetTotalPrice{
+
+    use QueryDatabase;
 
     public function total_price()
     {

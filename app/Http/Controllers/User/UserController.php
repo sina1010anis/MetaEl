@@ -187,7 +187,7 @@ class UserController extends Controller
             abort(404);
         }
     }
-    public function profile_score()
+    public function profile_score(DiscountCode $discount_code)
     {
         if (auth()->check()){
             return Inertia::render('User/ProfileIndexVue' , [
@@ -197,6 +197,8 @@ class UserController extends Controller
                     'status' => 'score',
                     'data_user' =>auth()->user(),
                     'data_discount' => DiscountCode::where(['status' => 0 , 'user_id' => 0])->where('score' , '!=' , 0)->get(),
+                    'data_discount_count' => DiscountCode::where(['status' => 1 , 'user_id' => auth()->user()->id , 'score' => 0])->count(),
+                    'data_discount_data' =>DiscountCode::where(['status' => 1 , 'user_id' => auth()->user()->id , 'score' => 0])->get(),
                 ]
             ]);
         }else{

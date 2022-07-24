@@ -258,6 +258,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-md-6 border-end">
+                        <div class="d-flex justify-content-between align-content-center">
+                            <h5 class="my-font-IYM my-color-b-600 text-end">تخفیف های شما :</h5>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div style="width: 100%;height: 200px;overflow-y: scroll;">
+                            <div>
+                                <div v-for="(item , index) in data['data_discount_data']" :key="index" class="border-bottom p-2 d-flex justify-content-between align-content-center">
+                                    <p class="my-font-IYL my-color-b-400 my-f-12">{{item.description}}</p>   
+                                    <p class="my-font-IYM my-color-b-600 my-f-14"> کد تخفیف :{{item.code}}</p>    
+                                </div>
+                            </div>
+                            <!-- <div v-if="data['data_discount_count'] = 0">
+                                <p class="my-font-IYL my-color-b-400 my-f-12">تخفیف ها شما</p>   
+                            </div> -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
