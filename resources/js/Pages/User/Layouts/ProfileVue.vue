@@ -17,7 +17,7 @@
                             <Link :href="'/profile/cart/'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">سبد خرید</span><img src="/image/icon/basket.png" style="width:30px;" alt="basket"> 
                             </Link>
-                            <Link class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
+                            <Link :href="'/profile/score/'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">امتیاز </span><img src="/image/icon/coin.png" style="width:30px;" alt="coin"> 
                             </Link>
                             <Link class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
@@ -240,6 +240,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-10 p-3 my-bg-b-300 row" style="height: 100vh;" v-if="status == 'score'">
+                    <div class="col-12 col-md-6 border-end">
+                        <div class="d-flex justify-content-between align-content-center">
+                            <h5 class="my-font-IYM my-color-b-600 text-end">امتیاز ها :</h5>
+                            <h5 class="my-font-IYM my-color-b-600 text-end">{{data['data_user']['score']}}</h5>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div style="width: 100%;height: 200px;overflow-y: scroll;">
+                            <div v-for="(item , index) in data['data_discount']" :key="index" class="border-bottom p-2 d-flex justify-content-between align-content-center">
+                                <p class="my-font-IYL my-color-b-400 my-f-12">{{item.description}}</p>   
+                                <p class="my-font-IYM my-color-b-600 my-f-14"> کد تخفیف :{{item.code}}</p>   
+                                <p class="my-font-IYL my-color-b-400 my-f-12">امتیاز :{{item.score}}</p> 
+                                <button @click="set_code_discount_for_score(item.id)" class="btn btn-info btn-sm my-sc-0-7 my-font-IYL my-color-b">فعال سازی</button>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <page-alert-vue :class_name="'page_view_factor'" :title="'فاکتور'" >
@@ -318,6 +337,13 @@ export default {
         data:Array
     },
     methods:{
+        set_code_discount_for_score(id){
+            axios.post('/send/code/discount/score' , {id:id}).then((res)=>{
+                console.log(res.data)
+            }).catch(()=>{
+                console.error('Error : 764')
+            })
+        },
         discount(price , status){
             const price_const = price - (price / (100 / this.data_discount_code.value ));
             if(status){

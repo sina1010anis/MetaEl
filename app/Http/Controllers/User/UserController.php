@@ -187,4 +187,37 @@ class UserController extends Controller
             abort(404);
         }
     }
+    public function profile_score()
+    {
+        if (auth()->check()){
+            return Inertia::render('User/ProfileIndexVue' , [
+                'auth' => auth()->check(),
+                'data' =>[
+                    'time' => jdate()->format('%A, %d %B %y'),
+                    'status' => 'score',
+                    'data_user' =>auth()->user(),
+                    'data_discount' => DiscountCode::where(['status' => 0 , 'user_id' => 0])->where('score' , '!=' , 0)->get(),
+                ]
+            ]);
+        }else{
+            return Inertia::render('User/HomeLoginAndRegister');
+        } 
+    }
+    public function send_code_discount_score(Request $request)
+    {
+        $count = DiscountCode::where(['user_id' => 0 , 'status' => 0 , 'id' => $request->id])->where('score' , '!=' , 0)->count();
+        if($request->ajax() && $count == 1)
+        {
+            $discount_score = DiscountCode::find($request->id);
+            if($discount_score->score <= auth()->user()->score){
+                User::whereId(auth()->user()->id)->decrement('score' , $discount_score->score);
+                $this->update(new DiscountCode() , ['id' => $request->id] , ['user_id' => auth()->user()->id , 'status' => 1 , 'score' => 0]);
+                return 'Set Code Discount';
+            }else{
+                return 'Not Enough Score';
+            }
+        }else{
+            abort(404);
+        }
+    }
 }

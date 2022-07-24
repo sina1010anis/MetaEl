@@ -27,7 +27,6 @@ trait QueryDatabase
             return $this;
         }
     }
-
     public function create($model , $data = null)
     {
         if ($data != null){

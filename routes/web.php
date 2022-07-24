@@ -36,6 +36,8 @@ Route::controller(UserController::class)->as('user.')->group(function () {
         Route::get('/buy/product/{code}', 'buy_product')->name('buy_product');
         Route::get('call/back/profile', 'call_back_profile')->name('call_back_profile');
         Route::post('discount/code/send', 'discount_code_send')->name('discount_code_send');
+        Route::get('/profile/score', 'profile_score')->name('profile_score');
+        Route::post('/send/code/discount/score' , 'send_code_discount_score')->name('send_code_discount_score');
     });
 });
 Route::controller(ProductController::class)->as('product.')->group(function () {

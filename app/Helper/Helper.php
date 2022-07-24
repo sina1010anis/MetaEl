@@ -38,7 +38,7 @@ function history_product(){
 function get_total_price_discount($code){
     $mode_dis = new App\Models\DiscountCode();
     if(auth()->check()){
-        $data_discount = $mode_dis::where(['code' => $code , 'status' => 1 , 'user_id' => auth()->user()->id]);
+        $data_discount = $mode_dis::where(['code' => $code , 'status' => 1 , 'user_id' => auth()->user()->id , 'score' => 0]);
         if($data_discount->count() == 1){
             return $data_discount->first();
         }else{
