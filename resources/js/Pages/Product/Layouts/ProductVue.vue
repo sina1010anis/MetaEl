@@ -79,7 +79,7 @@
         <CommentProductVue :data="comment" :auth="auth" :csrf="csrf"/>
         <div class="my-line my-3"></div>
         <RelatedProductVue :data="related"/>
-        <SetupUserVue :auth="auth" :csrf="csrf" :url="url" :id="data.id" :save="save_product"/>
+        <SetupUserVue :auth="auth" :csrf="csrf" :url="url" :id="data.id" :save="save_product" :slug="data.slug"/>
     </div>
 </template>
 

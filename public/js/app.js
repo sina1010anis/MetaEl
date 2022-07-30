@@ -25544,10 +25544,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Front_Layouts_PageAlertVue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Front/Layouts/PageAlertVue */ "./resources/js/Pages/Front/Layouts/PageAlertVue.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -25555,7 +25557,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "SetupUserVue",
   data: function data() {
     return {
-      text: null
+      text: null,
+      data_comparison: null
     };
   },
   props: {
@@ -25563,19 +25566,42 @@ __webpack_require__.r(__webpack_exports__);
     csrf: String,
     url: String,
     id: Number,
-    save: Number
+    save: Number,
+    slug: String
   },
   components: {
-    PageAlertVue: _Front_Layouts_PageAlertVue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PageAlertVue: _Front_Layouts_PageAlertVue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Link
   },
   methods: {
+    send_product_comparison: function send_product_comparison() {// axios.post('/get/product/comparison' , {id:id}).then((res)=>{
+      //     this.data_comparison = res.data
+      // }).catch(()=>{
+      //     this.data_comparison = null
+      //     console.error('Error : 655')
+      // })
+    },
+    open_page_comparison: function open_page_comparison() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post('/get/product/comparison', {
+        id: this.id
+      }).then(function (res) {
+        _this.data_comparison = res.data;
+      })["catch"](function () {
+        _this.data_comparison = null;
+        console.error('Error : 655');
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()('.page-comparison-product').fadeIn();
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()('.blur-page').fadeIn();
+    },
     open_box_new_comment_product: function open_box_new_comment_product() {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('.new-comment-product').fadeIn();
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('.blur-page').fadeIn();
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()('.new-comment-product').fadeIn();
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()('.blur-page').fadeIn();
     },
     save_product_to_panel: function save_product_to_panel() {
-      jquery__WEBPACK_IMPORTED_MODULE_2___default()('.btn-save-product').fadeOut();
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/save/product', {
+      jquery__WEBPACK_IMPORTED_MODULE_3___default()('.btn-save-product').fadeOut();
+      axios__WEBPACK_IMPORTED_MODULE_2___default().post('/save/product', {
         id: this.id
       }).then(function (res) {
         console.log(res.data);
@@ -28367,10 +28393,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     csrf: $props.csrf,
     url: $props.url,
     id: $props.data.id,
-    save: $props.save_product
+    save: $props.save_product,
+    slug: $props.data.slug
   }, null, 8
   /* PROPS */
-  , ["auth", "csrf", "url", "id", "save"])]);
+  , ["auth", "csrf", "url", "id", "save", "slug"])]);
 }
 
 /***/ }),
@@ -28417,21 +28444,14 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "box-item-setup-user shadow py-2 px-3 d-flex justify-content-between align-content-center"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "bi bi-arrow-left-right my-f-18 my-color-b my-pointer"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_3 = {
+var _hoisted_2 = {
   action: '/comment/product',
   method: "post"
 };
+var _hoisted_3 = ["value"];
 var _hoisted_4 = ["value"];
-var _hoisted_5 = ["value"];
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "input-group mb-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
   type: "text",
@@ -28442,17 +28462,17 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "input-group"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "my-line"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "customRange2",
@@ -28502,13 +28522,13 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-end my-f-13 mt-color-b-400 my-font-IYM"
 }, "حس خود را نسبت به این کالا ", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "d-flex justify-content-between align-content-center box-vote-comment-product mt-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "form-check"
@@ -28548,7 +28568,7 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "d-flex justify-content-center align-items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -28557,7 +28577,18 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_12 = {
+  "class": "page-view-product-comparison"
+};
+var _hoisted_13 = ["src"];
+var _hoisted_14 = {
+  style: {
+    "line-height": "50px"
+  },
+  "class": "my-f-11 my-color-b-500 my-font-ISL"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "blur-page"
 }, null, -1
 /* HOISTED */
@@ -28565,6 +28596,8 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_page_alert_vue = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("page-alert-vue");
+
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$props.auth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("i", {
     key: 0,
@@ -28578,27 +28611,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.save_product_to_panel && $options.save_product_to_panel.apply($options, arguments);
     }),
     "class": "my-f-18 my-color-b my-pointer mx-2 btn-save-product bi bi-bookmark"
-  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_2]), $props.auth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_page_alert_vue, {
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.open_page_comparison && $options.open_page_comparison.apply($options, arguments);
+    }),
+    "class": "bi bi-arrow-left-right my-f-18 my-color-b my-pointer"
+  })]), $props.auth ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_page_alert_vue, {
     key: 0,
     class_name: 'new-comment-product',
     title: 'کامنت جدید',
     tips: 'پس از ثبت کاکمت با تایید مدیر قابل نمایش می باشد.'
   }, {
     option: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "hidden",
         value: $props.csrf,
         name: "_token"
       }, null, 8
       /* PROPS */
-      , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "hidden",
         value: $props.id,
         name: "product_id"
       }, null, 8
       /* PROPS */
-      , _hoisted_5), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      , _hoisted_4), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return _ctx.text = $event;
         }),
         name: "text",
@@ -28607,14 +28645,55 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-label": "With textarea"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.text]])]), _hoisted_8, _hoisted_9, _hoisted_10, _hoisted_11, _hoisted_12])];
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.text]])]), _hoisted_7, _hoisted_8, _hoisted_9, _hoisted_10, _hoisted_11])];
     }),
     _: 1
     /* STABLE */
 
   }, 8
   /* PROPS */
-  , ["tips"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_13], 64
+  , ["tips"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_page_alert_vue, {
+    class_name: 'page-comparison-product',
+    title: 'مقایسه محصولات'
+  }, {
+    option: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data_comparison, function (item, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+          key: index,
+          href: '/' + $props.slug + '/vs/' + item.slug,
+          style: {
+            "text-decoration": "none!important",
+            "height": "100px"
+          },
+          "class": "item-product-comparison d-flex p-3 my-pointer justify-content-between align-content-center"
+        }, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+              src: '/image/product/' + item.image,
+              style: {
+                "height": "100%"
+              },
+              alt: ""
+            }, null, 8
+            /* PROPS */
+            , _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1
+            /* TEXT */
+            )];
+          }),
+          _: 2
+          /* DYNAMIC */
+
+        }, 1032
+        /* PROPS, DYNAMIC_SLOTS */
+        , ["href"]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_15], 64
   /* STABLE_FRAGMENT */
   );
 }

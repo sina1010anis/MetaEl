@@ -52,6 +52,7 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::get('/menu/{menu}', 'show_menu')->name('show_menu');
     Route::post('/sort/product' , 'sort_product')->name('sort_product');
     Route::post('/filter/product' , 'filter_product')->name('filter_product');
+    Route::post('/get/product/comparison' , 'get_product_comparison')->name('get_product_comparison');
 });
 Auth::routes();
 Route::get('logout' , function(){

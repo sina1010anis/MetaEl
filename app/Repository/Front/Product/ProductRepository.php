@@ -7,17 +7,17 @@ use App\Models\filter_product;
 use App\Models\PriceProduct;
 use App\Models\Product;
 use App\Models\SaveProduct;
+use App\Models\SunMenu;
 use Illuminate\Http\Request;
 use App\Repository\Front\Data\Created;
 use App\Repository\Front\QueryDatabase;
 use App\Repository\Front\Data\CountItemDataBase;
-
-
+use App\Repository\Front\Query;
 
 trait ProductRepository
 {
 
-    use QueryDatabase , Created , CountItemDataBase;
+    use QueryDatabase , Created , CountItemDataBase , Query;
 
     public function save_product(Request $request , SaveProduct $saveProduct){
         if($this->getCount($saveProduct , ['user_id'=>auth()->user()->id , 'product_id'=> $request->id]) == 1){
@@ -76,6 +76,18 @@ trait ProductRepository
         }
         $product = Product::whereIn('id' , $id_product)->get();
         return ($product->count() > 0) ? $product : 'null';
+    }
+
+    public function get_product_comparison(Request $request){
+        $data=[];
+        $data_first = Product::find($request->id);
+        $data_menu = SunMenu::find($data_first->sub_menu_id);
+        $data_get_menu = SunMenu::whereMenu_id($data_menu->menu_id)->get('id');
+        foreach($data_get_menu as $i){
+            $data[] = $i->id;
+        }
+        $data_product = Product::whereIn('sub_menu_id',$data)->where('id' , '!=' , $request->id)->get();
+        return $data_product;
     }
 
 }

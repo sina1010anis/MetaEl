@@ -2,7 +2,7 @@
     <div  class="box-item-setup-user shadow py-2 px-3 d-flex justify-content-between align-content-center">
         <i v-if="auth" @click="open_box_new_comment_product" class="bi bi-chat my-f-18 my-color-b mx-2 my-pointer"></i>
         <i v-if="auth && save == 0" @click="save_product_to_panel" class="my-f-18 my-color-b my-pointer mx-2 btn-save-product bi bi-bookmark"></i>
-        <i class="bi bi-arrow-left-right my-f-18 my-color-b my-pointer"></i>
+        <i @click="open_page_comparison" class="bi bi-arrow-left-right my-f-18 my-color-b my-pointer"></i>
     </div>
     <page-alert-vue v-if="auth" :class_name="'new-comment-product'" :title="'کامنت جدید'" :tips="'پس از ثبت کاکمت با تایید مدیر قابل نمایش می باشد.'">
         <template #option>
@@ -61,29 +61,60 @@
             </form>
         </template>
     </page-alert-vue>
+    <page-alert-vue :class_name="'page-comparison-product'" :title="'مقایسه محصولات'">
+        <template #option>
+            <div class="page-view-product-comparison">
+                <Link  v-for="(item , index) in data_comparison" :key="index" :href="'/'+slug + '/vs/' + item.slug" style="text-decoration: none!important;height: 100px;" class="item-product-comparison d-flex p-3 my-pointer justify-content-between align-content-center">
+                    <img :src="'/image/product/' + item.image" style="height: 100%;" alt="">
+                    <p style="line-height: 50px;" class="my-f-11 my-color-b-500 my-font-ISL">{{item.name}}</p>
+                </Link>
+            </div>
+        </template>
+    </page-alert-vue>
     <div class="blur-page "></div>
 </template>
 
 <script>
 import PageAlertVue from '../../Front/Layouts/PageAlertVue'
+import {Link} from '@inertiajs/inertia-vue3'
 import axios from 'axios';
 import $ from 'jquery'
 export default {
     name:"SetupUserVue",
     data:()=>({
         text:null,
+        data_comparison:null
     }),
     props:{
         auth:String,
         csrf:String,
         url:String,
         id:Number,
-        save:Number
+        save:Number,
+        slug:String
     },
     components:{
-        PageAlertVue
+        PageAlertVue,Link
     },
     methods:{
+        send_product_comparison(){
+            // axios.post('/get/product/comparison' , {id:id}).then((res)=>{
+            //     this.data_comparison = res.data
+            // }).catch(()=>{
+            //     this.data_comparison = null
+            //     console.error('Error : 655')
+            // })
+        },
+        open_page_comparison(){
+            axios.post('/get/product/comparison' , {id:this.id}).then((res)=>{
+                this.data_comparison = res.data
+            }).catch(()=>{
+                this.data_comparison = null
+                console.error('Error : 655')
+            })
+            $('.page-comparison-product').fadeIn();
+            $('.blur-page').fadeIn();  
+        },
         open_box_new_comment_product(){
             $('.new-comment-product').fadeIn();
             $('.blur-page').fadeIn();
