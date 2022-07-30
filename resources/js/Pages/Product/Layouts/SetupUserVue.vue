@@ -1,7 +1,8 @@
 <template>
-    <div v-if="auth" class="box-item-setup-user shadow py-2 px-3 d-flex justify-content-between align-content-center">
-        <i @click="open_box_new_comment_product" class="bi bi-chat my-f-18 my-color-b mx-2 my-pointer"></i>
-        <i @click="save_product_to_panel" v-if="save ==0" class="my-f-18 my-color-b my-pointer mx-2 btn-save-product bi bi-bookmark"></i>
+    <div  class="box-item-setup-user shadow py-2 px-3 d-flex justify-content-between align-content-center">
+        <i v-if="auth" @click="open_box_new_comment_product" class="bi bi-chat my-f-18 my-color-b mx-2 my-pointer"></i>
+        <i v-if="auth && save == 0" @click="save_product_to_panel" class="my-f-18 my-color-b my-pointer mx-2 btn-save-product bi bi-bookmark"></i>
+        <i class="bi bi-arrow-left-right my-f-18 my-color-b my-pointer"></i>
     </div>
     <page-alert-vue v-if="auth" :class_name="'new-comment-product'" :title="'کامنت جدید'" :tips="'پس از ثبت کاکمت با تایید مدیر قابل نمایش می باشد.'">
         <template #option>
