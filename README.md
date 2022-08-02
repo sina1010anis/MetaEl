@@ -47,6 +47,9 @@ Password : sina1010
 
 ## Lev_2 :
 
+<p align="center"><a  target="_blank"><img src="/public/image/view/for.png" width="100%"></a></p>
+
+
 <p align="center"><a  target="_blank">In this version of the program, there are places to compare products. And it is in the form of a separate category.</a></p>
 
 
