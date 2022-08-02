@@ -90,4 +90,23 @@ class ProductController extends Controller
                 ]
         ]);
     }
+    public function comparison_product(Product $product_1 , Product $product_2 , SunMenu $menu){
+        $data_cart = (auth()->check()) ? new CartResources(Cart::whereUser_id(auth()->user()->id)->get()) : '';
+        $toal_price_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('total_price'): '';
+        $toal_count_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('number'): '';
+        return Inertia::render('Product/ComparisonPageVue' , [
+            'auth' => auth()->check(),
+            'data' => [
+                'product_1' => $product_1,
+                'product_2' => $product_2,
+                'menu' => Menu::whereStatus(1)->get(),
+                'menu_on' => $menu,
+                'product' => Product::whereSub_menu_id($menu->id)->get(),
+                'history_search' => history_search(),
+                'data_cart' => $data_cart,
+                'total_price' =>  $toal_price_all,
+                'total_count' =>  $toal_count_all,
+            ]
+        ]);
+    }
 }

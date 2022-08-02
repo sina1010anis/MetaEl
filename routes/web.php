@@ -53,6 +53,7 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::post('/sort/product' , 'sort_product')->name('sort_product');
     Route::post('/filter/product' , 'filter_product')->name('filter_product');
     Route::post('/get/product/comparison' , 'get_product_comparison')->name('get_product_comparison');
+    Route::get('/{product_1}/vs/{product_2}' , 'comparison_product')->name('comparison_product');
 });
 Auth::routes();
 Route::get('logout' , function(){
