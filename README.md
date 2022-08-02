@@ -10,7 +10,7 @@ The name of this project is METAEL. which sells electronic products
 
 This website has good features such as:
 
-- PWA
+- SPA
 
 - History Search
 
