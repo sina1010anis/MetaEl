@@ -12,11 +12,15 @@ class filter_product extends Model implements DefaultModel
     protected $guarded =[];
     public function filter()
     {
-        return $this->hasMany(filter::class , 'title_filter_id' , 'id');
+        return $this->belongsTo(filter::class , 'filter_id' , 'id');
     }
 
     public function product()
     {
         return $this->belongsTo(Product::class , 'product_id' , 'id');
+    }
+    public function title_filter()
+    {
+        return  $this->belongsTo(title_filter::class , 'title_filter_id' , 'id');
     }
 }

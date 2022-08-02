@@ -20,6 +20,8 @@ use App\Http\Resources\FilterResource;
 use Illuminate\Support\Facades\Cookie;
 use App\Repository\Front\QueryDatabase;
 use App\Http\Resources\CommentCollection;
+use App\Http\Resources\DetailProductCollection;
+use App\Models\filter_product;
 use App\Repository\Front\Data\CountItemDataBase;
 use App\Repository\Front\Product\ProductRepository;
 use App\Repository\Front\User\SecurityUserHistorySearch;
@@ -94,6 +96,8 @@ class ProductController extends Controller
         $data_cart = (auth()->check()) ? new CartResources(Cart::whereUser_id(auth()->user()->id)->get()) : '';
         $toal_price_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('total_price'): '';
         $toal_count_all = (auth()->check()) ? Cart::whereUser_id(auth()->user()->id)->sum('number'): '';
+        $detail_product_1 = new DetailProductCollection($product_1->filter);
+        $detail_product_2 = new DetailProductCollection($product_2->filter);
         return Inertia::render('Product/ComparisonPageVue' , [
             'auth' => auth()->check(),
             'data' => [
@@ -106,6 +110,8 @@ class ProductController extends Controller
                 'data_cart' => $data_cart,
                 'total_price' =>  $toal_price_all,
                 'total_count' =>  $toal_count_all,
+                'detail_product_1' => $detail_product_1,
+                'detail_product_2' => $detail_product_2,
             ]
         ]);
     }

@@ -1,6 +1,6 @@
 <template>
     <HeaderVue :auth="auth" :history_search="data['history_search']" :datas="data['menu']" :data_cart="data['data_cart']" :total_price="data['total_price']" :total_count="data['total_count']"/>
-    <ComparisonLayouts :product_1="data['product_1']" :product_2="data['product_2']"/>
+    <ComparisonLayouts :detail_product_2="data['detail_product_2']" :detail_product_1="data['detail_product_1']" :product_1="data['product_1']" :product_2="data['product_2']"/>
     <FooterVue />
 </template>
 
