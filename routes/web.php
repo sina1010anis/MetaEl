@@ -60,3 +60,8 @@ Route::get('logout' , function(){
     return (auth()->check()) ? auth()->logout() : false;
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.a');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

@@ -304,7 +304,7 @@ Link {
     position: absolute;
     border-radius: 150px;
     -webkit-animation: rou 4s forwards infinite;
-    animation: rou 4s forwards infinite;
+            animation: rou 4s forwards infinite;
 }
 
 .cir-1 {
@@ -355,7 +355,7 @@ Link {
 .box-img-slide {
     transition: 0.5s;
     -webkit-animation: slide_image 30s infinite forwards alternate;
-    animation: slide_image 30s infinite forwards alternate;
+            animation: slide_image 30s infinite forwards alternate;
 }
 
 @-webkit-keyframes slide_image {
@@ -379,7 +379,7 @@ Link {
 .box-img-slide-l {
     transition: 0.5s;
     -webkit-animation: slide_image_l 30s infinite forwards alternate;
-    animation: slide_image_l 30s infinite forwards alternate;
+            animation: slide_image_l 30s infinite forwards alternate;
 }
 
 @-webkit-keyframes slide_image_l {
@@ -402,7 +402,7 @@ Link {
 
 .box-view-logo {
     -webkit-animation: slide_image_logo 30s infinite forwards alternate;
-    animation: slide_image_logo 30s infinite forwards alternate;
+            animation: slide_image_logo 30s infinite forwards alternate;
 }
 
 @-webkit-keyframes slide_image_logo {
@@ -678,17 +678,17 @@ Link {
     border-radius: 50%;
     background-color: #ff9393;
     -webkit-animation: bounce .5s alternate infinite;
-    animation: bounce .5s alternate infinite;
+            animation: bounce .5s alternate infinite;
 }
 
 .ball:nth-child(2) {
     -webkit-animation-delay: .16s;
-    animation-delay: .16s;
+            animation-delay: .16s;
 }
 
 .ball:nth-child(3) {
     -webkit-animation-delay: .32s;
-    animation-delay: .32s;
+            animation-delay: .32s;
 }
 
 @-webkit-keyframes bounce {
@@ -711,12 +711,12 @@ Link {
 
 .item-menu-bar:hover img {
     -webkit-animation: hover_item_menu_bar infinite forwards 1s;
-    animation: hover_item_menu_bar infinite forwards 1s;
+            animation: hover_item_menu_bar infinite forwards 1s;
 }
 
 .item-menu-bar:hover span {
     -webkit-animation: hover_item_menu_bar_2 infinite forwards 0.5s;
-    animation: hover_item_menu_bar_2 infinite forwards 0.5s;
+            animation: hover_item_menu_bar_2 infinite forwards 0.5s;
 }
 
 .item-menu-bar {
@@ -791,11 +791,6 @@ Link {
     border: 2px solid rgb(236, 236, 236);
     border-radius: 10px;
     box-shadow: 1px 1px 10px rgba(110, 110, 110, 0.2);
-}
-
-.page-view-product-comparison {
-    max-height: 500px;
-    overflow-y: scroll;
 }
 
 

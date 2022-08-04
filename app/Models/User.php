@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements DefaultModel
+class User extends \TCG\Voyager\Models\User implements DefaultModel
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -42,7 +42,7 @@ class User extends Authenticatable implements DefaultModel
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    protected $attributes = ['address_id' => 0];
+    protected $attributes = ['address_id' => 0 , 'score' => 0];
     public function adresss()
     {
         return $this->belongsTo(Address::class , 'address_id' , 'id');
