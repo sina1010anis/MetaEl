@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sun_menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('menu_id')->constrained();
+            $table->foreignId('b_menu_id')->constrained();
             $table->timestamps();
         });
     }

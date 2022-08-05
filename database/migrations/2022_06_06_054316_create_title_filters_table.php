@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('title_filters', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
-            $table->foreignId('menu_id')->constrained();
+            $table->foreignId('b_menu_id')->constrained();
             $table->timestamps();
         });
     }

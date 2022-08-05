@@ -50,7 +50,7 @@ class FrontController extends Controller
 
     public function view_menu(Request $request)
     {
-        return response()->json(SunMenu::whereMenu_id($request->id)->get());
+        return response()->json(SunMenu::whereB_menu_id($request->id)->get());
     }
 
     public function get_data_image(Request $request)

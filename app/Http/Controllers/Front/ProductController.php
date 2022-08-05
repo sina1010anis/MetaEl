@@ -86,7 +86,7 @@ class ProductController extends Controller
                 'product' => $product::whereSub_menu_id($menu->id)->get(),
                 'history_search' => history_search(),
                 'data_cart' => $data_cart,
-                'filter' => new FilterResource(title_filter::whereMenuId($menu->menu->id)->get()),
+                'filter' => new FilterResource(title_filter::whereB_menu_id($menu->menu->id)->get()),
                 'total_price' =>  $toal_price_all,
                 'total_count' =>  $toal_count_all,
                 ]

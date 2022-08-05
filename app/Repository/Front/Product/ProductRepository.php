@@ -82,7 +82,7 @@ trait ProductRepository
         $data=[];
         $data_first = Product::find($request->id);
         $data_menu = SunMenu::find($data_first->sub_menu_id);
-        $data_get_menu = SunMenu::whereMenu_id($data_menu->menu_id)->get('id');
+        $data_get_menu = SunMenu::whereB_menu_id($data_menu->menu_id)->get('id');
         foreach($data_get_menu as $i){
             $data[] = $i->id;
         }

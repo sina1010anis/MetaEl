@@ -12,10 +12,10 @@ class Menu extends Model implements DefaultModel
     protected $guarded = [];
     public function sub_menu()
     {
-        return $this->hasMany(SunMenu::class , 'menu_id' , 'id');
+        return $this->hasMany(SunMenu::class , 'b_menu_id' , 'id');
     }
     public function title_filter()
     {
-        return $this->hasMany(title_filter::class , 'menu_id' , 'id');
+        return $this->hasMany(title_filter::class , 'b_menu_id' , 'id');
     }
 }
