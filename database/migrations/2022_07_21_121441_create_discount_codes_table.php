@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('value');
             $table->string('code');
             $table->foreignId('user_id')->constrained();
+            $table->integer('status');
+            $table->integer('score');
             $table->timestamps();
         });
     }

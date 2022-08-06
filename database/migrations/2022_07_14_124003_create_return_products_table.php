@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->integer('code');
+            $table->integer('status');
             $table->timestamps();
         });
         Schema::create('return_product_items', function (Blueprint $table) {
