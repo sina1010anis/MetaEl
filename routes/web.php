@@ -19,8 +19,9 @@ use Inertia\Inertia;
 */
 
 // Route Admin
-Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('admin.')->prefix('/profile')->group(function(){
-    Route::get('/admin' , 'home')->name('home');
+Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('admin.')->prefix('/profile/admin')->group(function(){
+    Route::get('/' , 'home')->name('home');
+    Route::get('/product' , 'show_product')->name('show.product');
 });
 
 // Route Front 

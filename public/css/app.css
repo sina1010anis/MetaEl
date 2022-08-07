@@ -793,5 +793,11 @@ Link {
     box-shadow: 1px 1px 10px rgba(110, 110, 110, 0.2);
 }
 
+.icon-set {
+    position: relative;
+    top: 1px;
+    right: 2px;
+}
+
 
 /* ------------------end/Loder/------------------ */

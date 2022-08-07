@@ -19,7 +19,7 @@ class RoleReview
         if(auth()->check() and auth()->user()->role_id == 1){
             return $next($request);
         }
-        return redirect()->route('/user/home');
+        return redirect()->route('home.page');
         
     }
 }
