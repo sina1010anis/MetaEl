@@ -64,6 +64,7 @@ class UserController extends Controller
             return Inertia::render('User/ProfileIndexVue' , [
                 'auth' => auth()->check(),
                 'data' =>[
+                    'auth' => auth()->user(),
                     'time' => jdate()->format('%A, %d %B %y'),
                     'factor' => factor::whereUser_id(auth()->user()->id)->orderBy('id' , 'DESC')->get(),
                     'comment' => new CommentCollection(CommentProduct::whereUserId(auth()->user()->id)->orderBy('id' , 'DESC')->get()),

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\User\UserController;
@@ -16,11 +17,22 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route Admin
+Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('admin.')->prefix('/profile')->group(function(){
+    Route::get('/admin' , 'home')->name('home');
+});
+
+// Route Front 
+
 Route::controller(FrontController::class)->as('home.')->group(function () {
     Route::get('/', 'home_page')->name('page');
     Route::post('/view/menu', 'view_menu')->name('view_menu');
     Route::post('/get/data/image', 'get_data_image')->name('get_data_image');
 });
+
+// Route User
+
 Route::controller(UserController::class)->as('user.')->group(function () {
     Route::get('/register/user', 'register_page')->name('register');
     Route::get('/login/user', 'login_page')->name('login');
@@ -40,6 +52,9 @@ Route::controller(UserController::class)->as('user.')->group(function () {
         Route::post('/send/code/discount/score' , 'send_code_discount_score')->name('send_code_discount_score');
     });
 });
+
+// Route Product
+
 Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::get('/product/{product}', 'show')->name('show');
     Route::post('/search/product', 'search')->name('search');
@@ -55,12 +70,13 @@ Route::controller(ProductController::class)->as('product.')->group(function () {
     Route::post('/get/product/comparison' , 'get_product_comparison')->name('get_product_comparison');
     Route::get('/{product_1}/vs/{product_2}' , 'comparison_product')->name('comparison_product');
 });
+
 Auth::routes();
+
 Route::get('logout' , function(){
     return (auth()->check()) ? auth()->logout() : false;
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.a');
-
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
