@@ -22,6 +22,7 @@ use Inertia\Inertia;
 Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('admin.')->prefix('/profile/admin')->group(function(){
     Route::get('/' , 'home')->name('home');
     Route::get('/product' , 'show_product')->name('show.product');
+    Route::post('/search/product/{model}' , 'search_product')->name('search.product');
 });
 
 // Route Front 
