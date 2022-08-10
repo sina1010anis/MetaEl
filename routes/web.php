@@ -24,6 +24,8 @@ Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('ad
     Route::get('/product' , 'show_product')->name('show.product');
     Route::post('/search/product/{model}' , 'search_product')->name('search.product');
     Route::get('/show/data/{model}/{id}' , 'show_data')->name('show.data');
+    Route::get('/delete/data/{model}/{id}' , 'delete_data')->name('delete.data');
+    Route::get('/delete/image/product/{id}' , 'delete_image_product')->name('delete.image.product');
 });
 
 // Route Front 

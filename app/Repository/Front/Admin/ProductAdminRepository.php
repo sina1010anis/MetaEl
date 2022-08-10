@@ -2,34 +2,19 @@
 
 namespace App\Repository\Front\Admin;
 
+use App\Models\Images;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Repository\Front\Admin\Geter\BindDataPanel;
-trait ProductAdminRepository {
+
+trait ProductAdminRepository{
 
     use BindDataPanel;
 
-    public function show_product()
+    public function delete_image_product(Images $id)
     {
-        $data = Product::paginate(10);
-        return view('Admin.Pages.Product' , compact('data'));
+        $id->delete();
+        return redirect()->back()->with(['msg' => 'عکس مورد نظر حذف شد.']) ;
     }
-    public function search_product($model , Request $request)
-    {
-        $data = $this
-        ->set_class($model)
-        ->set_data(null , 'name' , 'LIKE' , '%'.$request->text_search.'%' , false)
-        ->get_data();
-        return redirect()->back()->with(['data_search' => $data]);
-
-    }
-    public function show_data($model , $id)
-    {
-        $data = $this
-        ->set_class($model)
-        ->set_data(['id'=>$id])
-        ->get_data();
-        return view('Admin.Pages.ShowItem' , ['data' => $data[0]]);
-    }
-
 }
+
+?>
