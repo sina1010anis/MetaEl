@@ -48,8 +48,8 @@
                       <td>{{$item->name}}</td>
                       <td>{{Str::limit($item->description, 80, '...')}}</td>
                       <td>@mdo</td>
-                      <td>
-                          <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i> مشاهده</button>
+                      <td style="text-decoration: none!importnant ; color:rgb(236, 236, 236)!importanat">
+                          <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i> <a  href="{{route('admin.show.data' , ['model' => \App\Models\Product::class , 'id' => $item->id])}}">مشاهده</a></button>
                           <button class="btn btn-info"> <i class="bi bi-pencil-square icon-set"></i> ویرایش</button>
                           <button class="btn btn-danger"> <i class="bi bi-trash3 icon-set"></i> حذف</button>
                       </td>

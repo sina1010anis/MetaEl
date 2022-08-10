@@ -23,6 +23,7 @@ Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('ad
     Route::get('/' , 'home')->name('home');
     Route::get('/product' , 'show_product')->name('show.product');
     Route::post('/search/product/{model}' , 'search_product')->name('search.product');
+    Route::get('/show/data/{model}/{id}' , 'show_data')->name('show.data');
 });
 
 // Route Front 

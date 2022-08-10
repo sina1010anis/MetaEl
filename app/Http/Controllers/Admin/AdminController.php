@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     use ProductAdminRepository;
 
-        //The [show_product  , search_product] is inside the ProductAdminRepository : The desired method is written as a trait
+        //The [show_product  , search_product , show_data] is inside the ProductAdminRepository : The desired method is written as a trait
 
     public function home(){
         return view('Admin.Pages.IndexPage');

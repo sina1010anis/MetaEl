@@ -2443,16 +2443,16 @@
         },
         {
             "name": "morilog/jalali",
-            "version": "v3.3.0",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/morilog/jalali.git",
-                "reference": "c3245cfdff201577cd54ae335953edd44f3f09c1"
+                "reference": "6051d96facb33ccb384db6349b27ce39bd93fe5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/morilog/jalali/zipball/c3245cfdff201577cd54ae335953edd44f3f09c1",
-                "reference": "c3245cfdff201577cd54ae335953edd44f3f09c1",
+                "url": "https://api.github.com/repos/morilog/jalali/zipball/6051d96facb33ccb384db6349b27ce39bd93fe5b",
+                "reference": "6051d96facb33ccb384db6349b27ce39bd93fe5b",
                 "shasum": ""
             },
             "require": {
@@ -2496,9 +2496,9 @@
             ],
             "support": {
                 "issues": "https://github.com/morilog/jalali/issues",
-                "source": "https://github.com/morilog/jalali/tree/v3.3.0"
+                "source": "https://github.com/morilog/jalali/tree/v3.4.0"
             },
-            "time": "2022-04-14T22:49:41+00:00"
+            "time": "2022-08-07T09:19:26+00:00"
         },
         {
             "name": "nesbot/carbon",
