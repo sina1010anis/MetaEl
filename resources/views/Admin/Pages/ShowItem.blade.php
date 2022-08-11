@@ -21,6 +21,20 @@
         </span>    
     @endforeach
     </div>
+    <div class="d-flex justify-content-center align-content-center my-3">
+        <form action="{{route('admin.product.image.upload' , ['id' => $data->id])}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" name="image" id="inputGroupFile01">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Upload </button>
+            </div>
+        </form>
+    </div>
+    @error('file')
+        <div class="alert alert-danger my-font-IYL my-f-13" dir="rtl">{{$message}}</div>
+    @enderror
     <div class="my-line"></div>
     <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->price}} : price </p>
     <div class="my-line"></div>

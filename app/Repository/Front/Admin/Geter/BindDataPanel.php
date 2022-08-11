@@ -4,9 +4,10 @@ namespace App\Repository\Front\Admin\Geter;
 use App\Models\Product;
 
 trait BindDataPanel{
+
     protected $class;
     public $data;
-    public function set_class($class)
+    public function set_class(String $class)
     {
         $this->class = new $class;
         return $this;
