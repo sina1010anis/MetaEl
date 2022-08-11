@@ -2,9 +2,11 @@
 
 namespace App\Repository\Front\Admin\Geter;
 
+use App\Repository\Front\Back;
+
 trait Created{
 
-    use BindDataPanel;
+    use BindDataPanel , Back;
 
     public $new_data;
 

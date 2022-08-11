@@ -21,8 +21,8 @@ trait ProductAdminRepository{
     {
         $file = $this->set_file('image' , $request);
         $file->move_file();
-        $this->set_class('App\Models\Images')->create(['name' => $file->get_name() , 'image' => $file->get_name() , 'product_id' => $id]);
-        return redirect()->back()->with(['msg' => 'عکس جدید اضافه شد.']);
+        return $this->set_class('App\Models\Images')->create(['name' => $file->get_name() , 'image' => $file->get_name() , 'product_id' => $id])->back('msg' , 'عکس جدید اضافه شد.');
+
     }
 }
 
