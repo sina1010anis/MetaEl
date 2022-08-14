@@ -20,7 +20,6 @@ trait UploadImageProduct{
 
     public function set_name()
     {
-
         $this->name = $this->file->getClientOriginalName();
         return $this;
     }

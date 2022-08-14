@@ -27,6 +27,7 @@ trait BindDataPanel{
     {
         return $this->data->delete();
     }
+
 }
 
 

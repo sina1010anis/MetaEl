@@ -21,12 +21,14 @@ use Inertia\Inertia;
 // Route Admin
 Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('admin.')->prefix('/profile/admin')->group(function(){
     Route::get('/' , 'home')->name('home');
-    Route::get('/product' , 'show_product')->name('show.product');
+    Route::get('/item/{model}' , 'show_item')->name('show.item');
     Route::post('/search/product/{model}' , 'search_product')->name('search.product');
     Route::get('/show/data/{model}/{id}' , 'show_data')->name('show.data');
     Route::get('/delete/data/{model}/{id}' , 'delete_data')->name('delete.data');
+    Route::get('/edit/data/{model}/{id}' , 'edit_data')->name('edit.data');
     Route::get('/delete/image/product/{id}' , 'delete_image_product')->name('delete.image.product');
     Route::post('/upload/image/product/{id}' , 'product_image_upload')->name('product.image.upload');
+    Route::post('/edit/data/{model}/{id}' , 'edit_data_post')->name('edit.data.post');
 });
 
 // Route Front 

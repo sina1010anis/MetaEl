@@ -11,7 +11,9 @@ import Test from './Pages/PageTest/Test'
 createInertiaApp({
     resolve: name => require(`./Pages/${name}`),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createApp({
+                render: () => h(App, props),
+            })
             .use(plugin)
             .mount(el)
     },
@@ -20,6 +22,8 @@ const app = createApp({
     data: () => ({
         text: 'sina',
         test: 'This is Test Text',
+        id_menu: null,
+        id_sub_menu: null
     }),
     components: {
         Send,

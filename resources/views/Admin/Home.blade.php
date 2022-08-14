@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Free Bootstrap Admin Template : Two Page</title>
 
- 
+
     <!-- BOOTSTRAP STYLES-->
     <link href="{{url('css/app.css')}}" rel="stylesheet"/>
     <link href="{{url('assets/css/bootstrap.css')}}" rel="stylesheet"/>
@@ -15,13 +15,13 @@
     <link href="{{url('assets/css/custom.css')}}" rel="stylesheet"/>
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-    <script src="{{url('js/app.js')}}" defer></script>
+    
     <style>
         body{
             direction: ltr!important;
         }
     </style>
-
+<script src="{{mix('/js/app.js')}}" defer></script>
 </head>
 <body>
 <div id="wrapper">
@@ -39,7 +39,7 @@
                     <a class=" my-font-IYM my-f-13"><i class="fa fa-edit "></i>محصولات<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="my-f-11">
-                            <a href="{{route('admin.show.product')}}">محصولات اصلی</a>
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Product'])}}">محصولات اصلی</a>
                         </li>
                         <li>
                             <a href="#">Elements</a>
@@ -49,8 +49,13 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-table "></i>Table Examples</a>
+                <li class=" my-font-IYM">
+                    <a class=" my-font-IYM my-f-13"><i class="fa fa-edit "></i>صفحه اصلی<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Menu'])}}">منو اصلی</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-edit "></i>Forms </a>
@@ -98,8 +103,9 @@
     </nav>
     <div id="page-wrapper">
         <div id="page-inner">
-            <div class="row">
+            <div class="row" id="app">
                 <div class="col-md-12">
+                    @{{ ttt }}
                     @yield('page')
                 </div>
             </div>

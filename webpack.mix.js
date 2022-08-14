@@ -12,11 +12,12 @@ const mix = require('laravel-mix');
  */
 
 // mix.js('resources/js/app.js', 'public/js')
-//     .vue({version:3})
+//     .vue({ version: 3 })
 //     .sass('resources/sass/app.scss', 'public/css')
 //     .sourceMaps();
+
 mix.js('resources/js/app.js', 'public/js').vue({
-    version:3
+    version: 3
 });
 
 mix.postCss('resources/css/app.css', 'public/css', [
@@ -27,6 +28,8 @@ mix.webpackConfig({
         chunkFilename: 'js/[name].js?id=[chunkhash]',
     }
 })
+mix.sourceMaps();
+mix.sass('resources/sass/app.scss', 'public/css')
 if (mix.inProduction()) {
     mix.version();
 }
