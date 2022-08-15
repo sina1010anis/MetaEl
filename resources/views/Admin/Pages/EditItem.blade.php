@@ -42,7 +42,7 @@
                     <label for="menu_a" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> منو اصلی</label>
                     <select v-model="id_menu" class="form-select form-select-lg" id="menu_a" aria-label="Default select example">
                         <option :value="null" v-if="id_menu == null">یک مقدار انتخاب کنید</option>
-                        @foreach ((new App\Models\Menu)::all() as $item)
+                        @foreach ($menu_all as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
@@ -51,7 +51,7 @@
                     <label for="menu_a" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> زیر منو</label>
                     <select v-model="id_sub_menu" name="sub_menu_id" class="form-select form-select-lg" id="menu_a" aria-label="Default select example">
                         <option :value="null" v-if="id_sub_menu == null">یک مقدار انتخاب کنید</option>
-                        @foreach ((new App\Models\SunMenu)::all() as $item)
+                        @foreach ($sub_menu_all as $item)
                             <option v-if="{{ $item->b_menu_id }} == id_menu" value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
