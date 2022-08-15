@@ -3,13 +3,8 @@
 @section('page')
     @if ($model == '\App\Models\Product')
         {{ $model }}
-        <div class="text-end">
-            <h3 class="my-font-IYM my-color-800 p-3">ویرایش محصولات</h3>
-            <h4 class="my-font-IYL my-color-600 p-3">{{ $data->name }}</h4>
-        </div>
-        <div class="view-form">
-            <form action="{{ route('admin.edit.data.post' , ['model' => '\App\Models\Product' , 'id' => $data->id ] )}}" method="post">
-                @csrf
+        <x-page-edit :name="$data->name" title="ویرایش محصولات" :url="route('admin.edit.data.post' , ['model' => '\App\Models\Product' , 'id' => $data->id ])">
+            <x-slot:form>
                 <div class="my-5">
                     <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام محصول</label>
                     <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام محصول" value="{{ $data->name }}">
@@ -56,8 +51,7 @@
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg p-4 my-font-IYL my-f-16 mt-5 w-100">ذخیره</button>
-            </form>
-        </div>
+            </x-slot:form>
+        </x-page-edit>
     @endif
 @endsection

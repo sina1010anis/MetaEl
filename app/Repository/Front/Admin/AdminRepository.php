@@ -24,7 +24,6 @@ trait AdminRepository {
         ->set_data(null , 'name' , 'LIKE' , '%'.$request->text_search.'%' , false)
         ->get_data();
         return redirect()->back()->with(['data_search' => $data]);
-
     }
     public function show_data($model , $id)
     {
@@ -32,7 +31,7 @@ trait AdminRepository {
         ->set_class($model)
         ->set_data(['id'=>$id])
         ->get_data();
-        return view('Admin.Pages.ShowItem' , ['data' => $data[0]]);
+        return view('Admin.Pages.ShowItem' , ['data' => $data[0] , 'model' =>$model]);
     }
     public function delete_data($model , $id)
     {
