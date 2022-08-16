@@ -7,16 +7,23 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Repository\Front\Admin\Geter\Update;
 use App\Repository\Front\Admin\Geter\BindDataPanel;
+use App\Repository\Front\Admin\Geter\UploadImageProduct;
 
 trait AdminRepository {
 
-    use Update;
+    use Update , UploadImageProduct;
 
     public function show_item(String $model)
     {
-        $data =(new $model)::paginate(10);
+        $data =(new $model)::orderBy('id' , 'DESC')->paginate(10);
         return view('Admin.Pages.Product' , compact('data' , 'model'));
     }
+
+    public function new_data($model)
+    {
+        return view('Admin.Pages.NewItem' , compact('model'));
+    }
+
     public function search_product($model , Request $request)
     {
         $data = $this
@@ -56,5 +63,22 @@ trait AdminRepository {
         ->set_data(['id' => $id])
         ->update(collect($request)->prepend(Str::slug($request->name) , 'slug')->forget('_token')->all());
         return redirect()->back()->with(['msg'=>'مقدار مورد نظر ویرایش شد']);
+    }
+
+    public function new_data_post($model , Request $request)
+    {
+        $file = $this->set_file('image' , $request)->set_name();
+        $this
+        ->set_class($model)
+        ->create( ($model == '\App\Models\Product') ? $this->create_image($request , $file->get_name()) : $this->create_not_image($request) );
+        $file->move_file();
+    }
+    protected function create_image(Request $request , $name_image)
+    {
+        return collect($request)->prepend(Str::slug($request->name) , 'slug')->prepend($name_image , 'image')->forget('_token')->all();
+    }
+    protected function create_not_image(Request $request)
+    {
+        return collect($request)->forget('_token')->all();
     }
 }

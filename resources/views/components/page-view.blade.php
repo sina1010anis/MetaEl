@@ -1,7 +1,7 @@
 <div>
     <div class="d-flex justify-content-end border-bottom py-4">
         <button class="btn btn-danger my-font-IYM mx-3 btn-lg"> <i class="bi bi-trash3 icon-set"></i> خالی کردن </button>
-        <button class="btn btn-success my-font-IYM mx-3 btn-lg"> <i class="bi bi-plus-circle-dotted icon-set"></i> افزودن جدید</button>
+        <a class="btn btn-success my-font-IYM mx-3 btn-lg" href="{{ route('admin.new.data' , ['model' => $model]) }}" > <i class="bi bi-plus-circle-dotted icon-set"></i> افزودن جدید</a>
         <h3 class="my-font-IYM text-end mx-3">{{ $name }}</h3>
     </div>
     <br>

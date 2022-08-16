@@ -3,7 +3,7 @@ namespace App\Repository\Front\Admin\Geter;
 
 trait Update{
 
-    use BindDataPanel;
+    use BindDataPanel , Created;
 
     public function update(Array $new_data)
     {
