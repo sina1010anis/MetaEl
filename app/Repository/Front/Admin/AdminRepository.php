@@ -58,25 +58,32 @@ trait AdminRepository {
     }
     public function edit_data_post($model , $id , Request $request)
     {
+        if($model == '\App\Modles\Product'){
+            $data = collect($request)->prepend(Str::slug($request->name) , 'slug')->forget('_token')->all();
+        }else{
+            $data = collect($request)->forget('_token')->all();
+        }
         $this
         ->set_class($model)
         ->set_data(['id' => $id])
-        ->update(collect($request)->prepend(Str::slug($request->name) , 'slug')->forget('_token')->all());
+        ->update($data);
         return redirect()->back()->with(['msg'=>'مقدار مورد نظر ویرایش شد']);
     }
 
     public function new_data_post($model , Request $request)
     {
-        $file = $this->set_file('image' , $request)->set_name();
+        $file = ($model == '\App\Models\Product') ? $this->set_file('image' , $request)->set_name() : null;
         $this
         ->set_class($model)
         ->create( ($model == '\App\Models\Product') ? $this->create_image($request , $file->get_name()) : $this->create_not_image($request) );
-        $file->move_file();
+        ($model == '\App\Models\Product') ?$file->move_file() : null;
     }
+
     protected function create_image(Request $request , $name_image)
     {
         return collect($request)->prepend(Str::slug($request->name) , 'slug')->prepend($name_image , 'image')->forget('_token')->all();
     }
+    
     protected function create_not_image(Request $request)
     {
         return collect($request)->forget('_token')->all();

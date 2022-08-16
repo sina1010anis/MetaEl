@@ -23,7 +23,8 @@ const app = createApp({
         text: 'sina',
         test: 'This is Test Text',
         id_menu: null,
-        id_sub_menu: null
+        id_sub_menu: null,
+        id_all: null
     }),
     components: {
         Send,

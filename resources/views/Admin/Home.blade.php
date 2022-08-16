@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Free Bootstrap Admin Template : Two Page</title>
+    <title>Admin Panel</title>
 
 
     <!-- BOOTSTRAP STYLES-->
@@ -49,6 +49,16 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class=" my-font-IYM">
+                    <a class=" my-font-IYM my-f-13"><i class="fa fa-edit "></i>کاربری<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Address'])}}">ادرس ها</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class=" my-font-IYM">
                     <a class=" my-font-IYM my-f-13"><i class="fa fa-edit "></i>صفحه اصلی<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
