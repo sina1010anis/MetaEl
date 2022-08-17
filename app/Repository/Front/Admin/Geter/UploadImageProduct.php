@@ -34,9 +34,9 @@ trait UploadImageProduct{
         return $this->name;
     }
     
-    public function move_file()
+    public function move_file(String $address)
     {
-        return $this->file->move(public_path('/image/product/'), $this->set_name()->get_name());
+        return $this->file->move(public_path($address), $this->set_name()->get_name());
     }
 
 }

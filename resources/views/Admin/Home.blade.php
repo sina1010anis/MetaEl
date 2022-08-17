@@ -65,6 +65,9 @@
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Menu'])}}">منو اصلی</a>
                         </li>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Banner'])}}">بنرها </a>
+                        </li>
                     </ul>
                 </li>
                 <li>

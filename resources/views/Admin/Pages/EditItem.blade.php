@@ -93,5 +93,40 @@
         </x-page-edit>
     @endif
 
-    
+
+    @if ($model == '\App\Models\Banner')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title="ویرایش بنر" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
+                        @if ($data->status == 1)
+                        <option checked value="1">فعال</option>
+                        <option value="0">غیر فعال</option>
+                        @else
+                        <option checked value="0">غیر فعال</option>
+                        <option  value="1">فعال</option>
+                    @endif
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام بنر</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام محصول" value="{{ $data->name }}">
+                </div>
+                <div class="my-5">
+                    <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ادرس بنر</label>
+                    <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder="نام محصول" value="{{ $data->url }}">
+                </div>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
+                    <select name="location" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
+                        <option @if($data->location == 'start') checked @endif value="start">اول سایت</option>
+                        <option @if($data->location == 'center') checked @endif value="center">میانه سایت</option>
+                        <option @if($data->location == 'end') checked @endif value="end">انتها سایت</option>
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection
