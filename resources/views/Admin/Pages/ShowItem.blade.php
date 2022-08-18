@@ -121,4 +121,25 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif
+
+    @if ($model == '\App\Models\Cart') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+        @endif 
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">
+            <p style="color:green" v-if="{{ $data->status}} == 1">فعال</p>
+            <p style="color:red" v-if="{{ $data->status  }} == 0">غیر فعال</p>
+        </h2>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->user->name}} : User </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{ $data->product->product->name . '->'. $data->product->name }} : Product </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->number}} : Number </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->total_price}} : Total Price </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
 @endsection

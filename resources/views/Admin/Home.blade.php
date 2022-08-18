@@ -56,6 +56,9 @@
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Address'])}}">ادرس ها</a>
                         </li>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Cart'])}}">سبد خرید </a>
+                        </li>
                     </ul>
                 </li>
 

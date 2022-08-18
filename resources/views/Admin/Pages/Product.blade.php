@@ -266,5 +266,54 @@
     </x-page-view>
   @endif
 
-
+  @if ($model == '\App\Models\Cart')
+    {{ $model }}
+    <x-page-view name=" سبدخرید" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">کاربر</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">محصول</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">تعداد</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">جمع قیمت</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->user->name}}</td>
+                <td>
+                  <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Product' , 'id' =>  $item->product->id ])}}">{{ $item->product->product->name }} -> {{ $item->product->name }}</a></button>
+                </td>
+                <td>{{$item->number}}</td>
+                <td>{{$item->total_price}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <td>{{$item->user->name}}</td>
+            <td>
+              <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Product' , 'id' =>  $item->product->id ])}}"> {{ $item->product->product->name }} -> {{ $item->product->name }}</a></button>
+            </td>
+            <td>{{$item->number}}</td>
+            <td>{{$item->total_price}}</td>
+            <td>
+              <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+            </td>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div>
+      </x-slot:table>
+    </x-page-view>
+  @endif
 @endsection

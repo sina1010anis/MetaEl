@@ -72,11 +72,11 @@ trait AdminRepository {
 
     public function new_data_post($model , $type , Request $request)
     {
-        $file = ($type != null) ? $this->set_file('image' , $request)->set_name() : null;
+        $file = ($type != 'null') ? $this->set_file('image' , $request)->set_name() : null;
         $this
         ->set_class($model)
-        ->create( ($type != null) ? $this->create_image($request , $file->get_name() , $model) : $this->create_not_image($request) );
-        ($type != null) ?$file->move_file($type) : null;
+        ->create( ($type != 'null') ? $this->create_image($request , $file->get_name() , $model) : $this->create_not_image($request) );
+        ($type != 'null') ?$file->move_file($type) : null;
     }
 
     protected function create_image(Request $request , $name_image , $model)
