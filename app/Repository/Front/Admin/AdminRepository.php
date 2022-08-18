@@ -63,7 +63,6 @@ trait AdminRepository {
         }else{
             $data = collect($request)->forget('_token')->all();
         }
-        return $data;
         $this
         ->set_class($model)
         ->set_data(['id' => $id])

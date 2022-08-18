@@ -145,4 +145,32 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\Menu')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش منو اصلی" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام منو</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام محصول" value="{{ $data->name }}">
+                </div>
+                <div class="my-5">
+                    <label for="icon" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ایکون منو</label>
+                    <input name="icon" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="icon" placeholder="ایکون منو" value="{{ $data->icon }}">
+                </div>
+                <div class=" mb-5">
+                    <label for="status" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="status" aria-label="Default select example">
+                        @if ($data->status == 1)
+                            <option checked value="1">فعال</option>
+                            <option value="0">غیر فعال</option>
+                            @else
+                            <option checked value="0">غیر فعال</option>
+                            <option  value="1">فعال</option>
+                        @endif
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

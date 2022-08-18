@@ -265,4 +265,6 @@
       </x-slot:table>
     </x-page-view>
   @endif
+
+
 @endsection

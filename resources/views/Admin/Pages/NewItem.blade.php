@@ -142,4 +142,30 @@
             </x-slot:form>
         </x-page-new>
     @endif
+
+    @if ($model == '\App\Models\Menu')
+        <x-page-new name="برند" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => '\image\front'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام منو</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام برند">
+                </div>
+                <div class="my-5">
+                    <label for="icon" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ایکون منو</label>
+                    <input name="icon" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="icon" placeholder="ایکون منو" >
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">اپلود عکس  </label>
+                    <input class="form-control" name="image" type="file" id="image">
+                </div>
+                <div class=" mb-5">
+                    <label for="status" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="status" aria-label="Default select example">
+                        <option checked value="1">فعال</option>
+                        <option value="0">غیر فعال</option>
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif
 @endsection
