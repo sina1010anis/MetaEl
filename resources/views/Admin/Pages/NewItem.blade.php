@@ -91,36 +91,55 @@
     @endif
 
     @if ($model == '\App\Models\Banner')
-    <x-page-new name="بنر" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => '\image\banner'])">
-        <x-slot:form>
-            <div class="my-5">
-                <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
-                <select name="status" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
-                    <option checked value="1">فعال</option>
-                    <option value="0">غیر فعال</option>
-                </select>
-            </div>
-            <div class="my-5">
-                <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام بنر</label>
-                <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام بنر">
-            </div>
-            <div class="my-5">
-                <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ادرس بنر</label>
-                <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder="ادرس بنر" >
-            </div>
-            <div class="my-5">
-                <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
-                <select name="location" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
-                    <option value="start">اول سایت</option>
-                    <option value="center">میانه سایت</option>
-                    <option value="end">انتها سایت</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">اپلود عکس  </label>
-                <input class="form-control" name="image" type="file" id="image">
-              </div>
-        </x-slot:form>
-    </x-page-new>
+        <x-page-new name="بنر" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => '\image\banner'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
+                        <option checked value="1">فعال</option>
+                        <option value="0">غیر فعال</option>
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام بنر</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام بنر">
+                </div>
+                <div class="my-5">
+                    <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ادرس بنر</label>
+                    <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder="ادرس بنر" >
+                </div>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
+                    <select name="location" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
+                        <option value="start">اول سایت</option>
+                        <option value="center">میانه سایت</option>
+                        <option value="end">انتها سایت</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">اپلود عکس  </label>
+                    <input class="form-control" name="image" type="file" id="image">
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif
+
+    @if ($model == '\App\Models\Brand')
+        <x-page-new name="برند" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => '\image\logo'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام برند</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام برند">
+                </div>
+                <div class="my-5">
+                    <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">ادرس برند</label>
+                    <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder="ادرس برند" >
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">اپلود عکس  </label>
+                    <input class="form-control" name="image" type="file" id="image">
+                </div>
+            </x-slot:form>
+        </x-page-new>
     @endif
 @endsection

@@ -87,4 +87,18 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif
+
+    @if ($model == '\App\Models\Brand') 
+        {{ $model }} 
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+        @endif   
+        <h3 class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->name}} : Name </h3>
+        <div class="my-line"></div>   
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-center my-3" dir="rtl"><img style="height: 90px" src="{{url('image/logo/'.$data->image)}}" alt="{{$data->name}}"> </p>
+        <div class="my-line"></div>
+        <a class="my-font-IYL my-f-13 my-color-b-500 text-end my-3 d-block" dir="rtl" href="{{$data->url}}">{{$data->url}} : URL  </a> 
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
 @endsection
