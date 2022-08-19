@@ -182,4 +182,62 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\City')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title="   ویرایش شهر" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نام استان</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="edit_name" placeholder="نام استان" value="{{ $data->name }}">
+                </div>
+                <div class="my-5">
+                    <label for="price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">هزینه ارسال </label>
+                    <input name="send_price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="price" placeholder="هزینه ارسال " value="{{ $data->send_price }}">
+                </div>  
+            </x-slot:form>
+        </x-page-edit>
+    @endif
+
+    @if ($model == '\App\Models\CommentProduct')
+        {{ $model }}
+        <x-page-edit :name="$data->subject" title="   ویرایش کامنت محصولات" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع" value="{{ $data->subject }}">
+                </div>
+                <div class="mb-5">
+                    <label for="text" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> متن</label>
+                    <textarea name="text" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" style="height: 200px!important;max-height: 250px!important;width: 100%;max-width: 100%;min-width: 100%;min-height: 100px" id="text" placeholder=" text">{{ $data->text }}</textarea>
+                </div>
+                <div class="my-5">
+                    <label for="vote" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نظر کلی</label>
+                    <select name="vote" class="form-select form-select-lg" id="vote" aria-label="Default select example">
+                        <option checked value="1"> راضی</option>
+                        <option  value="2">بی نظر</option>
+                        <option  value="3"> ناراضی</option>
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="product_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">محصول</label>
+                    <select name="product_id" class="form-select form-select-lg" id="product_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($product_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">کاربر</label>
+                    <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($user_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

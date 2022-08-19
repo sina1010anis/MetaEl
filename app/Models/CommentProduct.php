@@ -12,7 +12,7 @@ class CommentProduct extends Model implements DefaultModel
     protected $guarded=[];
     public function attr_comment()
     {
-        return $this->hasMany(AttrComment::class , 'comment_id' , 'id');
+        return $this->hasMany(AttrComment::class , 'comment_product_id' , 'id');
     }
     public function user()
     {

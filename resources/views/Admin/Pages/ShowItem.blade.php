@@ -142,4 +142,54 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif
+
+    @if ($model == '\App\Models\City') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+            <div class="my-line"></div>
+        @endif 
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->name}} : Name </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->send_price}} : Send Price </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
+
+    @if ($model == '\App\Models\CommentProduct') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+            <div class="my-line"></div>
+        @endif 
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->subject}} : Subject </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->text}} : text  </p>
+        <div class="my-line"></div>
+        <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Product' , 'id' =>  $data->product->id ])}}">{{ $data->product->name }}</a></button>  
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->user->name}} : As  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">
+            @if ($data->vote == 1)
+                خوب است
+            @endif
+            @if ($data->vote == 2)
+                نظری ندارم
+            @endif
+            @if ($data->vote == 3)
+                خوب نیست 
+            @endif
+        </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_1}} : طراحی  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_2}} : کارایی  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_3}} : کیفیت  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_4}} : ارزش  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
 @endsection

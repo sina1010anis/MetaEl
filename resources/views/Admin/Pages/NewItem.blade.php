@@ -170,42 +170,98 @@
     @endif
 
     @if ($model == '\App\Models\Cart')
-    <x-page-new name="سبد خرید" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
-        <x-slot:form>
-            <div class="my-5">
-                <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
-                <select name="status" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
-                    <option checked value="0">غیر فعال</option>
-                    <option  value="1">فعال</option>
-                </select>
-            </div>
-            <div class="my-5">
-                <label for="total_price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">جمع قیمت </label>
-                <input name="total_price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="total_price" placeholder="جمع قیمت ">
-            </div>
-            <div class="my-5">
-                <label for="number" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">تعداد  </label>
-                <input name="number" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="number" placeholder=" تعداد ">
-            </div>
-            <div class="my-5">
-                <label for="product_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">محصول</label>
-                <select name="size_product_id" class="form-select form-select-lg" id="product_id" aria-label="Default select example">
-                    <option checked :value="null">یک مقدار انتخاب کنید</option>
-                    @foreach ($product_size_all as $item)
-                        <option value="{{ $item->id }}">{{ $item->product->name .'->'. $item->name }}</option>    
-                    @endforeach
-                </select>
-            </div>
-            <div class="my-5">
-                <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">گاربر</label>
-                <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
-                    <option checked :value="null">یک مقدار انتخاب کنید</option>
-                    @foreach ($user_all as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>    
-                    @endforeach
-                </select>
-            </div>
-        </x-slot:form>
-    </x-page-new>
-@endif
+        <x-page-new name="سبد خرید" :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="edit_name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="edit_name" aria-label="Default select example">
+                        <option checked value="0">غیر فعال</option>
+                        <option  value="1">فعال</option>
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="total_price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">جمع قیمت </label>
+                    <input name="total_price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="total_price" placeholder="جمع قیمت ">
+                </div>
+                <div class="my-5">
+                    <label for="number" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">تعداد  </label>
+                    <input name="number" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="number" placeholder=" تعداد ">
+                </div>
+                <div class="my-5">
+                    <label for="product_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">محصول</label>
+                    <select name="size_product_id" class="form-select form-select-lg" id="product_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($product_size_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->product->name .'->'. $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">گاربر</label>
+                    <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($user_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif
+
+    @if ($model == '\App\Models\City')
+        <x-page-new name=" افزودن استان " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> نام استان </label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام استان ">
+                </div>
+                <div class="my-5">
+                    <label for="send_price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">هزینه ارسال  </label>
+                    <input name="send_price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="send_price" placeholder=" هزینه ارسال ">
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif
+
+    @if ($model == '\App\Models\CommentProduct')
+        <x-page-new name=" افزودن استان " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع">
+                </div>
+                <div class="mb-5">
+                    <label for="text" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> متن</label>
+                    <textarea name="text" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" style="height: 200px!important;max-height: 250px!important;width: 100%;max-width: 100%;min-width: 100%;min-height: 100px" id="text" placeholder=" text"></textarea>
+                </div>
+                <div class="my-5">
+                    <label for="vote" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">نظر کلی</label>
+                    <select name="vote" class="form-select form-select-lg" id="vote" aria-label="Default select example">
+                        <option checked value="1"> راضی</option>
+                        <option  value="2">بی نظر</option>
+                        <option  value="3"> ناراضی</option>
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="product_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">محصول</label>
+                    <select name="product_id" class="form-select form-select-lg" id="product_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($product_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">کاربر</label>
+                    <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
+                        <option checked :value="null">یک مقدار انتخاب کنید</option>
+                        @foreach ($user_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif
 @endsection

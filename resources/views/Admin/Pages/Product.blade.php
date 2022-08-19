@@ -316,4 +316,97 @@
       </x-slot:table>
     </x-page-view>
   @endif
+
+  @if ($model == '\App\Models\City')
+    {{ $model }}
+    <x-page-view name=" استان ها" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">نام</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">هزینه ارسال</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->name}}</td>
+                <td>{{$item->send_price}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <td>{{$item->name}}</td>
+            <td>{{$item->send_price}}</td>
+            <td>
+              <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+            </td>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div>
+      </x-slot:table>
+    </x-page-view>
+  @endif
+
+  @if ($model == '\App\Models\CommentProduct')
+    {{ $model }}
+    <x-page-view name="  کامنت های محصولات" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">موضوع</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">متن پیام </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> برای </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> از طرف </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{ Str::limit($item->subject, 10, '...') }}</td>
+                <td>{{ Str::limit($item->text, 20, '...') }}</td>
+                <td>
+                  <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Product' , 'id' =>  $item->product->id ])}}">{{ $item->product->name }}</a></button>  
+                </td>
+                <td>{{$item->user->name}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <td>{{$item->subject}}</td>
+            <td>{{ Str::limit($item->text, 40, '...') }}</td>
+            <td>
+              <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Product' , 'id' =>  $item->product->id ])}}">{{ $item->product->name }}</a></button>  
+            </td>
+            <td>{{$item->user->name}}</td>
+            <td>
+              <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+            </td>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div>
+      </x-slot:table>
+    </x-page-view>
+  @endif
+  
 @endsection

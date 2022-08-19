@@ -41,8 +41,8 @@
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Product'])}}">محصولات اصلی</a>
                         </li>
-                        <li>
-                            <a href="#">Elements</a>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\CommentProduct'])}}">  کامنت محصولات </a>
                         </li>
                         <li>
                             <a href="#">Free Link</a>
@@ -58,6 +58,9 @@
                         </li>
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Cart'])}}">سبد خرید </a>
+                        </li>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\City'])}}"> استان ها </a>
                         </li>
                     </ul>
                 </li>

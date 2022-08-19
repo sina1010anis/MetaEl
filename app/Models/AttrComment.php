@@ -13,6 +13,6 @@ class AttrComment extends Model implements DefaultModel
     protected $guarded=[];
     public function comment_product()
     {
-        return $this->belongsTo(CommentProduct::class , 'comment_id' , 'id');
+        return $this->belongsTo(CommentProduct::class , 'comment_product_id' , 'id');
     }
 }
