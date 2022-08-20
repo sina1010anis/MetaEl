@@ -45,6 +45,24 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->sub_menu->name}} : menu </p>
         <div class="my-line"></div>
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">جزئیات محصول :</h2>
+        <form method="post" action="{{ route('admin.edit.datail_product' , ['model' => '\App\Models\DatailProduct' , 'id' => $data->id , 'id_datail_product' => (!isset($data->datail_product[0])) ? 'Null' : $data->datail_product[0]->id])}}">
+            @csrf
+            <div class="my-5">
+                <label for="send_price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> هزینه ارسال</label>
+                <input name="send_price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="send_price" placeholder=" هزینه ارسال" value="{{ (!isset($data->datail_product[0])) ? Null :  $data->datail_product[0]->send_price }}">
+            </div>
+            <div class="my-5">
+                <label for="send_time" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> زمان ارسال</label>
+                <input name="send_time" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="send_time" placeholder=" زمان ارسال" value="{{ (!isset($data->datail_product[0])) ? Null :  $data->datail_product[0]->send_time }}">
+            </div>
+            <div class="my-5">
+                <label for="weight" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وزن</label>
+                <input name="weight" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="weight" placeholder="  وزن" value="{{ (!isset($data->datail_product[0])) ? Null :  $data->datail_product[0]->weight }}">
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg p-4 my-font-IYL my-f-16 mt-5 w-100">تایید</button>
+        </form>
+        <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->created_at}} : created_at </p>
     @endif
  
@@ -189,6 +207,27 @@
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_3}} : کیفیت  </p>
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_4}} : ارزش  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
+
+    @if ($model == '\App\Models\DiscountCode') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+            <div class="my-line"></div>
+        @endif 
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->description}} : Description </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->value}} : Value  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->code}} : Code  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{($data->user_id == 0 ) ? 'برای همه' : $data->user->name}} : As  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{($data->status == 0 ) ? 'غیر فعال' : 'فعال'}} : Status  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{($data->score == 0 ) ? ' رایگان' :$data->score}} : Score  </p>
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif

@@ -9,6 +9,8 @@ use App\Repository\Front\Admin\Geter\Update;
 use App\Repository\Front\Admin\Geter\BindDataPanel;
 use App\Repository\Front\Admin\Geter\UploadImageProduct;
 
+use function PHPUnit\Framework\isNull;
+
 trait AdminRepository {
 
     use Update , UploadImageProduct;
@@ -77,6 +79,22 @@ trait AdminRepository {
         ->set_class($model)
         ->create( ($type != 'null') ? $this->create_image($request , $file->get_name() , $model) : $this->create_not_image($request) );
         ($type != 'null') ?$file->move_file($type) : null;
+    }
+
+    public function edit_datail_product($model , $id , $id_datail_product , Request $request)
+    {
+        $request = collect($request)->forget('_token');
+        if($id_datail_product == 'Null'){
+            $this
+            ->set_class($model)
+            ->create($request->prepend($id , 'product_id')->all());
+        }else{
+            $this
+            ->set_class($model)
+            ->set_data(['id' =>$id])
+            ->update($request->all());
+        }
+        return redirect()->back()->with(['msg'=>'عملیات انجام شد']);
     }
 
     protected function create_image(Request $request , $name_image , $model)

@@ -409,4 +409,60 @@
     </x-page-view>
   @endif
   
+  @if ($model == '\App\Models\DiscountCode')
+    {{ $model }}
+    <x-page-view name="  کامنت های محصولات" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">توضیحات</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> مقدار </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> کد </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">  برای </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">  وضعیت </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">  امتیاز </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{ Str::limit($item->description, 10, '...') }}</td>
+                <td>{{$item->value}}</td>
+                <td>{{$item->code}}</td>
+                <td>{{($item->user_id == Null ) ? 'برای همه' : $item->user->name}}</td>
+                <td>{{($item->status == 0 ) ? 'غیر فعال' : 'فعال'}}</td>
+                <td>{{($item->score == 0 ) ? ' رایگان' :$item->score}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <tr class="my-f-13 my-color-b-600 my-font-IYL">
+              <td>{{ Str::limit($item->description, 10, '...') }}</td>
+              <td>{{$item->value}}</td>
+              <td>{{$item->code}}</td>
+              <td>{{($item->user_id == Null ) ? 'برای همه' : $item->user->name}}</td>
+              <td>{{($item->status == 0 ) ? 'غیر فعال' : 'فعال'}}</td>
+              <td>{{($item->score == 0 ) ? ' رایگان' :$item->score}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+            </tr>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div>
+      </x-slot:table>
+    </x-page-view>
+  @endif
+
+  
 @endsection

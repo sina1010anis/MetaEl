@@ -264,4 +264,43 @@
             </x-slot:form>
         </x-page-new>
     @endif
+
+    @if ($model == '\App\Models\DiscountCode')
+        <x-page-new name=" افزودن استان " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="description" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> توضیحات</label>
+                    <input name="description" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="description" placeholder=" توضیحات" value="">
+                </div>
+                <div class="my-5">
+                    <label for="value" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> مقدار</label>
+                    <input name="value" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="value" placeholder=" مفدار" value="">
+                </div>      
+                <div class="my-5">
+                    <label for="code" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> کد</label>
+                    <input name="code" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="code" placeholder=" کد" value="">
+                </div>      
+                <div class="my-5">
+                    <label for="score" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> امتیاز</label>
+                    <input name="score" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="score" placeholder=" امتیاز" value="">
+                </div>                                        
+                <div class=" mb-5">
+                    <label for="status" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="status" aria-label="Default select example">
+                        <option checked value="1">فعال</option>
+                        <option value="0">غیر فعال</option>
+                    </select>
+                </div>
+                <div class="my-5">
+                    <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">کاربر</label>
+                    <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
+                        <option checked value="0">فعال برای همه</option>
+                        @foreach ($user_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-new>
+    @endif    
 @endsection
