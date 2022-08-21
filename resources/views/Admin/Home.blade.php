@@ -63,6 +63,9 @@
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\DiscountCode'])}}"> کدتخفیف ها </a>
                         </li>
                         <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\factor'])}}"> فاکتور ها </a>
+                        </li>
+                        <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\City'])}}"> استان ها </a>
                         </li>
                     </ul>

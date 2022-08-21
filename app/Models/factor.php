@@ -15,4 +15,8 @@ class factor extends Model implements DefaultModel
     {
         return $this->hasMany(product_factor::class , 'factor_id' , 'id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class , 'user_id' , 'id');
+    }
 }

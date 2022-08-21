@@ -10,9 +10,9 @@ class product_factor extends Model implements DefaultModel
     use HasFactory;
     protected $guarded=[];
 
-    public function product()
+    public function price_product()
     {
-        return $this->belongsTo(Product::class , 'product_id' , 'id');
+        return $this->belongsTo(PriceProduct::class , 'size_product_id' , 'id');
     }
     public function factor()
     {

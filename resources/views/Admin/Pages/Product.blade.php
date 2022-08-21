@@ -464,5 +464,50 @@
     </x-page-view>
   @endif
 
-  
+  @if ($model == '\App\Models\factor')
+    {{ $model }}
+    <x-page-view name="    فاکتور ها" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> شناسه پرداخت</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> وضعیت پرداخت </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> وضعیت ارسال </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">شماره موبایل </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->code_pay}}</td>
+                <td>{{$item->buy_status}}</td>
+                <td>{{$item->send_status}}</td>
+                <td>{{$item->mobile}}</td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <td>{{$item->code_pay}}</td>
+            <td>{{$item->buy_status}}</td>
+            <td>{{$item->send_status}}</td>
+            <td>{{$item->mobile}}</td>
+            <td>
+              <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+            </td>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div>
+      </x-slot:table>
+    </x-page-view>
+  @endif
 @endsection

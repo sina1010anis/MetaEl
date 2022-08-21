@@ -286,4 +286,13 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\factor')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش فاکتور" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <p class="my-font-IYL my-f-15 " style="color:red;"> این بخش قابل ویرایش نمی باشد</p>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

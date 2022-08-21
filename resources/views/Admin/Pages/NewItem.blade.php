@@ -303,4 +303,13 @@
             </x-slot:form>
         </x-page-new>
     @endif    
+
+    @if ($model == '\App\Models\factor')
+        {{ $model }}
+        <x-page-new name=" افزودن استان " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <p class="my-font-IYL my-f-15 " style="color:red;"> این بخش قابل افزودن نمی باشد</p>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection
