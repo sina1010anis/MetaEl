@@ -258,4 +258,24 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif
+
+    @if ($model == '\App\Models\title_filter') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+            <div class="my-line"></div>
+        @endif 
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->subject}} : Name </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->menu->name}} : Menu  </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">
+        @foreach ($data->filter as $item)
+            <span class="bg-info p-2 m-1">{{ $item->name  }}</span>
+          @endforeach : Item Filter   
+          <a class="btn btn-success my-font-IYM mx-3 btn-lg" href="{{ route('admin.new.data' , ['model' => '\App\Models\filter']) }}" > <i class="bi bi-plus-circle-dotted icon-set"></i> افزودن ایتم فیلتر</a>
+        </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
 @endsection

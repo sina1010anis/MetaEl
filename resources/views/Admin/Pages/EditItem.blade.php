@@ -327,4 +327,25 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\title_filter')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش فیلتر" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع" value="{{ $data->subject }}">
+                </div>
+                <div class="my-5">
+                    <label for="b_menu_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">منو : منو فعلی ({{ $data->menu->name }})</label>
+                    <select name="b_menu_id" class="form-select form-select-lg" id="b_menu_id" aria-label="Default select example">
+                        {{-- <option checked value="0">فعال برای همه</option> --}}
+                        @foreach ($menu_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

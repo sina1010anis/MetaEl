@@ -510,4 +510,56 @@
       </x-slot:table>
     </x-page-view>
   @endif
+
+  @if ($model == '\App\Models\title_filter')
+    {{ $model }}
+    <x-page-view name="    فیلتر ها" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> نام فیلتر</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> منو مورد نظر </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> مقدار های فیلتر </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->subject}}</td>
+                <td>{{$item->menu->name}}</td>
+                <td>
+                  @foreach ($item->filter as $data)
+                    <span class="bg-info p-2 m-1">{{ $data->name  }}</span>
+                  @endforeach
+                </td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+          <tr class="my-f-13 my-color-b-600 my-font-IYL">
+            <td>{{$item->subject}}</td>
+            <td>{{$item->menu->name}}</td>
+            <td>
+              @foreach ($item->filter as $data)
+                <span class="bg-info p-2 m-1">{{ $data->name  }}</span>
+              @endforeach
+            </td>
+            <td>
+              <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+            </td>
+          </tr>
+          @endforeach
+      @endif
+        </tbody>
+        {{-- <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div> --}}
+      </x-slot:table>
+    </x-page-view>
+  @endif
 @endsection

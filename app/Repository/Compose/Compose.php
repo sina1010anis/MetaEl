@@ -9,6 +9,7 @@ use App\Repository\Compose\Data\StateAll;
 use App\Repository\Compose\Data\SubMenuAll;
 use App\Repository\Compose\Data\UserAll;
 use App\Repository\Compose\Data\ProductAll;
+use App\Repository\Compose\Data\TitleFilterAll;
 use Illuminate\Support\Facades\View;
 
 class Compose{
@@ -21,6 +22,7 @@ class Compose{
         View::composer(['*'] , UserAll::class);
         View::composer(['*'] , ProductSizeAll::class);
         View::composer(['*'] , ProductAll::class);
+        View::composer(['*'] , TitleFilterAll::class);
     }
 }
 

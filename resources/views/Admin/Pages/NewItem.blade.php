@@ -312,4 +312,44 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\filter')
+        <x-page-new name=" افزودن فیلتر " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> نام</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام" value="">
+                </div>
+                <div class="my-5">
+                    <label for="title_filter_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">منو اصلی</label>
+                    <select name="title_filter_id" class="form-select form-select-lg" id="title_filter_id" aria-label="Default select example">
+                        <option checked value="0">فعال برای همه</option>
+                        @foreach ($title_filter_all as $data)
+                            <option value="{{ $data->id }}">{{ $data->subject }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
+
+    @if ($model == '\App\Models\title_filter')
+        <x-page-new name=" افزودن فیلتر " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع" value="">
+                </div>
+                <div class="my-5">
+                    <label for="b_menu_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">منو</label>
+                    <select name="b_menu_id" class="form-select form-select-lg" id="b_menu_id" aria-label="Default select example">
+                        {{-- <option checked value="0">فعال برای همه</option> --}}
+                        @foreach ($menu_all as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>    
+                        @endforeach
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection
