@@ -291,7 +291,39 @@
         {{ $model }}
         <x-page-edit :name="$data->name" title=" ویرایش فاکتور" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
             <x-slot:form>
-                <p class="my-font-IYL my-f-15 " style="color:red;"> این بخش قابل ویرایش نمی باشد</p>
+                <p  v-if="{{ $data->send_status }} == 700"> تحویل شده است</p>    
+                <p  v-if="{{ $data->send_status }} == 600"> تحویل پست</p>    
+                <p  v-if="{{ $data->send_status }} == 500"> اماده برای ارسال به پست</p>    
+                <p  v-if="{{ $data->send_status }} == 400"> در حال ساخت مرسومه</p>    
+                <p  v-if="{{ $data->send_status }} == 300"> در حال اماده سازی</p>    
+                <p  v-if="{{ $data->send_status }} == 200"> فاکتور تایید شده</p>    
+                <p  v-if="{{ $data->send_status }} == 100">منتظر تایید</p>    
+                <div class="my-5">
+                    <label for="user_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">مرحله</label>
+                    <select name="user_id" class="form-select form-select-lg" id="user_id" aria-label="Default select example">
+                        <option  @if ($data->send_status == 700)
+                            checked
+                        @endif value="700">تحویل شده است</option>    
+                        <option  @if ($data->send_status == 600)
+                            checked
+                        @endif value="600">تحویل پست</option>    
+                        <option  @if ($data->send_status == 500)
+                            checked
+                        @endif value="500">اماده برای ارسال به پست</option>    
+                        <option  @if ($data->send_status == 400)
+                            checked
+                        @endif value="400">در حال ساخت مرسومه</option>    
+                        <option  @if ($data->send_status == 300)
+                            checked
+                        @endif value="300">در حال اماده سازی</option>    
+                        <option  @if ($data->send_status == 200)
+                            checked
+                        @endif value="200">فاکتور تایید شده</option>    
+                        <option  @if ($data->send_status == 100)
+                            checked
+                        @endif value="100">منتظر تایید</option>    
+                    </select>
+                </div>
             </x-slot:form>
         </x-page-edit>
     @endif
