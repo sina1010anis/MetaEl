@@ -89,6 +89,9 @@
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\title_filter'])}}">فیلتر </a>
                         </li>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Item'])}}">ایتم </a>
+                        </li>
                     </ul>
                 </li>
                 <li>

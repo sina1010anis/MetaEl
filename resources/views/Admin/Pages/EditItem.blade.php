@@ -348,4 +348,24 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\Item')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش ایتم" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> نام</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام" value="{{ $data->name }}">
+                </div>
+                <div class="my-5">
+                    <label for="description" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> توضیحات</label>
+                    <input name="description" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="description" placeholder=" توضیحات" value="{{ $data->description }}">
+                </div>
+                <div class="my-5">
+                    <label for="image" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> عکس</label>
+                    <input name="image" type="file" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="image" placeholder=" عکس">
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

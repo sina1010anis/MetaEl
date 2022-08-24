@@ -304,7 +304,7 @@
         </x-page-new>
     @endif    
 
-    @if ($model == '\App\Models\factor')
+    @if ($model == '\App\Models\factor' or $model == '\App\Models\Item')
         {{ $model }}
         <x-page-new name=" افزودن استان " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' => 'null'])">
             <x-slot:form>
