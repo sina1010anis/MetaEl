@@ -45,7 +45,7 @@
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->sub_menu->name}} : menu </p>
         <div class="my-line"></div>
-        <h2 class="my-font-IYM my-color-b-800 text-end p-4">جزئیات محصول :</h2>
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">: جزئیات محصول </h2>
         <form method="post" action="{{ route('admin.edit.datail_product' , ['model' => '\App\Models\DatailProduct' , 'id' => $data->id , 'id_datail_product' => (!isset($data->datail_product[0])) ? 'Null' : $data->datail_product[0]->id])}}">
             @csrf
             <div class="my-5">
@@ -62,6 +62,24 @@
             </div>
             <button type="submit" class="btn btn-primary btn-lg p-4 my-font-IYL my-f-16 mt-5 w-100">تایید</button>
         </form>
+        <div class="my-line"></div>
+        <br>
+        <br>
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">:مشخصات فیلتر محصول </h2>
+        <x-page-edit :name="$data->name" title=" ویرایش فیلتر" :url="route('admin.edit.filter' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                @foreach ($data->filter as $item)
+                    <div class=" mb-5">
+                        <label for="filter_id" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  {{ $item->title_filter->subject  }} : {{ ($item->filter) ? $item->filter->name : null  }}</label>
+                        <select name="{{ $item->id }}" class="form-select form-select-lg" id="filter_id" aria-label="Default select example">
+                            @foreach ($filter_all->where('title_filter_id',$item->title_filter->id) as $filter)
+                                <option value="{{ $filter->id }}">{{ $filter->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endforeach
+            </x-slot:form>
+        </x-page-edit>    
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->created_at}} : created_at </p>
     @endif

@@ -32,6 +32,7 @@ Route::middleware(['auth' , 'role'])->controller(AdminController::class)->as('ad
     Route::get('/new/data/{model}' , 'new_data')->name('new.data');
     Route::post('/new/data/{model}/{type}' , 'new_data_post')->name('new.data.post');
     Route::post('/edit/datail/product/{model}/{id}/{id_datail_product}' , 'edit_datail_product')->name('edit.datail_product');
+    Route::post('/edit/filter/product/{model}/{id}' , 'edit_filter_product')->name('edit.filter');
 });
 
 // Route Front 

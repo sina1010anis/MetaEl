@@ -12,7 +12,7 @@ class AdminController extends Controller
     use AdminRepository , ProductAdminRepository;
 
         //The [show_product  , search_product , show_data , delete_data , edit_data , edit_data_post , new_data ] is inside the AdminRepository : The desired method is written as a trait
-        //The [ delete_image_product , product_image_upload ] is inside the ProductAdminRepository : The desired method is written as a trait
+        //The [ delete_image_product , product_image_upload , edit_filter_product ] is inside the ProductAdminRepository : The desired method is written as a trait
 
     public function home(){
         return view('Admin.Pages.IndexPage');

@@ -3,6 +3,7 @@
 namespace App\Repository\Compose;
 
 use App\Repository\Compose\Data\CityAll;
+use App\Repository\Compose\Data\FilterAll;
 use App\Repository\Compose\Data\MenuAll;
 use App\Repository\Compose\Data\ProductSizeAll;
 use App\Repository\Compose\Data\StateAll;
@@ -23,6 +24,7 @@ class Compose{
         View::composer(['*'] , ProductSizeAll::class);
         View::composer(['*'] , ProductAll::class);
         View::composer(['*'] , TitleFilterAll::class);
+        View::composer(['*'] , FilterAll::class);
     }
 }
 

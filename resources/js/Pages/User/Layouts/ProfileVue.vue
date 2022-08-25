@@ -11,9 +11,6 @@
                             <Link :href="'/profile/user'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                  <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">پروفایل</span> <img src="/image/icon/user.png" style="width:30px;" alt="user">
                             </Link>
-                            <a v-if="data['auth'].role_id == 1" :href="'/profile/admin'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
-                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">پنل ادمین</span> <img src="/image/icon/admin.png" style="width:30px;" alt="admin">
-                            </a>
                             <Link :href="'/product/return/'" class="my-3 item-menu-bar d-flex justify-content-between align-items-center my-pointer">
                                 <span class="d-none d-md-block my-font-IYL my-f-12 my-color-b-600">مرجوع محصول</span><img src="/image/icon/back.png" style="width:30px;" alt="back"> 
                             </Link>

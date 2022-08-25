@@ -2,7 +2,9 @@
 
 namespace App\Repository\Front\Admin;
 
+use App\Models\filter_product;
 use App\Models\Product;
+use App\Models\title_filter;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Repository\Front\Admin\Geter\Update;
@@ -69,6 +71,7 @@ trait AdminRepository {
         }else{
             $data = collect($request)->forget('_token')->all();
         }
+        dd($data);
         $this
         ->set_class($model)
         ->set_data(['id' => $id])
@@ -100,7 +103,31 @@ trait AdminRepository {
         }
         return redirect()->back()->with(['msg'=>'عملیات انجام شد']);
     }
+    public function edit_filter_product($model ,$id , Request $request)
+    {
+        $data = collect($request)->forget('_token')->all();
+        if($data)
+        {
+            foreach($data as $key => $val)
+            {
+                filter_product::whereId($key)->update(['filter_id' => $val]);
+            }
+            return redirect()->back()->with(['msg'=>'عملیات ویرایش انجام شد']);
+        }else{
+            $menu_id = (Product::whereId($id)->first())->sub_menu->b_menu_id;
+            foreach(title_filter::where('b_menu_id' , $menu_id)->get() as $filter)
+            {
+                filter_product::create([
+                    'product_id' => $id,
+                    'title_filter_id' => $filter->id,
+                    'filter_id' => 0
+                ]);
+            }
+            return redirect()->back()->with(['msg'=>'فیلتر های مورد نظر ساخته شد']);
+        }
 
+        
+    }
     protected function create_image(Request $request , $name_image , $model)
     {
         return ($model == '\App\Models\Product') 
