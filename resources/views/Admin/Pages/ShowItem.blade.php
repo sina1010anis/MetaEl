@@ -79,8 +79,33 @@
                     </div>
                 @endforeach
             </x-slot:form>
-        </x-page-edit>    
+        </x-page-edit>  
         <div class="my-line"></div>
+        <br>
+        <br>
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">:چند قیمته  </h2>
+        @foreach ($data->price_product as $item)
+            <a href="{{ route('admin.delete.data' , [ 'model' => '\App\Models\PriceProduct' , 'id' => $item->id]) }}">
+                <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$item->price}} : {{ $item->name }} </p>
+            </a>
+        @endforeach
+        <x-page-edit :name="$data->name" title=" افزودن قیمت" :url="route('admin.new.data.post' , ['model' => '\App\Models\PriceProduct' , 'type' => 'null'])">            
+            <x-slot:form>
+                <div class="my-5">
+                    <input name="product_id" type="hidden" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="product_id" placeholder="  وزن" value="{{ $data->id }}">
+                </div>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">   نام قیمت</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام قیمت" value="">
+                </div>
+                <div class="my-5">
+                    <label for="price" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">قمیت </label>
+                    <input name="price" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="price" placeholder="  قیمت" value="">
+                </div>
+            </x-slot:form>
+        </x-page-edit>  
+        <div class="my-line"></div>
+        <br>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="rtl">{{$data->created_at}} : created_at </p>
     @endif
  
