@@ -42,8 +42,8 @@ class User extends \TCG\Voyager\Models\User implements DefaultModel
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    protected $attributes = ['address_id' => 0 , 'score' => 0 , 'mobile' => 0];
-    public function adresss()
+    protected $attributes = ['address_id' => 0 , 'score' => 0 , 'mobile' => 0 , 'role_id' => 0 , 'avatar' => Null , 'settings' => Null];
+    public function addresss()
     {
         return $this->belongsTo(Address::class , 'address_id' , 'id');
     }

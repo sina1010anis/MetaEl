@@ -2,16 +2,18 @@
 
 namespace App\Repository\Front\Admin;
 
-use App\Models\filter_product;
+use App\Models\User;
 use App\Models\Product;
-use App\Models\title_filter;
 use Illuminate\Support\Str;
+use App\Models\title_filter;
 use Illuminate\Http\Request;
+use App\Models\filter_product;
+use Illuminate\Support\Facades\Hash;
+use function PHPUnit\Framework\isNull;
 use App\Repository\Front\Admin\Geter\Update;
+
 use App\Repository\Front\Admin\Geter\BindDataPanel;
 use App\Repository\Front\Admin\Geter\UploadImageProduct;
-
-use function PHPUnit\Framework\isNull;
 
 trait AdminRepository {
 
@@ -80,6 +82,11 @@ trait AdminRepository {
 
     public function new_data_post($model , $type , Request $request)
     {
+        if($model == '\App\Models\User')
+        {
+            $this->create_user($request);
+            return response()->back()->with(['msg' , 'کاربر اضافه شد']);
+        }
         $file = ($type != 'null') ? $this->set_file('image' , $request)->set_name() : null;
         $this
         ->set_class($model)
@@ -138,4 +145,14 @@ trait AdminRepository {
     {
         return collect($request)->forget('_token')->all();
     }
+
+    protected function create_user(Request $request)
+    {
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => Hash::make($request->password),
+        ]);
+    }  
 }

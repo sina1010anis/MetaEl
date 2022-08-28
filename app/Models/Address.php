@@ -21,6 +21,6 @@ class Address extends Model implements DefaultModel
     }
     public function user()
     {
-        return $this->hasMany(User::class , 'address_id' , 'id');
+        return $this->belongsTo(User::class , 'address_id' , 'id');
     }
 }

@@ -386,4 +386,27 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\User')
+        <x-page-new name=" افزودن کاربر " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' =>  'null'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> نام</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام">
+                </div>
+                <div class="my-5">
+                    <label for="mobile" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> شماره موبایل</label>
+                    <input name="mobile" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="mobile" placeholder=" شماره موبایل">
+                </div>
+                <div class="my-5">
+                    <label for="email" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> ایمیل</label>
+                    <input name="email" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="email" placeholder=" ایمیل">
+                </div>
+                <div class="my-5">
+                    <label for="password" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> رمز عبور</label>
+                    <input name="password" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="password" placeholder=" رمز عبور">
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

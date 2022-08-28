@@ -241,7 +241,6 @@
         </x-page-edit>
     @endif
 
-
     @if ($model == '\App\Models\DiscountCode')
         {{ $model }}
         <x-page-edit :name="$data->subject" title="   ویرایش کدهای تخفیف" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
@@ -405,5 +404,12 @@
         </x-page-edit>
     @endif
 
-
+    @if ($model == '\App\Models\User')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش کاربران" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <p class="my-font-IYL my-f-15 " style="color:red;"> این بخش قابل ویرایش نمی باشد</p>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

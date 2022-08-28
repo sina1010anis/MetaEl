@@ -54,6 +54,9 @@
                     <a class=" my-font-IYM my-f-13"><i class="fa fa-edit "></i>کاربری<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\User'])}}">کربر ها</a>
+                        </li>
+                        <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Address'])}}">ادرس ها</a>
                         </li>
                         <li class="my-f-11">

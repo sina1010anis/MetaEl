@@ -670,5 +670,58 @@
     </x-page-view>
   @endif
 
+  @if ($model == '\App\Models\User')
+    {{ $model }}
+    <x-page-view name="    کاربر ها" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> نام </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">   ایمیل </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">   امتیاز </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> موبایل</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> ادرس</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت ها</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->name}}</td>
+                <td>{{$item->email}}</td>
+                <td>{{$item->score}}</td>
+                <td>{{$item->mobile}}</td>
+                <td>
+                  <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Address' , 'id' =>  $item->address_id ])}}">ادرس ثبت شده</a></button>
+                </td>
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+            <tr class="my-f-13 my-color-b-600 my-font-IYL">
+              <td>{{$item->name}}</td>
+              <td>{{$item->email}}</td>
+              <td>{{$item->score}}</td>
+              <td>{{$item->mobile}}</td>
+              <td>
+                <button class="btn btn-success"> <i class="bi bi-eye icon-set"></i><a style="text-decoration: none!important ; color:rgb(236, 236, 236)!important" href="{{route('admin.show.data' , ['model' => '\App\Models\Address' , 'id' =>  $item->address_id ])}}">ادرس ثبت شده</a></button>
+              </td>
+              <td>
+                <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+              </td>
+            </tr>
+          @endforeach
+      @endif
+        </tbody>
+        {{-- <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div> --}}
+      </x-slot:table>
+    </x-page-view>
+  @endif
 
 @endsection
