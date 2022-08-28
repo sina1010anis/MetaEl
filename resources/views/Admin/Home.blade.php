@@ -92,6 +92,9 @@
                         <li class="my-f-11">
                             <a href="{{route('admin.show.item' , ['model' => '\App\Models\Item'])}}">ایتم </a>
                         </li>
+                        <li class="my-f-11">
+                            <a href="{{route('admin.show.item' , ['model' => '\App\Models\Slider'])}}">اسلایدر </a>
+                        </li>
                     </ul>
                 </li>
                 <li>

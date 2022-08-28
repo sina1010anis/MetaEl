@@ -64,14 +64,13 @@ trait AdminRepository {
     {
         if($model == '\App\Modles\Product'){
             $data = collect($request)->prepend(Str::slug($request->name) , 'slug')->forget('_token')->all();
-        }if($model == '\App\Models\Item'){
+        }if($model == '\App\Models\Item' || $model == '\App\Models\Slider'){
             $file = ($request->file('image')) ? $this->set_file('image',$request)->set_name() : null;
             $data = ($request->file('image')) ? collect($request)->prepend($file->get_name() , 'image')->forget('_token')->all() : collect($request)->forget('_token')->all() ;
             ($request->file('image')) ? $file->move_file('\image\front\/') : null;
         }else{
             $data = collect($request)->forget('_token')->all();
         }
-        dd($data);
         $this
         ->set_class($model)
         ->set_data(['id' => $id])

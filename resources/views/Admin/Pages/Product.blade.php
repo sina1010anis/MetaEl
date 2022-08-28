@@ -613,4 +613,62 @@
       </x-slot:table>
     </x-page-view>
   @endif
+
+  @if ($model == '\App\Models\Slider')
+    {{ $model }}
+    <x-page-view name="    اسلایدر ها" :model="$model">
+      <x-slot:table>
+        <thead class="table-light">
+          <tr>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> موضوع </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">   توضیحات </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col">   عکس </th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> ادرس</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> وضعیت</th>
+            <th class="my-f-15 my-font-IYM my-color-b-800" scope="col"> فعالیت ها</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (session('data_search'))
+          @foreach (session('data_search') as $item)
+              <tr class="my-f-13 my-color-b-600 my-font-IYL">
+                <td>{{$item->subject}}</td>
+                <td>{{Str::limit($item->description, 35, '...') }}</td>
+                <td>
+                  <img style="width: 90px" src="{{ url('/image/front/'.$item->image) }}" alt="{{ $item->subject }}">
+                </td>
+                <td>{{$item->url}}</td>
+                <td>{{ ($item->status == 1) ? 'فعال' : 'غیر فعال' }}</td>
+
+                <td>
+                  <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+                </td>
+              </tr>
+          @endforeach
+      @else
+          @foreach ($data as $item)
+            <tr class="my-f-13 my-color-b-600 my-font-IYL">
+              <td>{{$item->subject}}</td>
+              <td>{{Str::limit($item->description, 35, '...') }}</td>
+              <td>
+                <img style="width: 90px" src="{{ url('/image/front/'.$item->image) }}" alt="{{ $item->subject }}">
+              </td>
+              <td>{{$item->url}}</td>
+              <td>{{ ($item->status == 1) ? 'فعال' : 'غیر فعال' }}</td>
+
+              <td>
+                <x-page-btn :model="$model" :id="$item->id"></x-page-btn>
+              </td>
+            </tr>
+          @endforeach
+      @endif
+        </tbody>
+        {{-- <div class="d-flex justify-content-center align-content-center my-5">
+          {{$data->links()}}
+        </div> --}}
+      </x-slot:table>
+    </x-page-view>
+  @endif
+
+
 @endsection

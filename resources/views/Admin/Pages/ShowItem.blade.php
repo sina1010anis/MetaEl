@@ -252,6 +252,22 @@
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->attr_comment[0]->step_4}} : ارزش  </p>
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+        <div class="my-line"></div>
+        <br>
+        <br>
+        <h2 class="my-font-IYM my-color-b-800 text-end p-4">:مشخصات فیلتر محصول </h2>
+        @foreach ($data->reply_comment as $item)
+            <a href="{{route('admin.delete.data' , ['model' => '\App\Models\ReplyComment' , 'id' => $item->id])}}">
+                <div class="my-bg-b-600 my-3 border-2 p-2" dir="rtl">
+                    <p class="my-font-IYM my-f-15 my-color-b-800">
+                        {{ $item->text }}
+                    </p>
+                    <p class="my-font-IYL my-f-12 my-color-b-500">
+                        {{ $item->user->name }}
+                    </p>
+                </div> 
+            </a>   
+        @endforeach
     @endif
 
     @if ($model == '\App\Models\DiscountCode') 
@@ -335,6 +351,25 @@
         <p class="my-font-IYL my-f-13 my-color-b-500 text-center my-3" dir="rtl"><img style="width: 90px" src="{{url('image/front/'.$data->image)}}" alt="{{$data->name}}"> </p>
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->location}} : Location </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
+    @endif
+
+    @if ($model == '\App\Models\Slider') 
+        {{ $model }}      
+        @if (session('msg'))
+            <div class="alert alert-success my-font-IYL my-f-13" dir="rtl">{{session('msg')}}</div>
+            <div class="my-line"></div>
+        @endif 
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->subject}} : Subject </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->description}} : Description </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-center my-3" dir="rtl"><img style="height: 150px" src="{{url('image/front/'.$data->image)}}" alt="{{$data->name}}"> </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{$data->url}} : Location </p>
+        <div class="my-line"></div>
+        <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="ltr">{{($data->status == 1) ? 'فعال' : 'غیر فعال'}} : Status </p>
         <div class="my-line"></div>
         <p class="my-font-IYL my-f-13 my-color-b-500 text-end my-3" dir="lrt">{{$data->created_at}} : created_at </p>
     @endif

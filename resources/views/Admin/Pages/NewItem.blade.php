@@ -353,5 +353,37 @@
         </x-page-edit>
     @endif
 
-
+    @if ($model == '\App\Models\Slider')
+        <x-page-new name=" افزودن اسلایدر " :model="$model" :url="route('admin.new.data.post' , ['model' => $model , 'type' =>  '\image\front'])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="name" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> نام</label>
+                    <input name="name" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="name" placeholder=" نام">
+                </div>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع">
+                </div>
+                <div class="mb-5">
+                    <label for="edit_description" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">توضیحات تکمیلی</label>
+                    <textarea name="description" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" style="height: 200px!important;max-height: 250px!important;width: 100%;max-width: 100%;min-width: 100%;min-height: 100px" id="edit_description" placeholder="توضیحات تکمیلی"></textarea>
+                </div>
+                <div class="my-5">
+                    <label for="image" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> عکس</label>
+                    <input name="image" type="file" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="image" placeholder=" عکس">
+                </div>
+                <div class="my-5">
+                    <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> ادرس</label>
+                    <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder=" ادرس">
+                </div>
+                <div class=" mb-5">
+                    <label for="status" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="status" aria-label="Default select example">
+                            <option checked value="1">فعال</option>
+                            <option value="0">غیر فعال</option>
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
 @endsection

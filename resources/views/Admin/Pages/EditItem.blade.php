@@ -368,4 +368,42 @@
             </x-slot:form>
         </x-page-edit>
     @endif
+
+    @if ($model == '\App\Models\Slider')
+        {{ $model }}
+        <x-page-edit :name="$data->name" title=" ویرایش ایتم" :url="route('admin.edit.data.post' , ['model' => $model , 'id' => $data->id ])">
+            <x-slot:form>
+                <div class="my-5">
+                    <label for="subject" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> موضوع</label>
+                    <input name="subject" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="subject" placeholder=" موضوع" value="{{ $data->subject }}">
+                </div>
+                <div class="mb-5">
+                    <label for="edit_description" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">توضیحات تکمیلی</label>
+                    <textarea name="description" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" style="height: 200px!important;max-height: 250px!important;width: 100%;max-width: 100%;min-width: 100%;min-height: 100px" id="edit_description" placeholder="توضیحات تکمیلی">{{ $data->description }}</textarea>
+                </div>
+                <div class="my-5">
+                    <label for="image" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> عکس</label>
+                    <input name="image" type="file" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="image" placeholder=" عکس">
+                </div>
+                <div class="my-5">
+                    <label for="url" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14"> ادرس</label>
+                    <input name="url" type="text" class="form-control my-font-IYL my-color-b-700 my-f-14" dir="rtl" id="url" placeholder=" ادرس" value="{{ $data->url }}">
+                </div>
+                <div class=" mb-5">
+                    <label for="status" dir="rtl" style="width: 100%" class="text-end  form-label my-font-IYL my-color-b-700 my-f-14">  وضعیت</label>
+                    <select name="status" class="form-select form-select-lg" id="status" aria-label="Default select example">
+                        @if ($data->status == 0)
+                            <option checked value="1">فعال</option>
+                            <option value="0">غیر فعال</option>
+                            @else
+                            <option checked value="0">غیر فعال</option>
+                            <option  value="1">فعال</option>
+                        @endif
+                    </select>
+                </div>
+            </x-slot:form>
+        </x-page-edit>
+    @endif
+
+
 @endsection
