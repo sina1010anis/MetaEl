@@ -24,7 +24,7 @@ class CommentCollection extends ResourceCollection
                     'created_at' => $item->created_at,
                     'product' => $item->product,
                     'user' => $item->user,
-                    'attr' => $item->attr_comment,
+                    //'attr' => $item->attr_comment,
                     'reply' => new ReplyCommentCollection($item->reply_comment),
                 ];
             })

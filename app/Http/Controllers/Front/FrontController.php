@@ -17,6 +17,7 @@ use App\Repository\Front\User\SecurityUserHistorySearch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Hash;
 use function PHPUnit\Framework\isNull;
 
 class FrontController extends Controller

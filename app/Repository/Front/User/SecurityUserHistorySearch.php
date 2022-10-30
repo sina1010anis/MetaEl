@@ -24,8 +24,8 @@ class SecurityUserHistorySearch {
     public function get_old_data(String $username)
     {
         //Announce receipt of old data to connect new data to old
-        $this->username = $username;
         try{
+            $this->username = $username;
             $this->data_user = $this->json[$username];
         }catch(Exception $e){}
         return $this;
